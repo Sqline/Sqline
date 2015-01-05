@@ -45,3 +45,16 @@ new UserUpdate { Firstname = "William", WhereLastname = "James", }.Execute();
 
 new UserDelete { WhereLastname = "James" }.Execute();
 ```
+
+### Modular design
+Sqline consists of several independent applications:
+- Schemalizer: Responsible for extracting a databasemodel into an XML representation
+- T4Compiler: Custom implementation of a  [http://msdn.microsoft.com/en-us/library/bb126478.aspx](T4 template) compiler independent of Visual Studio
+- Sqlingo [upcoming]: SQL Parser (which will eventually allow us to deduce the types of columns in select statements so we can skip the field definitions)
+- Sqline: DataAccess Framework and Visual Studio plugin (utilizing the other applications)
+ 
+Schemalizer and T4Compiler can be used in any project that needs to extract database schema information and transform that data into Code or other documents - feel free to use.
+
+### State of project
+Schemalizer and T4Compiler are considered stable.
+Sqline is still a work-in-progress, basic features work, but more advances features are not yet fully implemented.
