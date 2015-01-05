@@ -1,0 +1,70 @@
+﻿<#@ template debug="false" #>
+<#@ output extension=".viewitem.cs" #>
+<#@ assembly name="$(ProjectDir)\bin\Debug\Sqline.CodeGeneration.dll" #>
+<#@ assembly name="$(SolutionDir)\Sqline\Sqline.ClientFramework\bin\Debug\Sqline.ClientFramework.dll" #>
+<#@ import namespace="Sqline.CodeGeneration.ConfigurationModel" #>
+<#@ import namespace="Sqline.CodeGeneration.ViewModel" #>
+<#@ import namespace="Sqline.ClientFramework" #>
+<#@ parameter type="System.String" name="ItemFilename" #> 
+<#@ parameter type="System.String" name="ProjectDir" #> 
+<# /* TODO: Usings and Namespace from Configuration XML.
+			Get prefix symbol (default: _) for private fields based on configuration.
+	*/ #>
+
+<#
+	//ItemFile OItemFile = new ItemFile(@"D:\Projects\!ScanApps\Socialize\Socialize.DataAccess\user.items");
+	ItemFile OItemFile = new ItemFile(ProjectDir, ItemFilename);
+#>
+
+using System;
+using System.Data;
+using System.Text;
+using System.Collections.Generic;
+using Sqline.ClientFramework;
+using Sqline.ClientFramework.ProviderModel;
+<# foreach (Using OUsing in OItemFile.Configuration.ViewItems.Usings) { #>
+using <#= OUsing.Namespace #>;
+<# } #>
+
+namespace <#= OItemFile.Configuration.ViewItems.Namespace #> {
+<# foreach (ViewItem OViewItem in OItemFile.ViewItems) { #>
+	public partial class <#= OViewItem.FullName #><#= GetInherits(OViewItem) #>{
+
+		public <#= OViewItem.FullName #>() {	
+		}
+
+		<# foreach (Field OField in OViewItem.Fields) { #>
+		private <#= OField.CsType #> F<#= OField.Name #>;
+		<#= OField.Visibility #> <#= OField.CsType #> <#= OField.Name #> {
+			get {
+				return F<#= OField.Name #>;
+			}
+			set {
+				F<#= OField.Name #> = value;
+			}
+		}
+		<# } #>
+	}
+
+<# } #>
+}
+
+<#+ 
+
+public string GetInherits(ViewItem viewitem) {
+	StringBuilder result = new StringBuilder();
+	foreach (ItemBase OBase in viewitem.Bases) {
+		if (OBase.Type == "extend" || OBase.Type == "implement") { 
+			if (result.Length > 0) {
+				result.Append(", ");
+			}
+			result.Append(OBase.Name);
+		}
+	}
+	if (result.Length > 0) {
+		return " : " + result.ToString();
+	}
+	return "";
+}
+
+#>

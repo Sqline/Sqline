@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="items" targetNamespace="http://sqline.net/schemas/config.xsd" elementFormDefault="qualified" xmlns:sqt="http://sqline.net/schemas/config.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="sqline">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="1" maxOccurs="1">
+
+					<!-- Configuration -->
+					<xs:element name="configuration" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Configure how sqline generates its classes (namespacing and usings)
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="connectionstring" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:attribute name="value" type="xs:string" use="required">
+												<xs:annotation>
+													<xs:documentation>connectionstring for your database</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="dataitems" minOccurs="0" maxOccurs="1">
+										<xs:complexType>
+											<xs:attribute name="namespace" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>The namespace that will be assigned to the generated DataItem classes</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="viewitems" minOccurs="0" maxOccurs="1">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:choice minOccurs="0" maxOccurs="unbounded">
+													<xs:element name="base" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="name" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation>The name of the class or interface to extend or implement</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="type" type="sqt:BaseType" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Declares whether to extend a super class or implement an interface (public, protected, private inheritance is specific to languages that support this eg. C++)</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="remove" type="sqt:RemovalOptions" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Removes a Base defined in a previous config file - use "all" to remove all previously defined Base references or the name of the previously defined Base class to remove only this particular reference</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="using" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="namespace" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Adds a Using Namespace or Type</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="remove" type="sqt:RemovalOptions" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Removes a Using defined in a previous config file - use "all" to remove all previously defined Usings or the name of the previous Namespace/Type to remove only this particular reference</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="include" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="file" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Adds a file include for languages that support this feature</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="remove" type="sqt:RemovalOptions" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Removes an Include defined in a previous config file - use "all" to remove all previously defined Includes or the name of the previous include file to remove only this particular reference</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:choice>
+											</xs:sequence>
+											<xs:attribute name="namespace" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>The namespace that will be assigned to the generated ViewItem classes</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="prefix" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>Adds a prefix to the ViewItem class and filenames eg. prefix="V" would result in ViewItems generated as VUser, VNews etc. this feature can be used to prevent namespace conflicts and make ViewItems easily identifiable</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="postfix" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>Adds a postfix to the ViewItem class and filenames eg. postfix="Item" would result in ViewItems generated as UserItem, NewsItem etc. this feature can be used to prevent namespace conflicts and make ViewItems easily identifiable</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="methods" minOccurs="0" maxOccurs="1">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:choice minOccurs="0" maxOccurs="unbounded">
+													<xs:element name="using" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="namespace" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Adds a Using Namespace or Type</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="remove" type="sqt:RemovalOptions" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Removes a Using defined in a previous config file - use "all" to remove all previously defined Usings or the name of the previous Namespace/Type to remove only this particular reference</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="include" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="file" type="xs:string" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Adds a file include for languages that support this feature</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="remove" type="sqt:RemovalOptions" use="optional">
+																<xs:annotation>
+																	<xs:documentation>Removes an Include defined in a previous config file - use "all" to remove all previously defined Includes or the name of the previous include file to remove only this particular reference</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:choice>
+											</xs:sequence>
+											<xs:attribute name="namespace" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>The namespace that will be assigned to the generated Method classes</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="timeout" type="xs:integer" use="optional">
+												<xs:annotation>
+													<xs:documentation>Sets the default command timeout for a SQL statement execution in seconds</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+                      <xs:attribute name="prefix" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>Adds a prefix to the Method class and filenames eg. prefix="DA" would result in Method classes generated as DAUser, DANews etc. this feature can be used to prevent namespace conflicts and make Method classes easily identifiable</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="postfix" type="xs:string" use="optional">
+												<xs:annotation>
+													<xs:documentation>Adds a postfix to the Method class and filenames eg. postfix="Handler" would result in Method classes generated as UserHandler, NewsHandler etc. this feature can be used to prevent namespace conflicts and make Method classes easily identifiable</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="RemovalOptions">
+		<xs:union memberTypes="sqt:RemovalOptionsList xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="RemovalOptionsList">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="all" />
+			<xs:enumeration value="queryfield" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="BaseType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="implement" />
+			<xs:enumeration value="extend" />
+			<xs:enumeration value="public" />
+			<xs:enumeration value="private" />
+			<xs:enumeration value="protected" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

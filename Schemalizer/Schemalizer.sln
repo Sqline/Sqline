@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Model", "Schemalizer.Model\Schemalizer.Model.csproj", "{62D5D7A7-C95C-46B4-BB7D-E57361AB8F7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider", "Schemalizer.Provider\Schemalizer.Provider.csproj", "{D982843D-06FC-4AD4-8339-77703F08528A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.MySql", "Schemalizer.Provider.MySql\Schemalizer.Provider.MySql.csproj", "{86677A19-2DAB-4FB7-A362-6E58931031AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.SqlServer", "Schemalizer.Provider.SqlServer\Schemalizer.Provider.SqlServer.csproj", "{296790F2-E62E-4031-A397-D57FE0310BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Base", "Schemalizer.Base\Schemalizer.Base.csproj", "{150712DC-ED96-4A96-AA20-648DE10533DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62D5D7A7-C95C-46B4-BB7D-E57361AB8F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D5D7A7-C95C-46B4-BB7D-E57361AB8F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D5D7A7-C95C-46B4-BB7D-E57361AB8F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D5D7A7-C95C-46B4-BB7D-E57361AB8F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D982843D-06FC-4AD4-8339-77703F08528A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D982843D-06FC-4AD4-8339-77703F08528A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D982843D-06FC-4AD4-8339-77703F08528A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D982843D-06FC-4AD4-8339-77703F08528A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86677A19-2DAB-4FB7-A362-6E58931031AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86677A19-2DAB-4FB7-A362-6E58931031AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86677A19-2DAB-4FB7-A362-6E58931031AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86677A19-2DAB-4FB7-A362-6E58931031AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{296790F2-E62E-4031-A397-D57FE0310BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{296790F2-E62E-4031-A397-D57FE0310BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{296790F2-E62E-4031-A397-D57FE0310BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{296790F2-E62E-4031-A397-D57FE0310BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{150712DC-ED96-4A96-AA20-648DE10533DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{150712DC-ED96-4A96-AA20-648DE10533DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{150712DC-ED96-4A96-AA20-648DE10533DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{150712DC-ED96-4A96-AA20-648DE10533DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

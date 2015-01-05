@@ -1,0 +1,48 @@
+﻿		public List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod) #>) {
+			List<<#= OViewItem.FullName #>> OResult = new List<<#= OViewItem.FullName #>>();
+			string sql = @"<#= OMethod.Sql.Statement #>";
+			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
+				using (IDbCommand OCommand = OConnection.CreateCommand()) {
+					OCommand.CommandText = sql;
+					OCommand.CommandType = CommandType.Text;
+					<# if (OMethod.Timeout > 0) { #>
+					OCommand.CommandTimeout = <#= OMethod.Timeout #>;
+					<# } #>
+					<# foreach (Parameter OParameter in OMethod.Parameters) { #>
+					IDbDataParameter OParameter<#= OParameter.Name #> = OCommand.CreateParameter();
+					OParameter<#= OParameter.Name #>.ParameterName = "@<#= OParameter.Name #>";
+					<# if (OParameter.Nullable) { #>
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.Name #> ?? (object)DBNull.Value;
+					<# } #>
+					OCommand.Parameters.Add(OParameter<#= OParameter.Name #>);
+					<# } #>
+					OConnection.Open();
+					using (IDataReader OReader = OCommand.ExecuteReader()) {
+						<# foreach (Field OField in OMethod.GetFields("queryfield")) { #>
+						int <#= OField.IndexFieldName #> = OReader.GetIndex("<#= OField.Name #>");
+						<# if (OField.Default != null) { #>
+						bool <#= OField.HasValueFieldName #> = false;
+						<# } #>
+						<# } #>
+						while (OReader.Read()) {
+						<#= OViewItem.FullName #> OViewItem = new <#= OViewItem.FullName #>();
+						<# foreach (Field OField in OMethod.GetFields("queryfield")) { #>
+							OViewItem.<#= OField.Name #> = OReader.<#= OField.CsReaderMethod #>;
+						<# } #>
+						<# foreach (Field OField in OMethod.Fields) { #>
+							<# if (OField.Default != null) { #>
+							if (!<#= OField.HasValueFieldName #>) {
+								OViewItem.<#= OField.Name #> = new Func<<#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((viewitem) => <#= OField.Default #>)(OViewItem);
+							}
+							<# } #>
+							<# if (OField.Transform != null) { #>
+							OViewItem.<#= OField.Name #> = new Func<<#= OField.CsTypeNonNullable #>, <#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((<#= OField.Name #>, viewitem) => <#= OField.Transform #>)((<#= OField.CsTypeNonNullable #>)OViewItem.<#= OField.Name #>, OViewItem);
+							<# } #>
+						<# } #>
+							OResult.Add(OViewItem);
+						}
+					}
+				}
+			}
+			return OResult;
+		}

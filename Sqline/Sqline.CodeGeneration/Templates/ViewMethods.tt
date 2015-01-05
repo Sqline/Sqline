@@ -1,0 +1,61 @@
+﻿<#@ template debug="false" #>
+<#@ output extension=".methods.cs" #>
+<#@ assembly name="$(ProjectDir)\bin\Debug\Sqline.CodeGeneration.dll" #>
+<#@ assembly name="$(SolutionDir)\Sqline\Sqline.ClientFramework\bin\Debug\Sqline.ClientFramework.dll" #>
+<#@ import namespace="Sqline.CodeGeneration.ConfigurationModel" #>
+<#@ import namespace="Sqline.CodeGeneration.ViewModel" #>
+<#@ import namespace="Sqline.ClientFramework" #>
+<#@ import namespace="System.IO" #>
+<#@ parameter type="System.String" name="ItemFilename" #> 
+<#@ parameter type="System.String" name="ProjectDir" #> 
+
+<# /* TODO: Usings and Namespace from Configuration XML.
+		Get prefix symbol (default: _) for private fields based on configuration.
+		Get postfix class name (default: Handler) based on configuration.
+*/ #>
+
+<# ItemFile OItemFile = new ItemFile(ProjectDir, ItemFilename); #>
+	
+using System;
+using System.Data;
+using System.Text;
+using System.Collections.Generic;
+using Sqline.ClientFramework;
+using Sqline.ClientFramework.ProviderModel;
+<# foreach (Using OUsing in OItemFile.Configuration.Methods.Usings) { #>
+using <#= OUsing.Namespace #>;
+<# } #>
+<# if (OItemFile.Configuration.ViewItems.Namespace != OItemFile.Configuration.Methods.Namespace) { #>
+using <#= OItemFile.Configuration.ViewItems.Namespace #>;
+<# } #>
+
+namespace <#= OItemFile.Configuration.Methods.Namespace #> {
+
+	public partial class <#= OItemFile.Configuration.Methods.Prefix #><#= OItemFile.ItemName #><#= OItemFile.Configuration.Methods.Postfix #> {
+
+	<#
+		foreach (ViewItem OViewItem in OItemFile.ViewItems) {
+			foreach (Method OMethod in OViewItem.Methods) {
+	#>
+	<#@ include file="Method.tt" #>
+
+	<# } } #>
+	}
+}
+
+<#+ 
+
+public string GetArguments(Method method) {
+	StringBuilder result = new StringBuilder();
+	foreach (Parameter OParameter in method.Parameters) {
+		if (result.Length > 0) {
+			result.Append(", ");
+		}
+		result.Append(OParameter.CsType);
+		result.Append(" ");
+		result.Append(OParameter.Name);
+	}
+	return result.ToString();
+}
+
+#>
