@@ -49,7 +49,7 @@ new UserDelete { WhereLastname = "James" }.Execute();
 ### Modular design
 Sqline consists of several independent applications:
 * **Schemalizer**: Responsible for extracting database schema information into an XML representation
-* **T4Compiler**: Custom implementation of a  [http://msdn.microsoft.com/en-us/library/bb126478.aspx](T4 template) compiler independent of Visual Studio
+* **T4Compiler**: Custom implementation of a  [T4 template](http://msdn.microsoft.com/en-us/library/bb126478.aspx) compiler independent of Visual Studio
 * **Sqlingo** [upcoming]: SQL Parser (which will eventually allow us to deduce the types of columns in select statements so we can skip the field definitions)
 * **Sqline**: DataAccess Framework and Visual Studio plugin (utilizing the other applications)
  
