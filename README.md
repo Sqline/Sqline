@@ -30,3 +30,18 @@ Sqline uses XML at the core, consider the following sample:
 This will generate a User object with the properties Firstname, Lastname and Age and a method that can read users based on the specified query.
 
 We consider this a "viewitem" - the SQL represents the "view" of data you want to grab (which can be very complex SQL statements) and a code object is created that models this "view". No need to pull out all fields of a table, like other DA solutions tends to - just grab the data you are interested in using a standard SQL query.
+
+### Insert, Update, Delete?
+
+While all operations can be performed using plain SQL defined in the XML files, Sqline does come with a bit more code-support for common operations. 
+
+Sqline extracts all schema-data from the database and creates what we call "dataitems" based on this schema - these items maps directly to the tables of your database.
+
+Here's how we can Insert, Update and Delete users in our sample user table:
+```cs
+new UserInsert("Henry", "James").Execute();
+
+new UserUpdate { Firstname = "William", WhereLastname = "James", }.Execute();
+
+new UserDelete { WhereLastname = "James" }.Execute();
+```
