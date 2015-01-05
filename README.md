@@ -57,4 +57,5 @@ Schemalizer and T4Compiler can be used in any project that needs to extract data
 
 ### State of project
 Schemalizer and T4Compiler are considered stable.
+
 Sqline is still a work-in-progress, basic features work, but more advances features are not yet fully implemented.
