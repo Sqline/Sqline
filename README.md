@@ -20,10 +20,7 @@ Sqline uses XML at the core, consider the following sample:
 		
 		<method name="GetUsers">
 			<sql>
-				SELECT 
-					U.Firstname, 
-					U.Lastname, 
-					UD.Age 
+				SELECT U.Firstname, U.Lastname, UD.Age 
 				FROM [User] U 
 				INNER JOIN [UserDetail] UD ON U.UserID = UD.UserID
 			</sql>
