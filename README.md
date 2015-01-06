@@ -61,8 +61,10 @@ Schemalizer and T4Compiler are considered stable.
 Sqline is still a work-in-progress, basic features work, but more advances features are not yet fully implemented.
 
 ### Current limitations
+* Sqline is not in a production ready state, **do only use it at an educational and experimental level**.
 * Sqline can currently only produce C# code
 * While some MySQL support is implemented, currently only MSSQL is considered supported.
 * A console version is planned, but currently Sqline is only working through the supplied Visual Studio Package.
 * T4Compiler is not fully compatible with the entire T4 standard, but most basic syntax is supported.
 * Schemalizer only works against MySQL and MSSQL servers.
+* No documentation, installers or configuration guides are currently available.
