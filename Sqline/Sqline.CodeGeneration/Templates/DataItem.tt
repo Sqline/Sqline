@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" #>
 <#@ output extension=".cs" #>
-<#@ assembly name="D:\Projects\!Sqline\Schemalizer\Schemalizer.Model\bin\Debug\Schemalizer.Model.dll" #>
+<#@ assembly name="..\..\..\Schemalizer\Schemalizer.Model\bin\Debug\Schemalizer.Model.dll" #>
 <#@ assembly name="..\bin\Debug\Sqline.CodeGeneration.dll" #>
 <#@ assembly name="..\..\Sqline.ClientFramework\bin\Debug\Sqline.ClientFramework.dll" #>
 <#@ import namespace="Schemalizer.Model" #>
