@@ -1,0 +1,14 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>ItemFile.items</DefaultName>
+    <Name>Sqline Item File</Name>
+    <TemplateID>2ba12fcb-946e-4fcd-9f56-ed1f5aa13f61</TemplateID>
+    <Description>Create a new item file for Sqline queries</Description>
+    <ProjectType>CSharp</ProjectType>
+    <Icon>template.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem SubType="Designer" TargetFileName="$fileinputname$.items" ReplaceParameters="false">User.items</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

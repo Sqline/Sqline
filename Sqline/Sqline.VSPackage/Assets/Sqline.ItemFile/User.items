@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items xmlns="http://sqline.net/schemas/items.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://sqline.net/schemas/items.xsd http://sqline.net/schemas/items.xsd">
+	
+	<viewitem name="User">
+		<field name="Name" type="nvarchar" />
+		<field name="Email" type="nvarchar" />
+		
+		<method name="GetUsers">
+			<sql>
+				SELECT Name, Email FROM [User]
+			</sql>
+		</method>
+	</viewitem>
+	
+</items>

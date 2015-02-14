@@ -1,0 +1,14 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>Sqline.config</DefaultName>
+    <Name>Sqline Config File</Name>
+    <TemplateID>d0d01180-6f6b-46d6-9302-27a54dd5f732</TemplateID>
+    <Description>Add a new Sqline config file (note: you can add these hierarchically to override previous configuration settings)</Description>
+    <ProjectType>CSharp</ProjectType>
+    <Icon>template.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem SubType="Designer" TargetFileName="Sqline.config" ReplaceParameters="false">Sqline.config</ProjectItem>
+  </TemplateContent>
+</VSTemplate>
