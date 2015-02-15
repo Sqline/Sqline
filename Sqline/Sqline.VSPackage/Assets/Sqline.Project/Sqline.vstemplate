@@ -1,0 +1,31 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Sqline Project</Name>
+    <Description>Sqline DataAccess Project</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ProjectName.DataAccess</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>template.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ProjectName.DataAccess.csproj" File="ProjectName.DataAccess.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="DA.cs">DA.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Sqline.config">Sqline.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Sqline.Handler.cs">Sqline.Handler.cs</ProjectItem>
+      <Folder Name="User" TargetFolderName="User">
+        <ProjectItem ReplaceParameters="true" TargetFileName="User.items">User.items</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="User.methods.cs">User.methods.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="User.viewitem.cs">User.viewitem.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
