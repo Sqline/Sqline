@@ -3,10 +3,7 @@
 	<Metadata>
 		<Identity Id="0c69ad0f-767e-4797-81f8-dc9948461076" Version="1.0" Language="en-US" Publisher="Sqline" />
 		<DisplayName>Sqline DataAccess Framework</DisplayName>
-		<Description xml:space="preserve">
-			Sqline DataAccess Framework Package
-			www.sqline.net
-		</Description>
+		<Description xml:space="preserve">Sqline DataAccess Framework Package - www.sqline.net</Description>
 		<MoreInfo>http://www.sqline.net</MoreInfo>
 	</Metadata>
 	<Installation InstalledByMsi="false">

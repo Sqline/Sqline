@@ -1,6 +1,8 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -18,9 +20,13 @@ namespace Sqline.VSPackage {
 		}
 
 		public String ResolvePath(string path) {
-			if (path[1] != ':') {
-				string sqlinedir = Environment.GetEnvironmentVariable("sqline");
-				return Path.GetFullPath(Path.Combine(sqlinedir, path));
+			path = path.Trim();
+			if (path[1] == ':') {
+				return path;
+			}
+			if (path.StartsWith("/") || path.StartsWith("\\")) {
+				path = path.Remove(0, 1);
+				return Path.GetFullPath(Path.Combine(FAssemblyPath, path));
 			}
 			return path;
 		}

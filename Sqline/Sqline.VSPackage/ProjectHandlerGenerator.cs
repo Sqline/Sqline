@@ -24,7 +24,7 @@ namespace Sqline.VSPackage {
 		}
 
 		public void Generate() {
-			string OTemplatePath = FContext.ResolvePath("Sqline/Sqline.CodeGeneration/Templates/ProjectHandler.tt");
+			string OTemplatePath = FContext.ResolvePath("/Templates/ProjectHandler.t4");
 			Debug.WriteLine("GenerateProjectHandler: " + OTemplatePath);
 			Template OTemplate = new Template(OTemplatePath);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);

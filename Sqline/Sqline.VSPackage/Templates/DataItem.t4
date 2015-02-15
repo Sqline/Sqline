@@ -1,0 +1,103 @@
+﻿<#@ template debug="false" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="Schemalizer.Model.dll" #>
+<#@ assembly name="Sqline.CodeGeneration.dll" #>
+<#@ assembly name="Sqline.ClientFramework.dll" #>
+<#@ import namespace="Schemalizer.Model" #>
+<#@ import namespace="Sqline.CodeGeneration.ViewModel" #>
+<#@ import namespace="Sqline.ClientFramework" #>
+<#@ parameter name="DatabaseFilePath" type="System.String" #> 
+<#@ parameter name="ProjectDir" type="System.String" #> 
+
+<#
+	DataItemFile ODataItemFile = new DataItemFile(ProjectDir, DatabaseFilePath);
+#>
+<# /* TODO: Usings and Namespace from Configuration XML.
+			Get prefix symbol (default: _) for private fields based on configuration.
+	*/ #>
+using System;
+using System.Data;
+using System.Text;
+using System.Collections;
+using Sqline.ClientFramework;
+
+namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
+<#
+	foreach (ViewTable OTable in ODataItemFile.Model.Tables) {
+#>
+
+	<# /* Meta Class */ #>
+	public static class <#= OTable.TableName #>Meta {
+	<# foreach (ViewColumn OColumn in OTable.Columns) {  #>
+		<# if (OColumn.IsString) { #>
+		public static int <#= OColumn.Name #>MaxLength { get { return <#= OColumn.MaxLength #>; } }	
+		<# } #>
+	<# } #>
+	}
+
+    <# /* Insert Class */ #>
+	public class <#= OTable.TableName #>Insert : InsertDataItem {
+  	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
+		private <#= OColumn.ParamType #> F<#= OColumn.Name #>;
+	<# } #>
+
+		public <#= OTable.TableName #>Insert(<#= OTable.RequiredColumns.BuildString((c) => c.ParamType + " " + c.Name.ToLower(), ", ") #>) {
+			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+			<#= OTable.RequiredColumns.BuildString((c) => "F" + c.Name + " = " + c.Name.ToLower() + ";", "\r\n") #>
+		}
+
+		protected override void PreExecute() {
+			<#= OTable.Columns.BuildString((c) => "AddParameter(F" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
+		}
+
+	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
+		<# if (OColumn.Required) { #>
+			public <#= OColumn.ParamType #> <#= OColumn.Name #> { get { return F<#= OColumn.Name #>; } private set { F<#= OColumn.Name #> = value; } }
+		<# } else { #>
+			public <#= OColumn.ParamType #> <#= OColumn.Name #> { get { return F<#= OColumn.Name #>; } set { F<#= OColumn.Name #> = value; } }
+		<# } #>
+	<# } #>
+	}
+
+	<# /* Update Class */ #>
+	public class <#= OTable.TableName #>Update : UpdateDataItem {
+  	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
+		private <#= OColumn.ParamType #> F<#= OColumn.Name #>;
+		private <#= OColumn.WhereType #> FWhere<#= OColumn.Name #>;
+	<# } #>
+
+		public <#= OTable.TableName #>Update() {
+			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+		}
+
+		protected override void PreExecute() {
+			<#= OTable.Columns.BuildString((c) => "AddParameter(F" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
+			<#= OTable.Columns.BuildString((c) => "AddParameter(FWhere" + c.Name + ", \"" +c.Name + "\");", "\r\n") #>
+		}
+
+	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
+		public <#= OColumn.ParamType #> <#= OColumn.Name #> { get { return F<#= OColumn.Name #>; } set { F<#= OColumn.Name #> = value; } }
+		public <#= OColumn.WhereType #> Where<#= OColumn.Name #> { get { return FWhere<#= OColumn.Name #>; } set { FWhere<#= OColumn.Name #> = value; } }
+	<# } #>
+	}
+
+	<# /* Delete Class */ #>
+	public class <#= OTable.TableName #>Delete : DeleteDataItem {
+  	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
+		private <#= OColumn.WhereType #> FWhere<#= OColumn.Name #>;
+	<# } #>
+
+		public <#= OTable.TableName #>Delete() {
+			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+		}
+
+		protected override void PreExecute() {
+			<#= OTable.Columns.BuildString((c) => "AddParameter(FWhere" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
+		}
+
+	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
+		public <#= OColumn.WhereType #> Where<#= OColumn.Name #> { get { return FWhere<#= OColumn.Name #>; } set { FWhere<#= OColumn.Name #> = value; } }
+	<# } #>
+	}
+<# } #>	
+}

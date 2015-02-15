@@ -1,12 +1,12 @@
 ﻿<#@ template debug="false" #>
 <#@ output extension=".cs" #>
-<#@ assembly name="..\..\..\Schemalizer\Schemalizer.Model\bin\Debug\Schemalizer.Model.dll" #>
-<#@ assembly name="..\bin\Debug\Sqline.CodeGeneration.dll" #>
-<#@ assembly name="..\..\Sqline.ClientFramework\bin\Debug\Sqline.ClientFramework.dll" #>
+<#@ assembly name="Schemalizer.Model.dll" #>
+<#@ assembly name="Sqline.CodeGeneration.dll" #>
+<#@ assembly name="Sqline.ClientFramework.dll" #>
 <#@ import namespace="Schemalizer.Model" #>
 <#@ import namespace="Sqline.CodeGeneration.ViewModel" #>
 <#@ import namespace="Sqline.ClientFramework" #>
-<#@ parameter name="DatabaseFilePath" type="System.String" #>
+<#@ parameter name="DatabaseFilePath" type="System.String" #> 
 <#@ parameter name="ProjectDir" type="System.String" #> 
 
 <#

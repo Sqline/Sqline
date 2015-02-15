@@ -45,7 +45,7 @@ namespace Sqline.VSPackage {
 		}
 
 		private void GenerateDataItems(String databaseFilePath) {
-			string OTemplatePath = FContext.ResolvePath("Sqline/Sqline.CodeGeneration/Templates/DataItem.tt");
+			string OTemplatePath = FContext.ResolvePath("/Templates/DataItem.t4");
 			Debug.WriteLine("GenerateDataItems: " + OTemplatePath);
 			Template OTemplate = new Template(OTemplatePath);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);

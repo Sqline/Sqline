@@ -97,11 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
-    <None Include="Templates\Method.tt" />
-    <None Include="Templates\ProjectHandler.tt" />
-    <None Include="Templates\ViewMethods.tt" />
-    <None Include="Templates\DataItem.tt" />
-    <None Include="Templates\ViewItem.tt" />
+    <None Include="Templates\Method.t4" />
+    <None Include="Templates\ProjectHandler.t4" />
+    <None Include="Templates\ViewMethods.t4" />
+    <None Include="Templates\DataItem.t4" />
+    <None Include="Templates\ViewItem.t4" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

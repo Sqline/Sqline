@@ -33,7 +33,7 @@ namespace Sqline.VSPackage {
 		}
 
 		private void GenerateViewItems() {
-			string OTemplatePath = FContext.ResolvePath("Sqline/Sqline.CodeGeneration/Templates/ViewItem.tt");
+			string OTemplatePath = FContext.ResolvePath("/Templates/ViewItem.t4");
 			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
 			Template OTemplate = new Template(OTemplatePath);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
@@ -59,7 +59,7 @@ namespace Sqline.VSPackage {
 		}
 
 		private void GenerateMethods() {
-			string OTemplatePath = FContext.ResolvePath("Sqline/Sqline.CodeGeneration/Templates/ViewMethods.tt");
+			string OTemplatePath = FContext.ResolvePath("/Templates/ViewMethods.t4");
 			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
 			Template OTemplate = new Template(OTemplatePath);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);

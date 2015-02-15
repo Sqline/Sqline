@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" #>
 <#@ output extension=".methods.cs" #>
-<#@ assembly name="$(ProjectDir)\bin\Debug\Sqline.CodeGeneration.dll" #>
-<#@ assembly name="$(SolutionDir)\Sqline\Sqline.ClientFramework\bin\Debug\Sqline.ClientFramework.dll" #>
+<#@ assembly name="Sqline.CodeGeneration.dll" #>
+<#@ assembly name="Sqline.ClientFramework.dll" #>
 <#@ import namespace="Sqline.CodeGeneration.ConfigurationModel" #>
 <#@ import namespace="Sqline.CodeGeneration.ViewModel" #>
 <#@ import namespace="Sqline.ClientFramework" #>
@@ -37,7 +37,7 @@ namespace <#= OItemFile.Configuration.Methods.Namespace #> {
 		foreach (ViewItem OViewItem in OItemFile.ViewItems) {
 			foreach (Method OMethod in OViewItem.Methods) {
 	#>
-	<#@ include file="Method.tt" #>
+	<#@ include file="Method.t4" #>
 
 	<# } } #>
 	}

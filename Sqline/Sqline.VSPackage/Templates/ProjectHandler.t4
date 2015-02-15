@@ -1,0 +1,34 @@
+﻿<#@ template debug="false" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="Sqline.CodeGeneration.dll" #>
+<#@ assembly name="Sqline.ClientFramework.dll" #>
+<#@ import namespace="Sqline.CodeGeneration.ConfigurationModel" #>
+<#@ import namespace="Sqline.CodeGeneration.ViewModel" #>
+<#@ import namespace="Sqline.ClientFramework" #>
+<#@ import namespace="System.IO" #>
+<#@ parameter type="System.String" name="ItemFilename" #> 
+<#@ parameter type="System.String" name="ProjectDir" #> 
+<# 
+/* TODO: Get prefix symbol (default: _) for private fields based on configuration. */ 
+#>
+<# ProjectHandlerFile OFile = new ProjectHandlerFile(ProjectDir); #>
+using Sqline.ClientFramework;
+
+namespace <#= OFile.Configuration.ProjectHandler.Namespace #> {
+	public static class <#= OFile.Configuration.ProjectHandler.Name #> {
+		private static SqlineConfig FSqlineConfig;
+
+		public static void Initialize(SqlineConfig config) {
+			FSqlineConfig = config;
+		}
+
+		public static SqlineConfig SqlineConfig {
+			get {
+				return FSqlineConfig;
+			}
+			private set {
+				FSqlineConfig = value;
+			}
+		}
+	}
+}

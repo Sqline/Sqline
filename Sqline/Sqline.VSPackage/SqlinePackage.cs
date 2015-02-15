@@ -33,11 +33,16 @@ namespace Sqline.VSPackage {
 		}
 
 		private void OnBuildBegin(vsBuildScope Scope, vsBuildAction Action) {
-			List<Project> OProjects = new List<Project>();
-			FindSqlineProjects(OProjects);
-			foreach (Project OProject in OProjects) {
-				GenerateDataItems(OProject);
-				GenerateProjectHandler(OProject);
+			try {
+				List<Project> OProjects = new List<Project>();
+				FindSqlineProjects(OProjects);
+				foreach (Project OProject in OProjects) {
+					GenerateDataItems(OProject);
+					GenerateProjectHandler(OProject);
+				}
+			}
+			catch (Exception ex) {
+				Debug.WriteLine(ex);
 			}
 		}
 
@@ -77,6 +82,9 @@ namespace Sqline.VSPackage {
 				}
 			}
 			else {
+				if (project.ProjectItems == null) {
+					return;
+				}
 				foreach (ProjectItem OProjectItem in project.ProjectItems) {
 					if (OProjectItem.Name.Equals("sqline.config", StringComparison.OrdinalIgnoreCase)) {
 						Debug.Write("Found: " + OProjectItem.Name);
@@ -87,12 +95,17 @@ namespace Sqline.VSPackage {
 		}
 
 		private void OnDocumentSaved(Document document) {
-			if (document.FullName.EndsWith(".items")) {
-				ItemFileGenerator OGenerator = new ItemFileGenerator(Context, document);
-				OGenerator.Generate();
-				foreach (string OFile in OGenerator.OutputFiles) {
-					ProjectItem OItem = document.ProjectItem.ProjectItems.AddFromFile(OFile);
+			try {
+				if (document.FullName.EndsWith(".items")) {
+					ItemFileGenerator OGenerator = new ItemFileGenerator(Context, document);
+					OGenerator.Generate();
+					foreach (string OFile in OGenerator.OutputFiles) {
+						ProjectItem OItem = document.ProjectItem.ProjectItems.AddFromFile(OFile);
+					}
 				}
+			}
+			catch (Exception ex) {
+				Debug.WriteLine(ex);
 			}
 		}
 
