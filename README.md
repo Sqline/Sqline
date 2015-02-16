@@ -1,4 +1,4 @@
-Sqline
+![Sqline](Wiki/Sqline.png) Sqline
 ======
 
 Sqline is a SQL-first DataAccess Framework for .NET (in a very alpha-state)
