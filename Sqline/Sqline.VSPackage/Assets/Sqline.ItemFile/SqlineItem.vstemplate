@@ -5,7 +5,7 @@
     <TemplateID>2ba12fcb-946e-4fcd-9f56-ed1f5aa13f61</TemplateID>
     <Description>Create a new item file for Sqline queries</Description>
     <ProjectType>CSharp</ProjectType>
-    <Icon>template.ico</Icon>
+    <Icon>sqline.ico</Icon>
   </TemplateData>
   <TemplateContent>
     <References />

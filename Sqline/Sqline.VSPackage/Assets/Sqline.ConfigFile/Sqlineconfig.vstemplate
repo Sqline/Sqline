@@ -5,7 +5,7 @@
     <TemplateID>d0d01180-6f6b-46d6-9302-27a54dd5f732</TemplateID>
     <Description>Add a new Sqline config file (note: you can add these hierarchically to override previous configuration settings)</Description>
     <ProjectType>CSharp</ProjectType>
-    <Icon>template.ico</Icon>
+    <Icon>sqline.ico</Icon>
   </TemplateData>
   <TemplateContent>
     <References />

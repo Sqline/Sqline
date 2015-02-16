@@ -11,7 +11,7 @@
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
-    <Icon>template.ico</Icon>
+    <Icon>sqline.ico</Icon>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="ProjectName.DataAccess.csproj" File="ProjectName.DataAccess.csproj" ReplaceParameters="true">
