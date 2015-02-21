@@ -39,13 +39,19 @@
 							OViewItem.<#= OField.Name #> = new Func<<#= OField.CsTypeNonNullable #>, <#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((<#= OField.Name #>, item) => <#= OField.Transform #>)((<#= OField.CsTypeNonNullable #>)OViewItem.<#= OField.Name #>, OViewItem);
 							<# } #>
 						<# } #>
+							<# if (OMethod.Filter != null) { #>
+							if (new Func<<#= OViewItem.FullName #>, bool>(item => <#= OMethod.Filter #>)(OViewItem)) {
+								OResult.Add(OViewItem);
+							}
+							<# } else { #>
 							OResult.Add(OViewItem);
+							<# } #>
 						}
 					}
 				}
 			}
 			<# if (OMethod.Sort != null) { #>
-				
+			OResult.Sort((item1, item2) => <#= OMethod.Sort #>);
 			<# } #>
 			return OResult;
 		}

@@ -14,6 +14,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private string FVisibility = "public";
 		private int FTimeout;
 		private string FSort;
+		private string FFilter;
 		private ViewItem FViewItem;
 		private Sql FSql;
 
@@ -48,6 +49,16 @@ namespace Sqline.CodeGeneration.ViewModel {
 				XElement OSortElem = element.Element(ItemFile.XmlNamespace + "sort");
 				if (OSortElem != null) {
 					FSort = OSortElem.Value;
+				}
+			}
+
+			if (element.Attribute("filter") != null) {
+				FFilter = element.Attribute("filter").Value;
+			}
+			else {
+				XElement OFilterElem = element.Element(ItemFile.XmlNamespace + "filter");
+				if (OFilterElem != null) {
+					FFilter = OFilterElem.Value;
 				}
 			}
 
@@ -136,6 +147,12 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public string Sort {
 			get {
 				return FSort;
+			}
+		}
+
+		public string Filter {
+			get {
+				return FFilter;
 			}
 		}
 
