@@ -24,6 +24,20 @@
 											</xs:attribute>
 										</xs:complexType>
 									</xs:element>
+									<xs:element name="projecthandler" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:attribute name="namespace" type="xs:string" use="required">
+												<xs:annotation>
+													<xs:documentation>Namespace of the project handler class</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										  <xs:attribute name="name" type="xs:string" use="required">
+												<xs:annotation>
+													<xs:documentation>Name of the project handler class</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
 									<xs:element name="dataitems" minOccurs="0" maxOccurs="1">
 										<xs:complexType>
 											<xs:attribute name="namespace" type="xs:string" use="optional">

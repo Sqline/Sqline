@@ -92,7 +92,7 @@ namespace Sqline.VSPackage {
 					}
 				}
 			}
-		}
+		}	
 
 		private void OnDocumentSaved(Document document) {
 			try {

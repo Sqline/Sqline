@@ -47,6 +47,9 @@ namespace Schemalizer.Provider.SqlServer {
 			Column OColumn = table.CreateColumn(OColumnName, FDatabase);
 			OColumn.AutoIncrement = reader.GetBoolean(reader.GetOrdinal("IsAutoIncrement"));
 			OColumn.DataType = reader.GetString(reader.GetOrdinal("DataType"));
+			if (OColumn.DataType == "sysname") {
+				OColumn.DataType = "nvarchar";
+			}
 			OColumn.MaxLength = reader.GetInt16(reader.GetOrdinal("MaxLength"));
 			OColumn.Nullable = reader.GetBoolean(reader.GetOrdinal("Nullable"));
 			if (!reader.IsDBNull(reader.GetOrdinal("DefaultValue"))) {
@@ -81,6 +84,8 @@ namespace Schemalizer.Provider.SqlServer {
 								INNER JOIN sys.Tables AS T ON C.object_id = T.object_id
 								INNER JOIN sys.types AS DT ON C.user_type_id = DT.user_type_id
 								LEFT OUTER JOIN sys.default_constraints DC on DC.parent_object_id = C.object_id AND DC.parent_column_id = C.column_id
+								LEFT OUTER JOIN sys.extended_properties EP ON T.[object_id] = EP.major_id AND EP.class_desc = 'OBJECT_OR_COLUMN' AND EP.[name] = 'microsoft_database_tools_support'
+								WHERE EP.major_id IS NULL
 								ORDER BY C.column_id ASC";
 			}
 		}
