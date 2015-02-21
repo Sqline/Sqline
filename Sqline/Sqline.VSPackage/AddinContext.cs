@@ -26,8 +26,16 @@ namespace Sqline.VSPackage {
 			}
 			if (path.StartsWith("/") || path.StartsWith("\\")) {
 				path = path.Remove(0, 1);
-				return Path.GetFullPath(Path.Combine(FAssemblyPath, path));
+				string templatedir = Environment.GetEnvironmentVariable("sqline_templates");
+				if (templatedir != null) {
+					Debug.WriteLine("Templatedir: " + templatedir);
+					path = Path.GetFullPath(Path.Combine(templatedir, path));
+				}
+				else {
+					path = Path.GetFullPath(Path.Combine(FAssemblyPath, path));
+				}
 			}
+			Debug.WriteLine("Resolved: " + path);
 			return path;
 		}
 

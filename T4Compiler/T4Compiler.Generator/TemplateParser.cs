@@ -7,6 +7,7 @@ namespace T4Compiler.Generator {
 
 	public class TemplateParser : TemplateParserBase {
 		private enum BlockType { Text, DirectiveStart, DirectiveEnd, StatementStart, StatementEnd, OutputStart, OutputEnd, ClassFeatureStart, ClassFeatureEnd }
+		private TemplateOptions FOptions;
 		private StringBuilder FTemplateHeader = new StringBuilder();
 		private StringBuilder FTemplateBody = new StringBuilder();
 		private StringBuilder FTemplateMethods = new StringBuilder();
@@ -20,7 +21,8 @@ namespace T4Compiler.Generator {
 		private BlockType FLastBlockType = BlockType.Text;
 		private BlockType FCurrentBlockType = BlockType.Text;
 
-		public TemplateParser(string filename, string uniqueName) : base(filename, uniqueName) {
+		public TemplateParser(string filename, string uniqueName, TemplateOptions options) : base(filename, uniqueName) {
+			FOptions = options;
 		}
 		
 		public override string Parse(string content) {
@@ -56,7 +58,10 @@ namespace T4Compiler.Generator {
 					FTemplateLine++;
 					if (FCurrentBlockType == BlockType.Text) {
 						if (FLastBlockType != BlockType.DirectiveEnd && FLastBlockType != BlockType.ClassFeatureEnd) {
-							WriteLine(Builder, "Write(@\"" + EscapeString(FData.Substring(FTextStart, i - FTextStart + 1)) + "\");", false);
+							string OText = FData.Substring(FTextStart, i - FTextStart + 1);
+							if (!FOptions.RemoveWhitespaceStatementLines || FLastBlockType != BlockType.StatementEnd || OText.Trim() != "") {
+								WriteLine(Builder, "Write(@\"" + EscapeString(OText) + "\");", false);
+							}
 						}
 						WriteDebugLine(Builder);
 						FTextStart = i + 1;
@@ -113,7 +118,10 @@ namespace T4Compiler.Generator {
 				FLastBlockType = BlockType.OutputEnd;
 			}
 			else if (FCurrentBlockType == BlockType.StatementStart) {
-				WriteLine(Builder, "Write(@\"" + EscapeString(FData.Substring(FTextStart, FTextEnd - FTextStart)) + "\");", true);
+				string OText = FData.Substring(FTextStart, FTextEnd - FTextStart);
+				if (!FOptions.RemoveWhitespaceStatementLines || OText.Trim() != "") {
+					WriteLine(Builder, "Write(@\"" + EscapeString(OText) + "\");", true);
+				}
 				WriteLine(Builder, FData.Substring(FStart, i - FStart - 1).Trim(), true);
 				FTextStart = i + 1;
 				FLastBlockType = BlockType.StatementEnd;
@@ -133,7 +141,6 @@ namespace T4Compiler.Generator {
 					IncludeDirective ODirective = new IncludeDirective(OTagContent);
 					string OFileContent = ReadFile(ODirective);
 					FData = FData.Insert(i + 1, OFileContent);
-					Console.WriteLine("Data: " + FData);
 				}
 				if (OTagContent.StartsWithIC("assembly")) {
 					AssemblyDirective ODirective = new AssemblyDirective(this, OTagContent);

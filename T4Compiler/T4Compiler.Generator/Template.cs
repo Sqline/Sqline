@@ -11,6 +11,7 @@ namespace T4Compiler.Generator {
 	public class Template {
 		private static Dictionary<string, Type> FAssemblies = new Dictionary<string, Type>();
 		private Dictionary<string, object> FParameters = new Dictionary<string, object>();
+		private TemplateOptions FOptions = new TemplateOptions();
 		private TemplateCompiler FCompiler;
 		private TemplateParser FTemplateParser;
 		private Type FType;
@@ -30,6 +31,10 @@ namespace T4Compiler.Generator {
 			Init(filepath);
 		}
 
+		public Template(string filepath, TemplateOptions options) : this(filepath) {
+			FOptions = options;
+		}
+
 		public Template(Stream stream, string virtualFilepath) {
 			using (StreamReader OReader = new StreamReader(stream)) {
 				FTemplateSource = OReader.ReadToEnd();
@@ -42,7 +47,7 @@ namespace T4Compiler.Generator {
 			FFile = filename;
 			Console.WriteLine(FFile);
 			FFileHash = FFile.ToMD5Hash();
-			FTemplateParser = new TemplateParser(FFile, FFileHash);
+			FTemplateParser = new TemplateParser(FFile, FFileHash, FOptions);
 			FCompiler = new TemplateCompiler(FTempAssemblyFile);
 		}
 

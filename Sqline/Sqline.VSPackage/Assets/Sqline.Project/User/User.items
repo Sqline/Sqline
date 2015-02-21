@@ -5,7 +5,7 @@
     <field name="Name" type="nvarchar" />
 		<field name="Email" type="nvarchar" />
 		
-		<method name="GetUsers" timeout="5">
+		<method name="GetUsers">
 			<sql>
 				SELECT Name, EMail FROM [User]
 			</sql>

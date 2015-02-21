@@ -16,6 +16,10 @@ namespace T4Compiler.Generator {
 		}
 
 		public void Process(string file, string outputfile, IDictionary<string, object> parameters) {
+			Process(file, outputfile, parameters, new TemplateOptions());
+		}
+
+		public void Process(string file, string outputfile, IDictionary<string, object> parameters, TemplateOptions options) {
 			Stopwatch OWatch = Stopwatch.StartNew();
 			Template OTemplate = new Template(file);
 			AssignParameters(OTemplate, parameters);

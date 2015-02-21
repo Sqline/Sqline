@@ -1,5 +1,6 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace Sqline.CodeGeneration.ViewModel {
@@ -16,8 +17,20 @@ namespace Sqline.CodeGeneration.ViewModel {
 			if (element.Attribute("default") != null) {
 				FDefault = element.Attribute("default").Value;
 			}
+			else {
+				XElement ODefaultElem = element.Element(ItemFile.XmlNamespace + "default");
+				if (ODefaultElem != null) {
+					FDefault = ODefaultElem.Value;
+				}
+			}
 			if (element.Attribute("transform") != null) {
 				FTransform = element.Attribute("transform").Value;
+			}
+			else {
+				XElement OTransformElem = element.Element(ItemFile.XmlNamespace + "transform");
+				if (OTransformElem != null) {
+					FTransform = OTransformElem.Value;
+				}
 			}
 		}
 

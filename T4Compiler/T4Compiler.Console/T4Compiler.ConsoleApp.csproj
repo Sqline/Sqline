@@ -55,6 +55,7 @@
     <Compile Include="..\T4Compiler.Generator\Directives\DirectiveBase.cs" />
     <Compile Include="..\T4Compiler.Generator\TemplateParserBase.cs" />
     <Compile Include="..\T4Compiler.Generator\TemplateParser.cs" />
+    <Compile Include="..\T4Compiler.Generator\TemplateOptions.cs" />
     <Compile Include="..\T4Compiler.Generator\TemplateCompiler.cs" />
     <Compile Include="..\T4Compiler.Generator\TemplateProcessor.cs" />
     <Compile Include="..\T4Compiler.Generator\Template.cs" />

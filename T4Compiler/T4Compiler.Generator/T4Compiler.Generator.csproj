@@ -60,6 +60,7 @@
     <Compile Include="Directives\OutputDirective.cs" />
     <Compile Include="Directives\ParameterDirective.cs" />
     <Compile Include="Directives\DirectiveBase.cs" />
+    <Compile Include="TemplateOptions.cs" />
     <Compile Include="TemplateParserBase.cs" />
     <Compile Include="TemplateParser.cs" />
     <Compile Include="TemplateCompiler.cs" />

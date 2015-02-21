@@ -11,7 +11,9 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private List<FieldOption> FFieldOptions = new List<FieldOption>();
 		private List<Parameter> FParameters = new List<Parameter>();
 		private string FName;
+		private string FVisibility = "public";
 		private int FTimeout;
+		private string FSort;
 		private ViewItem FViewItem;
 		private Sql FSql;
 
@@ -29,11 +31,24 @@ namespace Sqline.CodeGeneration.ViewModel {
 				FSql = new Sql(element.Element(ItemFile.XmlNamespace + "sql"));
 			}
 			else {
-				// Throw error
+				//TODO: Throw error
+			}
+			if (element.Attribute("visibility") != null) {
+				FVisibility = element.Attribute("visibility").Value;
 			}
 			FTimeout = FConfiguration.Methods.Timeout;
 			if (element.Attribute("timeout") != null) {
 				FTimeout = int.Parse(element.Attribute("timeout").Value);
+			}
+
+			if (element.Attribute("sort") != null) {
+				FSort = element.Attribute("sort").Value;
+			}
+			else {
+				XElement OSortElem = element.Element(ItemFile.XmlNamespace + "sort");
+				if (OSortElem != null) {
+					FSort = OSortElem.Value;
+				}
 			}
 
 			foreach (XElement OParameter in element.Elements(ItemFile.XmlNamespace + "parameter")) {
@@ -88,6 +103,12 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
+		public string Visibility {
+			get {
+				return FVisibility;
+			}
+		}
+
 		public ViewItem ViewItem {
 			get {
 				return FViewItem;
@@ -109,6 +130,12 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public int Timeout {
 			get {
 				return FTimeout;
+			}
+		}
+
+		public string Sort {
+			get {
+				return FSort;
 			}
 		}
 

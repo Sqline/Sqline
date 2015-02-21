@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" #>
+﻿<#@ template debug="true" #>
 <#@ output extension=".viewitem.cs" #>
 <#@ assembly name="Sqline.CodeGeneration.dll" #>
 <#@ assembly name="Sqline.ClientFramework.dll" #>

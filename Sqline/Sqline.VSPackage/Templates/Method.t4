@@ -1,4 +1,4 @@
-﻿		public List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod) #>) {
+﻿		<#= OMethod.Visibility #> List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod) #>) {
 			List<<#= OViewItem.FullName #>> OResult = new List<<#= OViewItem.FullName #>>();
 			string sql = @"<#= OMethod.Sql.Statement #>";
 			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
@@ -32,11 +32,11 @@
 						<# foreach (Field OField in OMethod.Fields) { #>
 							<# if (OField.Default != null) { #>
 							if (!<#= OField.HasValueFieldName #>) {
-								OViewItem.<#= OField.Name #> = new Func<<#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((viewitem) => <#= OField.Default #>)(OViewItem);
+								OViewItem.<#= OField.Name #> = new Func<<#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((item) => <#= OField.Default #>)(OViewItem);
 							}
 							<# } #>
 							<# if (OField.Transform != null) { #>
-							OViewItem.<#= OField.Name #> = new Func<<#= OField.CsTypeNonNullable #>, <#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((<#= OField.Name #>, viewitem) => <#= OField.Transform #>)((<#= OField.CsTypeNonNullable #>)OViewItem.<#= OField.Name #>, OViewItem);
+							OViewItem.<#= OField.Name #> = new Func<<#= OField.CsTypeNonNullable #>, <#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((<#= OField.Name #>, item) => <#= OField.Transform #>)((<#= OField.CsTypeNonNullable #>)OViewItem.<#= OField.Name #>, OViewItem);
 							<# } #>
 						<# } #>
 							OResult.Add(OViewItem);
@@ -44,5 +44,8 @@
 					}
 				}
 			}
+			<# if (OMethod.Sort != null) { #>
+				
+			<# } #>
 			return OResult;
 		}
