@@ -6,6 +6,7 @@ using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class Field : ICloneable {
+		private IOwner FOwner;
 		private XElement FElement;
 		private ViewItem FViewItem;
 		private string FName;
@@ -18,13 +19,14 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private string FSource = "queryfield";
 
 		public Field(ViewItem viewitem, XElement element) {
-			FElement = element;
 			FViewItem = viewitem;
+			FOwner = viewitem;
+			FElement = element;
 			if (element.Attribute("name") == null) {
-				//TODO: Throw error
+				FOwner.Throw(element, "The required attribute 'name' is missing.");
 			}
 			if (element.Attribute("type") == null) {
-				//TODO: Throw error
+				FOwner.Throw(element, "The required attribute 'type' is missing.");
 			}
 			FName = element.Attribute("name").Value;
 			FType = element.Attribute("type").Value;

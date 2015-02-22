@@ -10,5 +10,6 @@ namespace Sqline.VSPackage
         public const string guidSqlineCmdSetString = "6b9005d7-bbbd-4e48-bb88-78ced0925cee";
 
 				public static readonly Guid guidSqlineCmdSet = new Guid(guidSqlineCmdSetString);
+				public static readonly Guid guidSqlinePkg = new Guid(guidSqlinePkgString);
     };
 }

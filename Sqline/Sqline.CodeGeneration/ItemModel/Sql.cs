@@ -3,9 +3,11 @@ using System.Xml.Linq;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class Sql {
+		private IOwner FOwner;
 		private string FStatement;
 
-		public Sql(XElement element) {
+		public Sql(IOwner owner, XElement element) {
+			FOwner = owner;
 			FStatement = element.Value.Trim();
 		}
 

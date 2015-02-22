@@ -5,8 +5,12 @@ using System.Xml.Linq;
 using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
-	public class Method {
+	public enum MethodType { ViewMethod, ScalarMethod, VoidMethod };
+
+	public class Method : IOwner {
 		private Configuration FConfiguration;
+		private ViewItem FViewItem;
+		private MethodType FType = MethodType.ViewMethod;
 		private List<Field> FFields = new List<Field>();
 		private List<FieldOption> FFieldOptions = new List<FieldOption>();
 		private List<Parameter> FParameters = new List<Parameter>();
@@ -15,10 +19,9 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private int FTimeout;
 		private string FSort;
 		private string FFilter;
-		private ViewItem FViewItem;
 		private Sql FSql;
 
-		public Method(Configuration configuration, ViewItem viewItem, XElement element) {
+		public Method(ViewItem viewItem, Configuration configuration, XElement element) {
 			FConfiguration = configuration;
 			FViewItem = viewItem;
 			foreach (Field OField in viewItem.Fields) {
@@ -29,7 +32,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 			FName = element.Attribute("name").Value;
 			if (element.Element(ItemFile.XmlNamespace + "sql") != null) {
-				FSql = new Sql(element.Element(ItemFile.XmlNamespace + "sql"));
+				FSql = new Sql(this, element.Element(ItemFile.XmlNamespace + "sql"));
 			}
 			else {
 				//TODO: Throw error
@@ -63,11 +66,11 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 
 			foreach (XElement OParameter in element.Elements(ItemFile.XmlNamespace + "parameter")) {
-				FParameters.Add(new Parameter(OParameter));
+				FParameters.Add(new Parameter(this, OParameter));
 			}
 
 			foreach (XElement OFieldOption in element.Elements(ItemFile.XmlNamespace + "option")) {
-				FFieldOptions.Add(new FieldOption(OFieldOption));
+				FFieldOptions.Add(new FieldOption(this, OFieldOption));
 			}
 			ApplyFieldOptions();
 		}
@@ -105,12 +108,22 @@ namespace Sqline.CodeGeneration.ViewModel {
 			return OResult;
 		}
 
+		public void Throw(XElement element, string message) {
+			FViewItem.Throw(element, message);
+		}
+
 		public string Name {
 			get {
 				return FName;
 			}
 			set {
 				FName = value;
+			}
+		}
+
+		public MethodType Type {
+			get {
+				return FType;
 			}
 		}
 

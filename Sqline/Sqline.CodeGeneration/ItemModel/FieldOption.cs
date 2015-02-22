@@ -5,13 +5,15 @@ using System.Xml.Linq;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class FieldOption {
+		private IOwner FOwner;
 		private string FFor;
 		private string FDefault;
 		private string FTransform;
 
-		public FieldOption(XElement element) {
+		public FieldOption(IOwner owner, XElement element) {
+			FOwner = owner;
 			if (element.Attribute("field") == null) {
-				//TODO: throw error
+				FOwner.Throw(element, "The required attribute 'field' is missing.");
 			}
 			FFor = element.Attribute("field").Value;
 			if (element.Attribute("default") != null) {

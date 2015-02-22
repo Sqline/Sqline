@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Sqline.VSPackage {
-	internal class AddinContext {
+	public class AddinContext {
 		private DTE2 FApplication;
 		private Package FPackage;
 		private string FAssemblyPath = "";

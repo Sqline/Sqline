@@ -46,9 +46,6 @@ namespace Sqline.VSPackage {
 				WriteToFile(OOutputFile, OContent, OTemplate.Encoding);
 				FOutputFiles.Add(OOutputFile);
 			}
-			catch (Exception ex) {
-				Debug.WriteLine(ex);
-			}
 			finally {
 				if (OTemplate.Debug) {
 					string OSourceFile = Path.GetFullPath(Directory + "/" + FileNameWithoutExtension + ".ViewItemSource" + OTemplate.Extension);
@@ -71,9 +68,6 @@ namespace Sqline.VSPackage {
 				string OOutputFile = Path.GetFullPath(Directory + "/" + FileNameWithoutExtension + OTemplate.Extension);
 				WriteToFile(OOutputFile, OContent, OTemplate.Encoding);
 				FOutputFiles.Add(OOutputFile);
-			}
-			catch (Exception ex) {
-				Debug.WriteLine(ex);
 			}
 			finally {
 				if (OTemplate.Debug) {

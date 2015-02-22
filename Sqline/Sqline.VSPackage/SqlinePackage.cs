@@ -20,6 +20,7 @@ namespace Sqline.VSPackage {
 	public sealed class SqlinePackage : Package {
 		private AddinContext FContext;
 		private DocumentEvents FDocumentEvents;
+		private LogWindow FLog;
 
 		public SqlinePackage() {
 		}
@@ -27,23 +28,27 @@ namespace Sqline.VSPackage {
 		protected override void Initialize() {
 			base.Initialize();
 			FContext = new AddinContext((DTE2)GetService(typeof(SDTE)), this);
+			FLog = new LogWindow(this, FContext);
 			FDocumentEvents = Context.Application.Events.get_DocumentEvents(null);
 			FDocumentEvents.DocumentSaved += OnDocumentSaved;
 			FContext.Application.Events.BuildEvents.OnBuildBegin += OnBuildBegin;
 		}
 
 		private void OnBuildBegin(vsBuildScope Scope, vsBuildAction Action) {
+			FLog.Clear();
 			try {
 				List<Project> OProjects = new List<Project>();
 				FindSqlineProjects(OProjects);
 				foreach (Project OProject in OProjects) {
+					FLog.SetProject(OProject);
 					GenerateDataItems(OProject);
 					GenerateProjectHandler(OProject);
 				}
 			}
 			catch (Exception ex) {
-				Debug.WriteLine(ex);
+				FLog.Add(ex);
 			}
+			FLog.UpdateView();
 		}
 
 		private void GenerateDataItems(Project project) {
@@ -87,7 +92,6 @@ namespace Sqline.VSPackage {
 				}
 				foreach (ProjectItem OProjectItem in project.ProjectItems) {
 					if (OProjectItem.Name.Equals("sqline.config", StringComparison.OrdinalIgnoreCase)) {
-						Debug.Write("Found: " + OProjectItem.Name);
 						result.Add(project);
 					}
 				}
@@ -95,8 +99,10 @@ namespace Sqline.VSPackage {
 		}	
 
 		private void OnDocumentSaved(Document document) {
+			FLog.Clear();
 			try {
 				if (document.FullName.EndsWith(".items")) {
+					FLog.SetProject(document.ProjectItem.ContainingProject);
 					ItemFileGenerator OGenerator = new ItemFileGenerator(Context, document);
 					OGenerator.Generate();
 					foreach (string OFile in OGenerator.OutputFiles) {
@@ -105,8 +111,9 @@ namespace Sqline.VSPackage {
 				}
 			}
 			catch (Exception ex) {
-				Debug.WriteLine(ex);
+				FLog.Add(ex);
 			}
+			FLog.UpdateView();
 		}
 
 		internal AddinContext Context {

@@ -123,6 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddinContext.cs" />
+    <Compile Include="LogEntry.cs" />
+    <Compile Include="LogWindow.cs" />
     <Compile Include="ProjectHandlerGenerator.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="DataItemGenerator.cs" />

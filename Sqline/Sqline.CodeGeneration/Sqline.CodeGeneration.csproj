@@ -55,6 +55,7 @@
     <Compile Include="ConfigurationModel\Include.cs" />
     <Compile Include="ConfigurationModel\ItemBase.cs" />
     <Compile Include="ConfigurationModel\Using.cs" />
+    <Compile Include="ItemModel\IOwner.cs" />
     <Compile Include="ProjectHandlerModel\ProjectHandlerFile.cs" />
     <Compile Include="DataItemModel\DataItemFile.cs" />
     <Compile Include="ItemModel\FieldOption.cs" />

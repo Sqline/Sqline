@@ -5,17 +5,19 @@ using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class Parameter {
+		private IOwner FOwner;
 		private string FName;
 		private string FType;
 		private bool FNullable;
 		private ITypeMapping FTypeMapping;
 
-		public Parameter(XElement element) {
+		public Parameter(IOwner owner, XElement element) {
+			FOwner = owner;
 			if (element.Attribute("name") == null) {
-				//TODO: Throw error
+				FOwner.Throw(element, "The required attribute 'name' is missing.");
 			}
 			if (element.Attribute("type") == null) {
-				//TODO: Throw error
+				FOwner.Throw(element, "The required attribute 'type' is missing.");
 			}
 			FName = element.Attribute("name").Value;
 			FType = element.Attribute("type").Value;

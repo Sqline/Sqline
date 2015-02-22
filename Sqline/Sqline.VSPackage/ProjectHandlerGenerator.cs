@@ -36,9 +36,6 @@ namespace Sqline.VSPackage {
 				WriteToFile(OOutputFile, OContent, OTemplate.Encoding);
 				FOutputFiles.Add(OOutputFile);
 			}
-			catch (Exception ex) {
-				Debug.WriteLine(ex);
-			}
 			finally {
 				if (OTemplate.Debug) {
 					string OSourceFile = Path.GetFullPath(ProjectDir + "/Sqline.Handler" + ".Source" + OTemplate.Extension);

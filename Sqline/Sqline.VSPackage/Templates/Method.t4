@@ -40,7 +40,7 @@
 							<# } #>
 						<# } #>
 							<# if (OMethod.Filter != null) { #>
-							if (new Func<<#= OViewItem.FullName #>, bool>(item => <#= OMethod.Filter #>(OViewItem))) {
+							if (new Func<<#= OViewItem.FullName #>, bool>(item => <#= OMethod.Filter #>)(OViewItem)) {
 								OResult.Add(OViewItem);
 							}
 							<# } else { #>
