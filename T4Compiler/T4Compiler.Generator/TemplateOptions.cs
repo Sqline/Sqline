@@ -10,6 +10,7 @@ using System.Text;
 namespace T4Compiler.Generator {
 	public class TemplateOptions {
 		private bool FRemoveWhitespaceStatementLines = true;
+		private string FAssemblyResolveDirectory;
 
 		public bool RemoveWhitespaceStatementLines {
 			get {
@@ -17,6 +18,15 @@ namespace T4Compiler.Generator {
 			}
 			set {
 				FRemoveWhitespaceStatementLines = value;
+			}
+		}
+
+		public string AssemblyResolveDirectory {
+			get {
+				return FAssemblyResolveDirectory;
+			}
+			set {
+				FAssemblyResolveDirectory = value;
 			}
 		}
 	}

@@ -35,6 +35,9 @@ namespace T4Compiler.Generator {
 			if (name.StartsWith("..")) {
 				name = Path.Combine(new FileInfo(FParser.Filename).DirectoryName, name);
 			}
+			if (name[1] != ':' && FParser.Options.AssemblyResolveDirectory != null) {
+				name = Path.Combine(FParser.Options.AssemblyResolveDirectory, name);
+			}
 			FFullName = Path.GetFullPath(name);
 		}
 

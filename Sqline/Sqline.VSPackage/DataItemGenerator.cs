@@ -47,7 +47,8 @@ namespace Sqline.VSPackage {
 		private void GenerateDataItems(String databaseFilePath) {
 			string OTemplatePath = FContext.ResolvePath("/Templates/DataItem.t4");
 			Debug.WriteLine("GenerateDataItems: " + OTemplatePath);
-			Template OTemplate = new Template(OTemplatePath);
+			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };
+			Template OTemplate = new Template(OTemplatePath, OOptions);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
 			OTemplate.Parameters.Add("DatabaseFilePath", databaseFilePath);

@@ -200,5 +200,11 @@ namespace T4Compiler.Generator {
 				return FClassFeaturePresent ? FTemplateMethods : FTemplateBody;
 			}
 		}
+
+		internal TemplateOptions Options {
+			get {
+				return FOptions;
+			}
+		}
 	}
 }

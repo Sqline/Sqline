@@ -11,12 +11,13 @@ namespace Sqline.VSPackage {
 	public class AddinContext {
 		private DTE2 FApplication;
 		private Package FPackage;
-		private string FAssemblyPath = "";
+		private string FPackageDirectory = "";
 
 		public AddinContext(DTE2 application, Package package) {
 			FApplication = application;
 			FPackage = package;
-			FAssemblyPath = Path.GetDirectoryName(this.GetType().Assembly.Location);
+			FPackageDirectory = Path.GetDirectoryName(this.GetType().Assembly.Location);
+			Debug.WriteLine("FPackageDirectory: " + FPackageDirectory);
 		}
 
 		public String ResolvePath(string path) {
@@ -32,7 +33,7 @@ namespace Sqline.VSPackage {
 					path = Path.GetFullPath(Path.Combine(templatedir, path));
 				}
 				else {
-					path = Path.GetFullPath(Path.Combine(FAssemblyPath, path));
+					path = Path.GetFullPath(Path.Combine(FPackageDirectory, path));
 				}
 			}
 			Debug.WriteLine("Resolved: " + path);
@@ -58,6 +59,12 @@ namespace Sqline.VSPackage {
 		public Package Package {
 			get {
 				return FPackage;
+			}
+		}
+
+		public string PackageDirectory {
+			get {
+				return FPackageDirectory;
 			}
 		}
 	}

@@ -22,7 +22,8 @@ namespace T4Compiler.Generator {
 		private string FTempAssemblyFile = "";
 		private bool FDebug = false;
 
-		public Template(string filepath) {
+		public Template(string filepath, TemplateOptions options) {
+			FOptions = options;
 			using (FileStream OStream = new FileStream(filepath, FileMode.Open, FileAccess.Read, FileShare.Read)) {
 				using (StreamReader OReader = new StreamReader(OStream, Encoding.UTF8)) {
 					FTemplateSource = OReader.ReadToEnd();
@@ -31,8 +32,7 @@ namespace T4Compiler.Generator {
 			Init(filepath);
 		}
 
-		public Template(string filepath, TemplateOptions options) : this(filepath) {
-			FOptions = options;
+		public Template(string filepath) : this(filepath, new TemplateOptions()) {
 		}
 
 		public Template(Stream stream, string virtualFilepath) {
@@ -45,7 +45,6 @@ namespace T4Compiler.Generator {
 		private void Init(string filename) {
 			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve; //TODO: Move somewhere more appropriate
 			FFile = filename;
-			Console.WriteLine(FFile);
 			FFileHash = FFile.ToMD5Hash();
 			FTemplateParser = new TemplateParser(FFile, FFileHash, FOptions);
 			FCompiler = new TemplateCompiler(FTempAssemblyFile);

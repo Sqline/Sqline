@@ -35,7 +35,8 @@ namespace Sqline.VSPackage {
 		private void GenerateViewItems() {
 			string OTemplatePath = FContext.ResolvePath("/Templates/ViewItem.t4");
 			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
-			Template OTemplate = new Template(OTemplatePath);
+			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };
+			Template OTemplate = new Template(OTemplatePath, OOptions);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ItemFilename", FDocument.FullName);
 			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
@@ -58,7 +59,8 @@ namespace Sqline.VSPackage {
 		private void GenerateMethods() {
 			string OTemplatePath = FContext.ResolvePath("/Templates/ViewMethods.t4");
 			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
-			Template OTemplate = new Template(OTemplatePath);
+			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };
+			Template OTemplate = new Template(OTemplatePath, OOptions);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ItemFilename", FDocument.FullName);
 			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
