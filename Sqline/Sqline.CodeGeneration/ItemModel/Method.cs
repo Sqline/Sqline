@@ -20,6 +20,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private string FSort;
 		private string FFilter;
 		private Sql FSql;
+		private bool FTransactionSupport;
 
 		public Method(ViewItem viewItem, Configuration configuration, XElement element) {
 			FConfiguration = configuration;
@@ -28,21 +29,27 @@ namespace Sqline.CodeGeneration.ViewModel {
 				FFields.Add(OField.Clone());
 			}
 			if (element.Attribute("name") == null) {
-				//TODO: Throw error
+				FViewItem.Throw(element, "The required attribute 'name' is missing.");
 			}
 			FName = element.Attribute("name").Value;
+
 			if (element.Element(ItemFile.XmlNamespace + "sql") != null) {
 				FSql = new Sql(this, element.Element(ItemFile.XmlNamespace + "sql"));
 			}
 			else {
-				//TODO: Throw error
+				FViewItem.Throw(element, "The required element 'sql' is missing.");
 			}
+
 			if (element.Attribute("visibility") != null) {
 				FVisibility = element.Attribute("visibility").Value;
 			}
 			FTimeout = FConfiguration.Methods.Timeout;
 			if (element.Attribute("timeout") != null) {
 				FTimeout = int.Parse(element.Attribute("timeout").Value);
+			}
+
+			if (element.Attribute("transactionsupport") != null) {
+				FTransactionSupport = element.Attribute("transactionsupport").Value == "true";
 			}
 
 			if (element.Attribute("sort") != null) {
@@ -178,6 +185,15 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public List<Parameter> Parameters {
 			get {
 				return FParameters;
+			}
+		}
+
+		public bool TransactionSupport {
+			get {
+				return FTransactionSupport;
+			}
+			set {
+				FTransactionSupport = value;
 			}
 		}
 	}

@@ -411,6 +411,11 @@
 												<xs:documentation>Set the visibility of the method (default: 'public')</xs:documentation>
 											</xs:annotation>
 										</xs:attribute>
+										<xs:attribute name="transactionsupport" type="sqt:Boolean">
+											<xs:annotation>
+												<xs:documentation>Generate an overload of this method that takes a connection and a transaction object to enable this method to be used as part of a transaction</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
 										<xs:attribute name="timeout" type="xs:integer">
 											<xs:annotation>
 												<xs:documentation>Defines the query timeout (default value can be set in Sqline.config)</xs:documentation>

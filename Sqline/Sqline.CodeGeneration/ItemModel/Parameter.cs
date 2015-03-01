@@ -1,6 +1,7 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
 using System.Xml.Linq;
+using Sqline.Base;
 using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
@@ -10,6 +11,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private string FType;
 		private bool FNullable;
 		private ITypeMapping FTypeMapping;
+		private string FArgumentName;
 
 		public Parameter(IOwner owner, XElement element) {
 			FOwner = owner;
@@ -20,6 +22,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 				FOwner.Throw(element, "The required attribute 'type' is missing.");
 			}
 			FName = element.Attribute("name").Value;
+			FArgumentName = FName.ToCamelCase();
 			FType = element.Attribute("type").Value;
 			FTypeMapping = Provider.Current.GetTypeMapping(FType);
 			if (element.Attribute("nullable") != null) {
@@ -33,6 +36,15 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 			set {
 				FName = value;
+			}
+		}
+
+		public string ArgumentName {
+			get {
+				return FArgumentName;
+			}
+			set {
+				FArgumentName = value;
 			}
 		}
 

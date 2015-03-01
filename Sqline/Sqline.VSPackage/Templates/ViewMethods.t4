@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" #>
+﻿<#@ template debug="true" #>
 <#@ output extension=".methods.cs" #>
 <#@ assembly name="Sqline.CodeGeneration.dll" #>
 <#@ assembly name="Sqline.ClientFramework.dll" #>
@@ -37,23 +37,32 @@ namespace <#= OItemFile.Configuration.Methods.Namespace #> {
 		foreach (ViewItem OViewItem in OItemFile.ViewItems) {
 			foreach (Method OMethod in OViewItem.Methods) {
 	#>
+	<# bool OTransactionSupport = false; #>
 	<#@ include file="Method.t4" #>
 
+	<# if (OMethod.TransactionSupport) { #>
+	<# OTransactionSupport = true; #>
+	<#@ include file="Method.t4" #>
+
+	<# } #>
 	<# } } #>
 	}
 }
 
 <#+ 
 
-public string GetArguments(Method method) {
+public string GetArguments(Method method, bool transactionSupport) {
 	StringBuilder result = new StringBuilder();
+	if (transactionSupport) {
+		result.Append("IDbConnection connection, IDbTransaction transaction");
+	}
 	foreach (Parameter OParameter in method.Parameters) {
 		if (result.Length > 0) {
 			result.Append(", ");
 		}
 		result.Append(OParameter.CsType);
 		result.Append(" ");
-		result.Append(OParameter.Name);
+		result.Append(OParameter.ArgumentName);
 	}
 	return result.ToString();
 }

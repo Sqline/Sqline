@@ -1,8 +1,14 @@
-﻿		<#= OMethod.Visibility #> List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod) #>) {
+﻿		<#= OMethod.Visibility #> List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
 			List<<#= OViewItem.FullName #>> OResult = new List<<#= OViewItem.FullName #>>();
 			string sql = @"<#= OMethod.Sql.Statement #>";
+			<# if (!OTransactionSupport) { #>
 			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
-				using (IDbCommand OCommand = OConnection.CreateCommand()) {
+			<# } #>
+				using (IDbCommand OCommand = <#= OTransactionSupport ? "connection" : "OConnection" #>.CreateCommand()) {
+					<# if (OTransactionSupport) { #>
+					OCommand.Connection = connection;
+					OCommand.Transaction = transaction;
+					<# } #>
 					OCommand.CommandText = sql;
 					OCommand.CommandType = CommandType.Text;
 					<# if (OMethod.Timeout > 0) { #>
@@ -12,11 +18,15 @@
 					IDbDataParameter OParameter<#= OParameter.Name #> = OCommand.CreateParameter();
 					OParameter<#= OParameter.Name #>.ParameterName = "@<#= OParameter.Name #>";
 					<# if (OParameter.Nullable) { #>
-					OParameter<#= OParameter.Name #>.Value = <#= OParameter.Name #> ?? (object)DBNull.Value;
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.ArgumentName #> ?? (object)DBNull.Value;
+					<# } else { #>
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.ArgumentName #>;
 					<# } #>
 					OCommand.Parameters.Add(OParameter<#= OParameter.Name #>);
 					<# } #>
+					<# if (!OTransactionSupport) { #>
 					OConnection.Open();
+					<# } #>
 					using (IDataReader OReader = OCommand.ExecuteReader()) {
 						<# foreach (Field OField in OMethod.GetFields("queryfield")) { #>
 						int <#= OField.IndexFieldName #> = OReader.GetIndex("<#= OField.Name #>");
@@ -49,7 +59,9 @@
 						}
 					}
 				}
+			<# if (!OTransactionSupport) { #>
 			}
+			<# } #>
 			<# if (OMethod.Sort != null) { #>
 			OResult.Sort((item1, item2) => <#= OMethod.Sort #>);
 			<# } #>
