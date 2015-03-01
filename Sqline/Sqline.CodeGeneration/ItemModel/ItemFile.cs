@@ -17,6 +17,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private Configuration FConfiguration;
 		private List<ViewItem> FViewItems = new List<ViewItem>();
 		private List<ScalarItem> FScalarItems = new List<ScalarItem>();
+		private List<VoidItem> FVoidItems = new List<VoidItem>();
 
 		public ItemFile(string projectRoot, string filename) {
 			FProjectRoot = projectRoot;
@@ -45,7 +46,9 @@ namespace Sqline.CodeGeneration.ViewModel {
 			foreach (XElement OScalarItem in ORoot.Elements(XmlNamespace + "scalar")) {
 				FScalarItems.Add(new ScalarItem(this, FConfiguration, OScalarItem));
 			}
-			//TODO: Void methods
+			foreach (XElement OVoidItem in ORoot.Elements(XmlNamespace + "void")) {
+				FVoidItems.Add(new VoidItem(this, FConfiguration, OVoidItem));
+			}
 		}
 
 		public void Throw(XElement element, string message) {

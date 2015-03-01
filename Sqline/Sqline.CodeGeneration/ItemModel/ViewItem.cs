@@ -12,7 +12,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private IOwner FOwner;
 		private Configuration FConfiguration;
 		private List<Field> FFields = new List<Field>();
-		private List<Method> FMethods = new List<Method>();
+		private List<ViewMethod> FMethods = new List<ViewMethod>();
 		private List<ItemBase> FBases = new List<ItemBase>();
 
 		public ViewItem(IOwner owner, Configuration configuration, XElement element) {
@@ -26,7 +26,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 				FFields.Add(new Field(this, OField));
 			}
 			foreach (XElement OMethod in element.Elements(ItemFile.XmlNamespace + "method")) {
-				FMethods.Add(new Method(this, FConfiguration, OMethod));
+				FMethods.Add(new ViewMethod(this, FConfiguration, OMethod));
 			}
 			foreach (ItemBase OBase in FConfiguration.ViewItems.Bases) {
 				FBases.Add(OBase);
@@ -78,7 +78,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
-		public List<Method> Methods {
+		public List<ViewMethod> Methods {
 			get {
 				return FMethods;
 			}

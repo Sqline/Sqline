@@ -56,6 +56,9 @@
     <Compile Include="ConfigurationModel\ItemBase.cs" />
     <Compile Include="ConfigurationModel\Using.cs" />
     <Compile Include="ItemModel\IOwner.cs" />
+    <Compile Include="ItemModel\ScalarMethod.cs" />
+    <Compile Include="ItemModel\VoidMethod.cs" />
+    <Compile Include="ItemModel\VoidItem.cs" />
     <Compile Include="ProjectHandlerModel\ProjectHandlerFile.cs" />
     <Compile Include="DataItemModel\DataItemFile.cs" />
     <Compile Include="ItemModel\FieldOption.cs" />
@@ -63,7 +66,7 @@
     <Compile Include="ItemModel\Sql.cs" />
     <Compile Include="ItemModel\Parameter.cs" />
     <Compile Include="ItemModel\Field.cs" />
-    <Compile Include="ItemModel\Method.cs" />
+    <Compile Include="ItemModel\ViewMethod.cs" />
     <Compile Include="ItemModel\ScalarItem.cs" />
     <Compile Include="ItemModel\ViewItem.cs" />
     <Compile Include="ItemModel\ItemFile.cs" />

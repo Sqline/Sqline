@@ -5,12 +5,10 @@ using System.Xml.Linq;
 using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
-	public enum MethodType { ViewMethod, ScalarMethod, VoidMethod };
 
-	public class Method : IOwner {
+	public class ViewMethod : IOwner {
 		private Configuration FConfiguration;
 		private ViewItem FViewItem;
-		private MethodType FType = MethodType.ViewMethod;
 		private List<Field> FFields = new List<Field>();
 		private List<FieldOption> FFieldOptions = new List<FieldOption>();
 		private List<Parameter> FParameters = new List<Parameter>();
@@ -22,7 +20,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private Sql FSql;
 		private bool FTransactionSupport;
 
-		public Method(ViewItem viewItem, Configuration configuration, XElement element) {
+		public ViewMethod(ViewItem viewItem, Configuration configuration, XElement element) {
 			FConfiguration = configuration;
 			FViewItem = viewItem;
 			foreach (Field OField in viewItem.Fields) {
@@ -125,12 +123,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 			set {
 				FName = value;
-			}
-		}
-
-		public MethodType Type {
-			get {
-				return FType;
 			}
 		}
 

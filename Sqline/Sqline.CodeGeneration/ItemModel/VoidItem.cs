@@ -5,44 +5,20 @@ using System.Linq;
 using Sqline.CodeGeneration.ConfigurationModel;
 using System;
 using Sqline.Base;
-using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
-	public class ScalarItem : IOwner {
+	public class VoidItem : IOwner {
 		private IOwner FOwner;
 		private Configuration FConfiguration;
 		private List<Field> FFields = new List<Field>();
-		private List<ScalarMethod> FMethods = new List<ScalarMethod>();
+		private List<VoidMethod> FMethods = new List<VoidMethod>();
 		private List<ItemBase> FBases = new List<ItemBase>();
-		private string FType;
-		private bool FNullable;
-		private string FDefault;
-		private ITypeMapping FTypeMapping;
 
-		public ScalarItem(IOwner owner, Configuration configuration, XElement element) {
+		public VoidItem(IOwner owner, Configuration configuration, XElement element) {
 			FOwner = owner;
 			FConfiguration = configuration;
-
-			if (element.Attribute("type") == null) {
-				FOwner.Throw(element, "The required attribute 'type' is missing.");
-			}
-			FType = element.Attribute("type").Value;
-			FTypeMapping = Provider.Current.GetTypeMapping(FType);
-			if (element.Attribute("nullable") != null) {
-				FNullable = element.Attribute("nullable").Value.Equals("true", StringComparison.OrdinalIgnoreCase);
-			}
-			if (element.Attribute("default") != null) {
-				FDefault = element.Attribute("default").Value;
-			}
-			else {
-				XElement ODefaultElem = element.Element(ItemFile.XmlNamespace + "default");
-				if (ODefaultElem != null) {
-					FDefault = ODefaultElem.Value;
-				}
-			}
-
 			foreach (XElement OMethod in element.Elements(ItemFile.XmlNamespace + "method")) {
-				FMethods.Add(new ScalarMethod(this, FConfiguration, OMethod));
+				FMethods.Add(new VoidMethod(this, FConfiguration, OMethod));
 			}
 			foreach (ItemBase OBase in FConfiguration.ViewItems.Bases) {
 				FBases.Add(OBase);
@@ -73,7 +49,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			FOwner.Throw(element, message);
 		}
 
-		public List<ScalarMethod> Methods {
+		public List<VoidMethod> Methods {
 			get {
 				return FMethods;
 			}
@@ -82,39 +58,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public List<ItemBase> Bases {
 			get {
 				return FBases;
-			}
-		}
-
-		public string Default {
-			get {
-				return FDefault;
-			}
-			set {
-				FDefault = value;
-			}
-		}
-
-		public string Type {
-			get {
-				return FType;
-			}
-			set {
-				FType = value;
-			}
-		}
-
-		public String CsType {
-			get {
-				if (FNullable) {
-					return FTypeMapping.CSNullable;
-				}
-				return FTypeMapping.CSType;
-			}
-		}
-
-		public String CsTypeNonNullable {
-			get {
-				return FTypeMapping.CSType;
 			}
 		}
 	}
