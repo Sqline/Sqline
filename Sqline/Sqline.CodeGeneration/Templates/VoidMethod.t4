@@ -1,0 +1,36 @@
+﻿		<#= OMethod.Visibility #> int <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+			int OResult = 0;
+			string sql = @"<#= OMethod.Sql.Statement #>";
+			<# if (!OTransactionSupport) { #>
+			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
+			<# } #>
+				using (IDbCommand OCommand = <#= OTransactionSupport ? "connection" : "OConnection" #>.CreateCommand()) {
+					<# if (OTransactionSupport) { #>
+					OCommand.Connection = connection;
+					OCommand.Transaction = transaction;
+					<# } #>
+					OCommand.CommandText = sql;
+					OCommand.CommandType = CommandType.Text;
+					<# if (OMethod.Timeout > 0) { #>
+					OCommand.CommandTimeout = <#= OMethod.Timeout #>;
+					<# } #>
+					<# foreach (Parameter OParameter in OMethod.Parameters) { #>
+					IDbDataParameter OParameter<#= OParameter.Name #> = OCommand.CreateParameter();
+					OParameter<#= OParameter.Name #>.ParameterName = "@<#= OParameter.Name #>";
+					<# if (OParameter.Nullable) { #>
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.ArgumentName #> ?? (object)DBNull.Value;
+					<# } else { #>
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.ArgumentName #>;
+					<# } #>
+					OCommand.Parameters.Add(OParameter<#= OParameter.Name #>);
+					<# } #>
+					<# if (!OTransactionSupport) { #>
+					OConnection.Open();
+					<# } #>
+					OResult = OCommand.ExecuteNonQuery();
+				}
+			<# if (!OTransactionSupport) { #>
+			}
+			<# } #>
+			return OResult;
+		}

@@ -21,7 +21,7 @@ namespace Sqline.ClientFramework {
 			FTableName = tableName;
 			FConfig = config;
 		}
-	
+
 		public int Execute() {
 			FParameters.Clear();
 			PreExecute();
@@ -46,6 +46,29 @@ namespace Sqline.ClientFramework {
 			return OResult;
 		}
 
+		public int Execute(IDbConnection connection, IDbTransaction transaction) {
+			FParameters.Clear();
+			PreExecute();
+			FSqlStatement = PrepareStatement();
+			int OResult = 0;
+			using (IDbCommand OCommand = connection.CreateCommand()) {
+				OCommand.Connection = connection;
+				OCommand.Transaction = transaction;
+				OCommand.CommandText = FSqlStatement;
+				foreach (IBaseParam OParam in FParameters) {
+					if (OParam.HasValue) {
+						IDbDataParameter OParameter = OCommand.CreateParameter();
+						OParameter.ParameterName = OParam.ParameterName;
+						OParameter.Value = OParam.Value;
+						OCommand.Parameters.Add(OParameter);
+					}
+				}
+				OResult = OCommand.ExecuteNonQuery();
+			}
+			PostExecute(OResult);
+			return OResult;
+		}
+
 		public void AddParameter(BaseParam param, string columnName) {
 			if ((object)param != null) {
 				param.Initialize(columnName);
@@ -56,7 +79,7 @@ namespace Sqline.ClientFramework {
 		protected abstract void PreExecute();
 		protected abstract void PostExecute(int modifiedCount);
 		protected abstract string PrepareStatement();
-		
+
 		public string SchemaName {
 			get {
 				return FSchemaName;

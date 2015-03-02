@@ -17,6 +17,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 		private string FType;
 		private bool FNullable;
 		private string FDefault;
+		private string FTransform;
 		private ITypeMapping FTypeMapping;
 
 		public ScalarItem(IOwner owner, Configuration configuration, XElement element) {
@@ -85,6 +86,18 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
+		public String CsReaderMethod {
+			get {
+				if (!String.IsNullOrEmpty(FDefault)) {
+					return FTypeMapping.CSReader + "(0, out OHasValue)";
+				}
+				if (FNullable) {
+					return FTypeMapping.CSReader + "OrNull(0)";
+				}
+				return FTypeMapping.CSReader + "(0)";
+			}
+		}
+
 		public string Default {
 			get {
 				return FDefault;
@@ -115,6 +128,15 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public String CsTypeNonNullable {
 			get {
 				return FTypeMapping.CSType;
+			}
+		}
+
+		public string Transform {
+			get {
+				return FTransform;
+			}
+			set {
+				FTransform = value;
 			}
 		}
 	}

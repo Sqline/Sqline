@@ -57,6 +57,7 @@
     <Compile Include="ConfigurationModel\Using.cs" />
     <Compile Include="ItemModel\IOwner.cs" />
     <Compile Include="ItemModel\ScalarMethod.cs" />
+    <Compile Include="ItemModel\BaseMethod.cs" />
     <Compile Include="ItemModel\VoidMethod.cs" />
     <Compile Include="ItemModel\VoidItem.cs" />
     <Compile Include="ProjectHandlerModel\ProjectHandlerFile.cs" />
@@ -101,9 +102,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
-    <None Include="Templates\Method.t4" />
+    <None Include="Templates\VoidMethod.t4" />
+    <None Include="Templates\ScalarMethod.t4" />
+    <None Include="Templates\ViewMethod.t4" />
     <None Include="Templates\ProjectHandler.t4" />
-    <None Include="Templates\ViewMethods.t4" />
+    <None Include="Templates\ItemMethods.t4" />
     <None Include="Templates\DataItem.t4" />
     <None Include="Templates\ViewItem.t4" />
   </ItemGroup>

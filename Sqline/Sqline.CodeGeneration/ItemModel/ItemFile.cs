@@ -68,6 +68,12 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
+		public List<VoidItem> VoidItems {
+			get {
+				return FVoidItems;
+			}
+		}
+
 		public Configuration Configuration {
 			get {
 				return FConfiguration;

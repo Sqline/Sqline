@@ -6,50 +6,19 @@ using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 
-	public class ViewMethod : IOwner {
-		private Configuration FConfiguration;
+	public class ViewMethod : BaseMethod {
 		private ViewItem FViewItem;
 		private List<Field> FFields = new List<Field>();
 		private List<FieldOption> FFieldOptions = new List<FieldOption>();
-		private List<Parameter> FParameters = new List<Parameter>();
-		private string FName;
-		private string FVisibility = "public";
-		private int FTimeout;
 		private string FSort;
 		private string FFilter;
-		private Sql FSql;
-		private bool FTransactionSupport;
 
-		public ViewMethod(ViewItem viewItem, Configuration configuration, XElement element) {
-			FConfiguration = configuration;
+		public ViewMethod(ViewItem viewItem, Configuration configuration, XElement element) : base(viewItem, configuration, element) {
 			FViewItem = viewItem;
 			foreach (Field OField in viewItem.Fields) {
 				FFields.Add(OField.Clone());
 			}
-			if (element.Attribute("name") == null) {
-				FViewItem.Throw(element, "The required attribute 'name' is missing.");
-			}
-			FName = element.Attribute("name").Value;
-
-			if (element.Element(ItemFile.XmlNamespace + "sql") != null) {
-				FSql = new Sql(this, element.Element(ItemFile.XmlNamespace + "sql"));
-			}
-			else {
-				FViewItem.Throw(element, "The required element 'sql' is missing.");
-			}
-
-			if (element.Attribute("visibility") != null) {
-				FVisibility = element.Attribute("visibility").Value;
-			}
-			FTimeout = FConfiguration.Methods.Timeout;
-			if (element.Attribute("timeout") != null) {
-				FTimeout = int.Parse(element.Attribute("timeout").Value);
-			}
-
-			if (element.Attribute("transactionsupport") != null) {
-				FTransactionSupport = element.Attribute("transactionsupport").Value == "true";
-			}
-
+			
 			if (element.Attribute("sort") != null) {
 				FSort = element.Attribute("sort").Value;
 			}
@@ -68,10 +37,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 				if (OFilterElem != null) {
 					FFilter = OFilterElem.Value;
 				}
-			}
-
-			foreach (XElement OParameter in element.Elements(ItemFile.XmlNamespace + "parameter")) {
-				FParameters.Add(new Parameter(this, OParameter));
 			}
 
 			foreach (XElement OFieldOption in element.Elements(ItemFile.XmlNamespace + "option")) {
@@ -113,46 +78,12 @@ namespace Sqline.CodeGeneration.ViewModel {
 			return OResult;
 		}
 
-		public void Throw(XElement element, string message) {
-			FViewItem.Throw(element, message);
-		}
-
-		public string Name {
-			get {
-				return FName;
-			}
-			set {
-				FName = value;
-			}
-		}
-
-		public string Visibility {
-			get {
-				return FVisibility;
-			}
-		}
-
 		public ViewItem ViewItem {
 			get {
 				return FViewItem;
 			}
 			set {
 				FViewItem = value;
-			}
-		}
-
-		public Sql Sql {
-			get {
-				return FSql;
-			}
-			set {
-				FSql = value;
-			}
-		}
-
-		public int Timeout {
-			get {
-				return FTimeout;
 			}
 		}
 
@@ -171,21 +102,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public List<Field> Fields {
 			get {
 				return FFields;
-			}
-		}
-
-		public List<Parameter> Parameters {
-			get {
-				return FParameters;
-			}
-		}
-
-		public bool TransactionSupport {
-			get {
-				return FTransactionSupport;
-			}
-			set {
-				FTransactionSupport = value;
 			}
 		}
 	}

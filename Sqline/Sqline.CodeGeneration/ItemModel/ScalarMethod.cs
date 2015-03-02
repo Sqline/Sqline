@@ -6,95 +6,50 @@ using Sqline.ClientFramework.ProviderModel;
 using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
-	public class ScalarMethod : IOwner {
-		private Configuration FConfiguration;
+	public class ScalarMethod : BaseMethod {
 		private ScalarItem FScalarItem;
-		private List<Parameter> FParameters = new List<Parameter>();
-		private string FName;
-		private string FVisibility = "public";
-		private int FTimeout;
-		private Sql FSql;
-		private bool FTransactionSupport;
+		private string FSort;
+		private string FFilter;
 
-		public ScalarMethod(ScalarItem scalarItem, Configuration configuration, XElement element) {
-			FConfiguration = configuration;
+		public ScalarMethod(ScalarItem scalarItem, Configuration configuration, XElement element) : base(scalarItem, configuration, element) {
 			FScalarItem = scalarItem;
-			if (element.Attribute("name") == null) {
-				FScalarItem.Throw(element, "The required attribute 'name' is missing.");
-			}
-			FName = element.Attribute("name").Value;
 
-			if (element.Element(ItemFile.XmlNamespace + "sql") != null) {
-				FSql = new Sql(this, element.Element(ItemFile.XmlNamespace + "sql"));
+			if (element.Attribute("sort") != null) {
+				FSort = element.Attribute("sort").Value;
 			}
 			else {
-				FScalarItem.Throw(element, "The required element 'sql' is missing.");
+				XElement OSortElem = element.Element(ItemFile.XmlNamespace + "sort");
+				if (OSortElem != null) {
+					FSort = OSortElem.Value;
+				}
 			}
 
-			if (element.Attribute("visibility") != null) {
-				FVisibility = element.Attribute("visibility").Value;
+			if (element.Attribute("filter") != null) {
+				FFilter = element.Attribute("filter").Value;
 			}
-			FTimeout = FConfiguration.Methods.Timeout;
-			if (element.Attribute("timeout") != null) {
-				FTimeout = int.Parse(element.Attribute("timeout").Value);
-			}
-
-			if (element.Attribute("transactionsupport") != null) {
-				FTransactionSupport = element.Attribute("transactionsupport").Value == "true";
-			}
-
-			foreach (XElement OParameter in element.Elements(ItemFile.XmlNamespace + "parameter")) {
-				FParameters.Add(new Parameter(this, OParameter));
+			else {
+				XElement OFilterElem = element.Element(ItemFile.XmlNamespace + "filter");
+				if (OFilterElem != null) {
+					FFilter = OFilterElem.Value;
+				}
 			}
 		}
 
-
-		public void Throw(XElement element, string message) {
-			FScalarItem.Throw(element, message);
-		}
-
-		public string Name {
+		public ScalarItem ScalarItem {
 			get {
-				return FName;
-			}
-			set {
-				FName = value;
+				return FScalarItem;
 			}
 		}
 
-		public string Visibility {
+		public string Sort {
 			get {
-				return FVisibility;
+				return FSort;
 			}
 		}
 
-		public Sql Sql {
+		public string Filter {
 			get {
-				return FSql;
-			}
-			set {
-				FSql = value;
-			}
-		}
-
-		public int Timeout {
-			get {
-				return FTimeout;
-			}
-		}
-
-		public List<Parameter> Parameters {
-			get {
-				return FParameters;
-			}
-		}
-
-		public bool TransactionSupport {
-			get {
-				return FTransactionSupport;
-			}
-			set {
-				FTransactionSupport = value;
+				return FFilter;
 			}
 		}
 	}

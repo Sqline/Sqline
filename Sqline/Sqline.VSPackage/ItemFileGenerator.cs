@@ -57,7 +57,7 @@ namespace Sqline.VSPackage {
 		}
 
 		private void GenerateMethods() {
-			string OTemplatePath = FContext.ResolvePath("/Templates/ViewMethods.t4");
+			string OTemplatePath = FContext.ResolvePath("/Templates/ItemMethods.t4");
 			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
 			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };
 			Template OTemplate = new Template(OTemplatePath, OOptions);

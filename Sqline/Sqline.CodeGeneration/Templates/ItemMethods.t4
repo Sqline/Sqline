@@ -35,14 +35,42 @@ namespace <#= OItemFile.Configuration.Methods.Namespace #> {
 
 	<#
 		foreach (ViewItem OViewItem in OItemFile.ViewItems) {
-			foreach (Method OMethod in OViewItem.Methods) {
+			foreach (ViewMethod OMethod in OViewItem.Methods) {
 	#>
 	<# bool OTransactionSupport = false; #>
-	<#@ include file="Method.t4" #>
+	<#@ include file="ViewMethod.t4" #>
 
 	<# if (OMethod.TransactionSupport) { #>
 	<# OTransactionSupport = true; #>
-	<#@ include file="Method.t4" #>
+	<#@ include file="ViewMethod.t4" #>
+
+	<# } #>
+	<# } } #>
+
+	<#
+		foreach (ScalarItem OScalarItem in OItemFile.ScalarItems) {
+			foreach (ScalarMethod OMethod in OScalarItem.Methods) {
+	#>
+	<# bool OTransactionSupport = false; #>
+	<#@ include file="ScalarMethod.t4" #>
+
+	<# if (OMethod.TransactionSupport) { #>
+	<# OTransactionSupport = true; #>
+	<#@ include file="ScalarMethod.t4" #>
+
+	<# } #>
+	<# } } #>
+
+	<#
+		foreach (VoidItem OVoidItem in OItemFile.VoidItems) {
+			foreach (VoidMethod OMethod in OVoidItem.Methods) {
+	#>
+	<# bool OTransactionSupport = false; #>
+	<#@ include file="VoidMethod.t4" #>
+
+	<# if (OMethod.TransactionSupport) { #>
+	<# OTransactionSupport = true; #>
+	<#@ include file="VoidMethod.t4" #>
 
 	<# } #>
 	<# } } #>
@@ -51,7 +79,7 @@ namespace <#= OItemFile.Configuration.Methods.Namespace #> {
 
 <#+ 
 
-public string GetArguments(Method method, bool transactionSupport) {
+public string GetArguments(BaseMethod method, bool transactionSupport) {
 	StringBuilder result = new StringBuilder();
 	if (transactionSupport) {
 		result.Append("IDbConnection connection, IDbTransaction transaction");
