@@ -1,5 +1,9 @@
-﻿		<#= OMethod.Visibility #> List<<#= OScalarItem.CsType #>> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+﻿		<#= OMethod.VisibilityString #> <#= OMethod.Result == ResultType.List ? "List<" + OScalarItem.CsType + ">" :  OScalarItem.CsType #> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+			<# if (OMethod.Result == ResultType.List) { #>
 			List<<#= OScalarItem.CsType #>> OResult = new List<<#= OScalarItem.CsType #>>();
+			<# } else { #>
+			<#= OScalarItem.CsType #> OResult = default(<#= OScalarItem.CsType #>);
+			<# } #>
 			string sql = @"<#= OMethod.Sql.Statement #>";
 			<# if (!OTransactionSupport) { #>
 			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
@@ -31,7 +35,7 @@
 						<# if (OScalarItem.Default != null) { #>
 						bool OHasValue = false;
 						<# } #>
-						while (OReader.Read()) {
+						<#= OMethod.Result == ResultType.List ? "while" :  "if" #> (OReader.Read()) {
 							<#= OScalarItem.CsType #> OScalarItem = OReader.<#= OScalarItem.CsReaderMethod #>;
 							<# if (OScalarItem.Default != null) { #>
 							if (!OHasValue) {
@@ -41,6 +45,7 @@
 							<# if (OScalarItem.Transform != null) { #>
 							OScalarItem = new Func<<#= OScalarItem.CsTypeNonNullable #>, <#= OScalarItem.CsType #>, <#= OScalarItem.CsTypeNonNullable #>>((OScalarItem, item) => <#= OScalarItem.Transform #>)((<#= OScalarItem.CsTypeNonNullable #>)OScalarItem, OScalarItem);
 							<# } #>
+							<# if (OMethod.Result == ResultType.List) { #>
 							<# if (OMethod.Filter != null) { #>
 							if (new Func<<#= OScalarItem.CsType #>, bool>(item => <#= OMethod.Filter #>)(OScalarItem)) {
 								OResult.Add(OScalarItem);
@@ -48,14 +53,20 @@
 							<# } else { #>
 							OResult.Add(OScalarItem);
 							<# } #>
+							<# } #>
+							<# if (OMethod.Result == ResultType.SingleItem) { #>
+							OResult = OScalarItem;
+							<# } #>
 						}
 					}
 				}
 			<# if (!OTransactionSupport) { #>
 			}
 			<# } #>
+			<# if (OMethod.Result == ResultType.List) { #>
 			<# if (OMethod.Sort != null) { #>
 			OResult.Sort((item1, item2) => <#= OMethod.Sort #>);
+			<# } #>
 			<# } #>
 			return OResult;
 		}

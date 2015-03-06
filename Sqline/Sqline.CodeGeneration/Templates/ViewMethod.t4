@@ -1,5 +1,9 @@
-﻿		<#= OMethod.Visibility #> List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+﻿		<#= OMethod.VisibilityString #> <#= OMethod.Result == ResultType.List ? "List<" + OViewItem.FullName + ">" :  OViewItem.FullName #> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+			<# if (OMethod.Result == ResultType.List) { #>
 			List<<#= OViewItem.FullName #>> OResult = new List<<#= OViewItem.FullName #>>();
+			<# } else { #>
+			<#= OViewItem.FullName #> OResult = null;
+			<# } #>
 			string sql = @"<#= OMethod.Sql.Statement #>";
 			<# if (!OTransactionSupport) { #>
 			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
@@ -34,7 +38,7 @@
 						bool <#= OField.HasValueFieldName #> = false;
 						<# } #>
 						<# } #>
-						while (OReader.Read()) {
+						<#= OMethod.Result == ResultType.List ? "while" :  "if" #> (OReader.Read()) {
 						<#= OViewItem.FullName #> OViewItem = new <#= OViewItem.FullName #>();
 						<# foreach (Field OField in OMethod.GetFields("queryfield")) { #>
 							OViewItem.<#= OField.Name #> = OReader.<#= OField.CsReaderMethod #>;
@@ -48,7 +52,8 @@
 							<# if (OField.Transform != null) { #>
 							OViewItem.<#= OField.Name #> = new Func<<#= OField.CsTypeNonNullable #>, <#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((<#= OField.Name #>, item) => <#= OField.Transform #>)((<#= OField.CsTypeNonNullable #>)OViewItem.<#= OField.Name #>, OViewItem);
 							<# } #>
-						<# } #>
+							<# } #>
+							<# if (OMethod.Result == ResultType.List) { #>
 							<# if (OMethod.Filter != null) { #>
 							if (new Func<<#= OViewItem.FullName #>, bool>(item => <#= OMethod.Filter #>)(OViewItem)) {
 								OResult.Add(OViewItem);
@@ -56,14 +61,20 @@
 							<# } else { #>
 							OResult.Add(OViewItem);
 							<# } #>
+							<# } #>
+							<# if (OMethod.Result == ResultType.SingleItem) { #>
+							OResult = OViewItem;
+							<# } #>
 						}
 					}
 				}
 			<# if (!OTransactionSupport) { #>
 			}
 			<# } #>
+			<# if (OMethod.Result == ResultType.List) { #>
 			<# if (OMethod.Sort != null) { #>
 			OResult.Sort((item1, item2) => <#= OMethod.Sort #>);
+			<# } #>
 			<# } #>
 			return OResult;
 		}

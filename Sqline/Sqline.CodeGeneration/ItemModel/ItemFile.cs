@@ -51,7 +51,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
-		public void Throw(XElement element, string message) {
+		public void Throw(XObject element, string message) {
 			IXmlLineInfo OInfo = (IXmlLineInfo)element;
 			throw new SqlineException(FFilename, OInfo.LineNumber - 1, OInfo.LinePosition - 1, message);
 		}

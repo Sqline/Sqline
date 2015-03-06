@@ -56,6 +56,7 @@
     <Compile Include="ConfigurationModel\ItemBase.cs" />
     <Compile Include="ConfigurationModel\Using.cs" />
     <Compile Include="ItemModel\IOwner.cs" />
+    <Compile Include="ItemModel\ResultMethod.cs" />
     <Compile Include="ItemModel\ScalarMethod.cs" />
     <Compile Include="ItemModel\BaseMethod.cs" />
     <Compile Include="ItemModel\VoidMethod.cs" />

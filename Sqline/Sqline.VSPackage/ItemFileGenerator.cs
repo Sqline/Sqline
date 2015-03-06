@@ -40,6 +40,7 @@ namespace Sqline.VSPackage {
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ItemFilename", FDocument.FullName);
 			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
+			//TODO: Add API object to pass information back to VSPlugin (Info, Warnings, Errors)
 			try {
 				OTemplate.Process();
 				string OContent = OTemplate.InvokeTemplate();

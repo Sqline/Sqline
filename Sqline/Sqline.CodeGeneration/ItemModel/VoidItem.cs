@@ -45,7 +45,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			return FBases.Any(b => b.Name == key);
 		}
 
-		public void Throw(XElement element, string message) {
+		public void Throw(XObject element, string message) {
 			FOwner.Throw(element, message);
 		}
 

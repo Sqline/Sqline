@@ -6,37 +6,15 @@ using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 
-	public class ViewMethod : BaseMethod {
+	public class ViewMethod : ResultMethod {
 		private ViewItem FViewItem;
 		private List<Field> FFields = new List<Field>();
 		private List<FieldOption> FFieldOptions = new List<FieldOption>();
-		private string FSort;
-		private string FFilter;
 
 		public ViewMethod(ViewItem viewItem, Configuration configuration, XElement element) : base(viewItem, configuration, element) {
 			FViewItem = viewItem;
 			foreach (Field OField in viewItem.Fields) {
 				FFields.Add(OField.Clone());
-			}
-			
-			if (element.Attribute("sort") != null) {
-				FSort = element.Attribute("sort").Value;
-			}
-			else {
-				XElement OSortElem = element.Element(ItemFile.XmlNamespace + "sort");
-				if (OSortElem != null) {
-					FSort = OSortElem.Value;
-				}
-			}
-
-			if (element.Attribute("filter") != null) {
-				FFilter = element.Attribute("filter").Value;
-			}
-			else {
-				XElement OFilterElem = element.Element(ItemFile.XmlNamespace + "filter");
-				if (OFilterElem != null) {
-					FFilter = OFilterElem.Value;
-				}
 			}
 
 			foreach (XElement OFieldOption in element.Elements(ItemFile.XmlNamespace + "option")) {
@@ -84,18 +62,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 			set {
 				FViewItem = value;
-			}
-		}
-
-		public string Sort {
-			get {
-				return FSort;
-			}
-		}
-
-		public string Filter {
-			get {
-				return FFilter;
 			}
 		}
 

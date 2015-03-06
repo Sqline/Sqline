@@ -7,6 +7,6 @@ using System.Xml.Linq;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public interface IOwner {
-		void Throw(XElement element, string message);
+		void Throw(XObject element, string message);
 	}
 }

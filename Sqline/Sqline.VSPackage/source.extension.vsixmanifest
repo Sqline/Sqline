@@ -5,6 +5,9 @@
 		<DisplayName>Sqline DataAccess Framework</DisplayName>
 		<Description xml:space="preserve">Sqline DataAccess Framework Package - www.sqline.net</Description>
 		<MoreInfo>http://www.sqline.net</MoreInfo>
+		<License>LICENSE</License>
+		<GettingStartedGuide>http://www.sqline.net</GettingStartedGuide>
+		<Icon>sqline.ico</Icon>
 	</Metadata>
 	<Installation InstalledByMsi="false">
 		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0]" />

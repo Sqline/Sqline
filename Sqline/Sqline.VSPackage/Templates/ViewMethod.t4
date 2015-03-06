@@ -1,4 +1,4 @@
-﻿		<#= OMethod.Visibility #> List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+﻿		<#= OMethod.VisibilityString #> List<<#= OViewItem.FullName #>> <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
 			List<<#= OViewItem.FullName #>> OResult = new List<<#= OViewItem.FullName #>>();
 			string sql = @"<#= OMethod.Sql.Statement #>";
 			<# if (!OTransactionSupport) { #>

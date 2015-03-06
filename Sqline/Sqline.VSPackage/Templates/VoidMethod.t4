@@ -1,4 +1,4 @@
-﻿		<#= OMethod.Visibility #> int <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
+﻿		<#= OMethod.VisibilityString #> int <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
 			int OResult = 0;
 			string sql = @"<#= OMethod.Sql.Statement #>";
 			<# if (!OTransactionSupport) { #>
