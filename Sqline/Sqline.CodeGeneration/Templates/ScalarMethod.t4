@@ -39,15 +39,15 @@
 							<#= OScalarItem.CsType #> OScalarItem = OReader.<#= OScalarItem.CsReaderMethod #>;
 							<# if (OScalarItem.Default != null) { #>
 							if (!OHasValue) {
-								OScalarItem = new Func<<#= OScalarItem.CsType #>, <#= OScalarItem.CsTypeNonNullable #>>((item) => <#= OScalarItem.Default #>)(OScalarItem);
+								OScalarItem = new Func<<#= OScalarItem.CsTypeNonNullable #>>(() => <#= OScalarItem.Default #>)();
 							}
 							<# } #>
 							<# if (OScalarItem.Transform != null) { #>
-							OScalarItem = new Func<<#= OScalarItem.CsTypeNonNullable #>, <#= OScalarItem.CsType #>, <#= OScalarItem.CsTypeNonNullable #>>((OScalarItem, item) => <#= OScalarItem.Transform #>)((<#= OScalarItem.CsTypeNonNullable #>)OScalarItem, OScalarItem);
+							OScalarItem = new Func<<#= OScalarItem.CsType #>, <#= OScalarItem.CsType #>>((value) => <#= OScalarItem.Transform #>)(OScalarItem);
 							<# } #>
 							<# if (OMethod.Result == ResultType.List) { #>
 							<# if (OMethod.Filter != null) { #>
-							if (new Func<<#= OScalarItem.CsType #>, bool>(item => <#= OMethod.Filter #>)(OScalarItem)) {
+							if (new Func<<#= OScalarItem.CsType #>, bool>(value => <#= OMethod.Filter #>)(OScalarItem)) {
 								OResult.Add(OScalarItem);
 							}
 							<# } else { #>
@@ -65,7 +65,7 @@
 			<# } #>
 			<# if (OMethod.Result == ResultType.List) { #>
 			<# if (OMethod.Sort != null) { #>
-			OResult.Sort((item1, item2) => <#= OMethod.Sort #>);
+			OResult.Sort((value1, value2) => <#= OMethod.Sort #>);
 			<# } #>
 			<# } #>
 			return OResult;

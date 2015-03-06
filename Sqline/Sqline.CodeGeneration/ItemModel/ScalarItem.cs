@@ -27,11 +27,14 @@ namespace Sqline.CodeGeneration.ViewModel {
 			if (element.Attribute("type") == null) {
 				FOwner.Throw(element, "The required attribute 'type' is missing.");
 			}
+
 			FType = element.Attribute("type").Value;
 			FTypeMapping = Provider.Current.GetTypeMapping(FType);
+
 			if (element.Attribute("nullable") != null) {
 				FNullable = element.Attribute("nullable").Value.Equals("true", StringComparison.OrdinalIgnoreCase);
 			}
+
 			if (element.Attribute("default") != null) {
 				FDefault = element.Attribute("default").Value;
 			}
@@ -39,6 +42,20 @@ namespace Sqline.CodeGeneration.ViewModel {
 				XElement ODefaultElem = element.Element(ItemFile.XmlNamespace + "default");
 				if (ODefaultElem != null) {
 					FDefault = ODefaultElem.Value;
+				}
+			}
+
+			if (FDefault != null) {
+				FNullable = false;
+			}
+
+			if (element.Attribute("transform") != null) {
+				FTransform = element.Attribute("transform").Value;
+			}
+			else {
+				XElement OTransformElem = element.Element(ItemFile.XmlNamespace + "transform");
+				if (OTransformElem != null) {
+					FTransform = OTransformElem.Value;
 				}
 			}
 
