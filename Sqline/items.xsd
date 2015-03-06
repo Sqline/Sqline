@@ -5,7 +5,11 @@
 			<xs:sequence>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 
-					<!-- Configuration -->
+					<!-- 
+              *******************************************************************
+              Configuration
+              *******************************************************************
+					-->
 					<xs:element name="configuration" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>
@@ -145,7 +149,11 @@
 						</xs:complexType>
 					</xs:element>
 
-					<!-- ViewItem -->
+					<!-- 
+              *******************************************************************
+              ViewItem
+              *******************************************************************
+					-->
 
 					<xs:element name="viewitem" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
@@ -285,7 +293,7 @@
 														</xs:simpleContent>
 													</xs:complexType>
 												</xs:element>
-												<!-- <sort> -->
+												<!-- <filter> -->
 												<xs:element name="filter" minOccurs="0" maxOccurs="1">
 													<xs:annotation>
 														<xs:documentation>
@@ -449,13 +457,289 @@
 							</xs:attribute>
 						</xs:complexType>
 					</xs:element>
+					
+					<!-- 
+              *******************************************************************
+              Scalar
+              *******************************************************************
+					-->
+
+					<xs:element name="scalar" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Scalar methods returns a value-type. This is efficient when a list of integers or other simple types needs to be returned from a SQL query.
+								A scalar definition can serve as the data-entity result for more than 1 method (or SQL query)
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+							
+                <!-- <default> -->
+                <xs:element name="default" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                    <xs:documentation>
+                      The default value in case of a NULL result from the database.
+                      Example: default="100".
+                      This field uses a lambda expression and thus more advanced expressions are possible.
+                      The lambda is initiated with aa "value" argument that refers to the current scalar value.
+                      Use brackets &lt;default&gt;{ return "Hello World"; }&lt;/default&gt; to create a multi-line C# statement
+                    </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:extension base="xs:string"></xs:extension>
+                    </xs:simpleContent>
+                  </xs:complexType>
+                </xs:element>
+                
+                <!-- <transform> -->
+                <xs:element name="transform" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                    <xs:documentation>
+                      Transforms the field value - this field uses a lambda expression.
+                      The lambda is initiated with a "value" argument that refers to the current scalar value.
+                      Use brackets &lt;transform&gt;{ return value += 100; }&lt;/transform&gt; to create a multi-line C# statement
+                    </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:extension base="xs:string"></xs:extension>
+                    </xs:simpleContent>
+                  </xs:complexType>
+                </xs:element>
+
+								<!-- Method -->
+								<xs:element name="method" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:choice minOccurs="0" maxOccurs="unbounded">
+												<!-- <sort> -->
+												<xs:element name="sort" minOccurs="0" maxOccurs="1">
+													<xs:annotation>
+														<xs:documentation>
+															Sorts the resulting list - this field uses a lambda expression.
+															The lambda is initiated with two arguments "value1, value2" of the defined scalar type.
+															Use brackets &lt;sort&gt;{ return value1 - value2; }&lt;/sort&gt; to create a multi-line C# statement
+														</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string"></xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+												<!-- <filter> -->
+												<xs:element name="filter" minOccurs="0" maxOccurs="1">
+													<xs:annotation>
+														<xs:documentation>
+															Filters the resulting list, only keeping records that matches the filter - this field uses a lambda expression.
+															The lambda is initiated with a "value" argument that refers to the current scalar value.
+															Use brackets &lt;filter&gt;{ return value > 0; }&lt;/filter&gt; to create a multi-line C# statement
+														</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string"></xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+												<!-- <sql> -->
+												<xs:element name="sql" minOccurs="1" maxOccurs="1">
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string"></xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+												<!-- parameter -->
+												<xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="name" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation>Name of the parameter (must match the name used in the Sql expression)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="type" type="sqt:ValueType" use="required">
+															<xs:annotation>
+																<xs:documentation>Parameter Data Type</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="nullable" type="sqt:Boolean">
+															<xs:annotation>
+																<xs:documentation>Specify if the parameter should allow NULL values (default: false)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:choice>
+										</xs:sequence>
+										<xs:attribute name="name" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation>Name of the resulting C# method</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="result" type="sqt:MethodResult">
+											<xs:annotation>
+												<xs:documentation>Defines whether the method returns a List or a single scalar value (default: list)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="visibility" type="sqt:Visibility">
+											<xs:annotation>
+												<xs:documentation>Set the visibility of the method (default: 'public')</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="transactionsupport" type="sqt:Boolean">
+											<xs:annotation>
+												<xs:documentation>Generate an overload of this method that takes a connection and a transaction object to enable this method to be used as part of a transaction</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="timeout" type="xs:integer">
+											<xs:annotation>
+												<xs:documentation>Defines the query timeout (default value can be set in Sqline.config)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="sort" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>
+													Sorts the resulting list - this field uses a lambda expression.
+													The lambda is initiated with two arguments "value1, value2" of the defined scalar type.
+													Use brackets sort="{ return value1 - value2; }" to create a multi-line C# statement
+												</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="filter" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>
+													Filters the resulting list, only keeping records that matches the filter - this field uses a lambda expression.
+													The lambda is initiated with a "value" argument that refers to the current scalar value.
+													Use brackets filter="{ return value > 0; }" to create a multi-line C# statement
+												</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+
+              <xs:attribute name="type" type="sqt:ValueType">
+                <xs:annotation>
+                  <xs:documentation>The type of the value using common sql types (varchar, nvarchar, int, ...)</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+              <xs:attribute name="nullable" type="sqt:Boolean">
+                <xs:annotation>
+                  <xs:documentation>Specifies if the data from the database can be NULL and changes the C# type to a Nullable data type (default: false)</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+              <xs:attribute name="default" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>
+                    The default value in case of a NULL result from the database.
+                    Example: default="100".
+                    This field uses a lambda expression and thus more advanced expressions are possible.
+                    The lambda is initiated with an "item" argument that refers to the current ViewItem.
+                    Use brackets default='{ return "Hello World"; }' to create a multi-line C# statement
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+              <xs:attribute name="transform" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>
+                    Transforms the field value - this field uses a lambda expression.
+                    The lambda is initiated with a "value" argument that refers to the current scalar value.
+                    Use brackets transform='{ return value += 100; }' to create a multi-line C# statement
+                  </xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:complexType>
+					</xs:element>
+					
+					<!-- 
+              *******************************************************************
+              Void
+              *******************************************************************
+					-->
+
+					<xs:element name="void" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								A void method allows for more complex INSERT, UPDATE, DELETE or DDL statements.
+								A void definition can contain more than 1 method (or SQL query)
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+
+								<!-- Method -->
+								<xs:element name="method" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:choice minOccurs="0" maxOccurs="unbounded">
+												<!-- <sql> -->
+												<xs:element name="sql" minOccurs="1" maxOccurs="1">
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string"></xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+												<!-- parameter -->
+												<xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="name" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation>Name of the parameter (must match the name used in the Sql expression)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="type" type="sqt:ValueType" use="required">
+															<xs:annotation>
+																<xs:documentation>Parameter Data Type</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="nullable" type="sqt:Boolean">
+															<xs:annotation>
+																<xs:documentation>Specify if the parameter should allow NULL values (default: false)</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:choice>
+										</xs:sequence>
+										<xs:attribute name="name" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:documentation>Name of the resulting C# method</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="visibility" type="sqt:Visibility">
+											<xs:annotation>
+												<xs:documentation>Set the visibility of the method (default: 'public')</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="transactionsupport" type="sqt:Boolean">
+											<xs:annotation>
+												<xs:documentation>Generate an overload of this method that takes a connection and a transaction object to enable this method to be used as part of a transaction</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="timeout" type="xs:integer">
+											<xs:annotation>
+												<xs:documentation>Defines the query timeout (default value can be set in Sqline.config)</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+            </xs:complexType>
+					</xs:element>
 
 				</xs:choice>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
-	<!-- Classes -->
+  <!-- 
+      *******************************************************************
+      Classes
+      *******************************************************************
+  -->
 
 	<xs:simpleType name="Boolean">
 		<xs:restriction base="xs:string">

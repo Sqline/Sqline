@@ -62,29 +62,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 			foreach (XElement OMethod in element.Elements(ItemFile.XmlNamespace + "method")) {
 				FMethods.Add(new ScalarMethod(this, FConfiguration, OMethod));
 			}
-			foreach (ItemBase OBase in FConfiguration.ViewItems.Bases) {
-				FBases.Add(OBase);
-			}
-			foreach (XElement OBaseElement in element.Elements(ItemFile.XmlNamespace + "base")) {
-				ItemBase OBase = new ItemBase(OBaseElement, ItemFile.XmlNamespace);
-				if (!string.IsNullOrEmpty(OBase.Remove)) {
-					if (OBase.Remove.Equals("all", StringComparison.OrdinalIgnoreCase)) {
-						FBases.Clear();
-					}
-					else {
-						FBases.RemoveAll(i => i.Name == OBase.Name);
-					}
-				}
-				if (!string.IsNullOrEmpty(OBase.Name)) {
-					if (!HasBase(OBase.Name)) {
-						FBases.Add(OBase);
-					}
-				}
-			}
-		}
-
-		private bool HasBase(string key) {
-			return FBases.Any(b => b.Name == key);
 		}
 
 		public void Throw(XObject element, string message) {
@@ -94,12 +71,6 @@ namespace Sqline.CodeGeneration.ViewModel {
 		public List<ScalarMethod> Methods {
 			get {
 				return FMethods;
-			}
-		}
-
-		public List<ItemBase> Bases {
-			get {
-				return FBases;
 			}
 		}
 
