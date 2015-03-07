@@ -2,7 +2,20 @@
 Sqline
 ======
 
-Sqline is a SQL-first DataAccess Framework for .NET (in a very alpha-state)
+Sqline is a SQL-first DataAccess Framework for .NET
+
+### Download
+
+[Milestone 1 Release v0.1](https://github.com/Sqline/Sqline/releases/download/m1-release-v0.1/Sqline-v0.1-m1.vsix) (not recommended for production use)
+
+### Features
+- Generates classes to handle common Insert, Update and Delete scenarios
+- Write SQL statements and have all the boring work taken care of while still enjoying strongly-typed C# classes for your results.
+- Sqline generates pure "hand-written" ADO.NET - no complicated framework on top, full transparency.
+- Uses T4 templates for all code generation (custom templates will be supported later!) also allowing full transparency into the code generation process.
+- Pure ADO.NET also means no memory or performance hit of using Sqline
+- Transaction support
+- Can be used for any type of C#/.NET application, but is especially suitable for high performance and scalable webapplications handling hundreds of thousands of users (or more!) where you need to be in control of what exactly gets executed against your DB systems without any memory or performance overhead that most other dataccess frameworks adds.
 
 ### Why another framework?
 
@@ -57,15 +70,13 @@ Sqline consists of several independent applications:
 Schemalizer and T4Compiler can be used in any project that needs to extract database schema information and transform that data into Code or other documents - feel free to use.
 
 ### State of project
-Schemalizer and T4Compiler are considered stable.
-
-Sqline is still a work-in-progress, basic features work, but more advances features are not yet fully implemented.
+Sqline is still a work-in-progress, but feel free to play around with it.
 
 ### Current limitations
 * Sqline is not in a production ready state, **do only use it at an educational and experimental level**.
 * Sqline can currently only produce C# code
-* While some MySQL support is implemented, currently only MSSQL is considered supported.
+* While some MySQL support is implemented, currently only MSSQL is supported.
 * A console version is planned, but currently Sqline is only working through the supplied Visual Studio Package.
 * T4Compiler is not fully compatible with the entire T4 standard, but most basic syntax is supported.
 * Schemalizer only works against MySQL and MSSQL servers.
-* No documentation, installers or configuration guides are currently available.
+* No documentation or configuration guides are currently available.
