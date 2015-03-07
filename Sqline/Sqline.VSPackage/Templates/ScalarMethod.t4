@@ -65,7 +65,7 @@
 			<# } #>
 			<# if (OMethod.Result == ResultType.List) { #>
 			<# if (OMethod.Sort != null) { #>
-			OResult.Sort((item1, item2) => <#= OMethod.Sort #>);
+			OResult.Sort((value1, value2) => <#= OMethod.Sort #>);
 			<# } #>
 			<# } #>
 			return OResult;
