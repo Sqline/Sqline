@@ -8,6 +8,9 @@ Sqline is a SQL-first DataAccess Framework for .NET
 
 [Milestone 1 Release v0.1](https://github.com/Sqline/Sqline/releases/download/m1-release-v0.1/Sqline-v0.1-m1.vsix) (not recommended for production use)
 
+### Quick Start Guide
+https://github.com/Sqline/Sqline/wiki
+
 ### Features
 - Generates classes to handle common Insert, Update and Delete scenarios
 - Write SQL statements and have all the boring work taken care of while still enjoying strongly-typed C# classes for your results.
