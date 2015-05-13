@@ -8,12 +8,12 @@ using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.ClientFramework {
 	public abstract class InsertDataItem : BaseDataItem {
+		private string FColumns;
+		private string FValues;
 
-		protected override string PrepareStatement() {
-			String OTableName = Provider.Current.GetSafeTableName(SchemaName, TableName);
+		protected internal override void PreExecute() {
 			StringBuilder OColumns = new StringBuilder();
 			StringBuilder OValues = new StringBuilder();
-			int OParameterCount = 0;
 
 			foreach (IBaseParam OParam in FParameters) {
 				if (OParam is IValueParam || OParam is INumberParam || OParam is IEnumParam) {
@@ -21,28 +21,37 @@ namespace Sqline.ClientFramework {
 						OColumns.Append(",");
 						OValues.Append(",");
 					}
-					string OParameterName = Provider.Current.GetParameterName("p" + OParameterCount++);
+					string OParameterName = Provider.Current.GetParameterName("p" + FParameterIndex++);
 					OColumns.Append(Provider.Current.GetSafeColumnName(OParam.ColumnName));
 					OValues.Append(OParameterName);
 					OParam.ParameterName = OParameterName;
 				}
 			}
+			FColumns = OColumns.ToString();
+			FValues = OValues.ToString();
+		}
 
+		protected internal override string PrepareStatement() {
 			StringBuilder OSql = new StringBuilder();
 			OSql.Append("INSERT INTO ");
-			OSql.Append(OTableName);
+			OSql.Append(Provider.Current.GetSafeTableName(GetSchemaName(), GetTableName()));
 			OSql.Append(" (");
-			OSql.Append(OColumns);
+			OSql.Append(FColumns);
 			OSql.Append(") VALUES (");
-			OSql.Append(OValues);
+			OSql.Append(FValues);
 			OSql.Append(")");
 			return OSql.ToString();
 		}
 
-		protected override void PreExecute() {
+		protected internal override void PostExecute(int modifiedCount) {
 		}
 
-		protected override void PostExecute(int modifiedCount) {
+		public string GetSqlColumns() {
+			return FColumns;
+		}
+
+		public string GetSqlValues() {
+			return FValues;
 		}
 	}
 }

@@ -52,6 +52,7 @@
     <Compile Include="DataItems\Params\Interfaces\IValueParam.cs" />
     <Compile Include="DataItems\Params\Interfaces\INumberParam.cs" />
     <Compile Include="DataItems\Params\Interfaces\IWhereParam.cs" />
+    <Compile Include="DataItems\Support\OperationBatch.cs" />
     <Compile Include="ProviderModel\Provider.cs" />
     <Compile Include="DataItems\Params\NotNullableException.cs" />
     <Compile Include="DataItems\Params\NullableWhereParam.cs" />

@@ -48,6 +48,7 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 
 		protected override void PreExecute() {
 			<#= OTable.Columns.BuildString((c) => "AddParameter(F" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
+			base.PreExecute();
 		}
 
 	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
@@ -73,6 +74,7 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 		protected override void PreExecute() {
 			<#= OTable.Columns.BuildString((c) => "AddParameter(F" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
 			<#= OTable.Columns.BuildString((c) => "AddParameter(FWhere" + c.Name + ", \"" +c.Name + "\");", "\r\n") #>
+			base.PreExecute();
 		}
 
 	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
@@ -93,6 +95,7 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 
 		protected override void PreExecute() {
 			<#= OTable.Columns.BuildString((c) => "AddParameter(FWhere" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
+			base.PreExecute();
 		}
 
 	<# foreach (ViewColumn OColumn in OTable.Columns) { #>

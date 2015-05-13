@@ -15,6 +15,7 @@ namespace Sqline.ClientFramework {
 		protected string FTableName = "";
 		protected string FSchemaName = "";
 		protected string FSqlStatement = "";
+		protected int FParameterIndex = 0;
 
 		public void Initialize(string schemaName, string tableName, SqlineConfig config) {
 			FSchemaName = schemaName;
@@ -23,27 +24,10 @@ namespace Sqline.ClientFramework {
 		}
 
 		public int Execute() {
-			FParameters.Clear();
-			PreExecute();
-			FSqlStatement = PrepareStatement();
-			int OResult = 0;
 			using (IDbConnection OConnection = Provider.Current.GetConnection(FConfig.ConnectionString)) {
-				using (IDbCommand OCommand = OConnection.CreateCommand()) {
-					OCommand.CommandText = FSqlStatement;
-					foreach (IBaseParam OParam in FParameters) {
-						if (OParam.HasValue) {
-							IDbDataParameter OParameter = OCommand.CreateParameter();
-							OParameter.ParameterName = OParam.ParameterName;
-							OParameter.Value = OParam.Value;
-							OCommand.Parameters.Add(OParameter);
-						}
-					}
-					OConnection.Open();
-					OResult = OCommand.ExecuteNonQuery();
-				}
+				OConnection.Open();
+				return Execute(OConnection, null);
 			}
-			PostExecute(OResult);
-			return OResult;
 		}
 
 		public int Execute(IDbConnection connection, IDbTransaction transaction) {
@@ -52,15 +36,11 @@ namespace Sqline.ClientFramework {
 			FSqlStatement = PrepareStatement();
 			int OResult = 0;
 			using (IDbCommand OCommand = connection.CreateCommand()) {
-				OCommand.Connection = connection;
 				OCommand.Transaction = transaction;
 				OCommand.CommandText = FSqlStatement;
 				foreach (IBaseParam OParam in FParameters) {
-					if (OParam.HasValue) {
-						IDbDataParameter OParameter = OCommand.CreateParameter();
-						OParameter.ParameterName = OParam.ParameterName;
-						OParameter.Value = OParam.Value;
-						OCommand.Parameters.Add(OParameter);
+					if (OParam.HasValue) { /* Is this check really necessary? */
+						OParam.AddParameter(OCommand);						
 					}
 				}
 				OResult = OCommand.ExecuteNonQuery();
@@ -76,26 +56,42 @@ namespace Sqline.ClientFramework {
 			}
 		}
 
-		protected abstract void PreExecute();
-		protected abstract void PostExecute(int modifiedCount);
-		protected abstract string PrepareStatement();
+		protected internal abstract void PreExecute();
+		protected internal abstract void PostExecute(int modifiedCount);
+		protected internal abstract string PrepareStatement();
 
-		public string SchemaName {
-			get {
-				return FSchemaName;
-			}
-			set {
-				FSchemaName = value;
-			}
+		/* NOTE: Use Get/Set functions instead of properties to avoid name-clashing with auto-generated properties */
+
+		public List<IBaseParam> GetParameters() {
+			return FParameters;
 		}
 
-		public string TableName {
-			get {
-				return FTableName;
-			}
-			set {
-				FTableName = value;
-			}
+		public string GetSchemaName() {			
+			return FSchemaName;			
+		}
+
+		public void SetSchemaName(string schemaName) {
+			FSchemaName = schemaName;
+		}
+
+		public string GetTableName() {			
+			return FTableName;
+		}
+
+		public void SetTableName(string tableName) {
+			FTableName = tableName;
+		}
+
+		public int GetParameterIndex() {
+			return FParameterIndex;
+		}
+
+		public void SetParameterIndex(int index) {
+			FParameterIndex = index;
+		}
+
+		protected internal SqlineConfig GetSqlineConfig() {
+			return FConfig;
 		}
 	}
 }
