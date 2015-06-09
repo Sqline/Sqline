@@ -74,6 +74,7 @@
     <Compile Include="ProviderModel\SqlServer\TypeMapping.cs" />
     <Compile Include="ProviderModel\SqlServer\Types.cs" />
     <Compile Include="SqlineConfig.cs" />
+    <Compile Include="ViewItems\IViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />

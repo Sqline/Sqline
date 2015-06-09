@@ -24,6 +24,7 @@ using Sqline.ClientFramework;
 namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 <#
 	foreach (ViewTable OTable in ODataItemFile.Model.Tables) {
+		ViewColumn OPrimaryKeyColumn = OTable.GetFirstPrimaryKeyColumn();
 #>
 
 	<# /* Meta Class */ #>
@@ -50,6 +51,12 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 			<#= OTable.Columns.BuildString((c) => "AddParameter(F" + c.Name + ", \"" + c.Name + "\");", "\r\n") #>
 			base.PreExecute();
 		}
+
+		<# if (OPrimaryKeyColumn != null) { #>
+		public <#= OPrimaryKeyColumn.CsType #> GetInsertedPrimaryKeyValue() {
+			return (<#= OPrimaryKeyColumn.CsType #>)FInsertedPKValue;
+		}
+		<# } #>
 
 	<# foreach (ViewColumn OColumn in OTable.Columns) { #>
 		<# if (OColumn.Required) { #>

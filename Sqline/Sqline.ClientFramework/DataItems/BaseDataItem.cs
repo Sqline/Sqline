@@ -17,20 +17,20 @@ namespace Sqline.ClientFramework {
 		protected string FSqlStatement = "";
 		protected int FParameterIndex = 0;
 
-		public void Initialize(string schemaName, string tableName, SqlineConfig config) {
+		public virtual void Initialize(string schemaName, string tableName, SqlineConfig config) {
 			FSchemaName = schemaName;
 			FTableName = tableName;
 			FConfig = config;
 		}
 
-		public int Execute() {
+		public virtual int Execute() {
 			using (IDbConnection OConnection = Provider.Current.GetConnection(FConfig.ConnectionString)) {
 				OConnection.Open();
 				return Execute(OConnection, null);
 			}
 		}
 
-		public int Execute(IDbConnection connection, IDbTransaction transaction) {
+		public virtual int Execute(IDbConnection connection, IDbTransaction transaction) {
 			FParameters.Clear();
 			PreExecute();
 			FSqlStatement = PrepareStatement();
@@ -42,6 +42,9 @@ namespace Sqline.ClientFramework {
 					if (OParam.HasValue) { /* Is this check really necessary? */
 						OParam.AddParameter(OCommand);						
 					}
+					else {
+						throw new Exception("Yes, I think it is necessary");
+					}
 				}
 				OResult = OCommand.ExecuteNonQuery();
 			}
@@ -49,7 +52,7 @@ namespace Sqline.ClientFramework {
 			return OResult;
 		}
 
-		public void AddParameter(BaseParam param, string columnName) {
+		public virtual void AddParameter(BaseParam param, string columnName) {
 			if ((object)param != null) {
 				param.Initialize(columnName);
 				FParameters.Add(param);

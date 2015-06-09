@@ -33,6 +33,17 @@ namespace <#= OItemFile.Configuration.ViewItems.Namespace #> {
 		public <#= OViewItem.FullName #>() {	
 		}
 
+		public void PreInitialize() {
+			OnPreInitialize();
+		}
+
+		public void PostInitialize() {
+			OnPostInitialize();
+		}
+
+		partial void OnPreInitialize();
+		partial void OnPostInitialize();
+
 		<# foreach (Field OField in OViewItem.Fields) { #>
 		private <#= OField.CsType #> F<#= OField.Name #>;
 		<#= OField.Visibility #> <#= OField.CsType #> <#= OField.Name #> {
@@ -53,6 +64,7 @@ namespace <#= OItemFile.Configuration.ViewItems.Namespace #> {
 
 public string GetInherits(ViewItem viewitem) {
 	StringBuilder result = new StringBuilder();
+	result.Append("IViewItem");
 	foreach (ItemBase OBase in viewitem.Bases) {
 		if (OBase.Type == "extend" || OBase.Type == "implement") { 
 			if (result.Length > 0) {

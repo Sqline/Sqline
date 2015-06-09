@@ -40,6 +40,7 @@
 						<# } #>
 						<#= OMethod.Result == ResultType.List ? "while" :  "if" #> (OReader.Read()) {
 						<#= OViewItem.FullName #> OViewItem = new <#= OViewItem.FullName #>();
+						OViewItem.PreInitialize();
 						<# foreach (Field OField in OMethod.GetFields("queryfield")) { #>
 							OViewItem.<#= OField.Name #> = OReader.<#= OField.CsReaderMethod #>;
 						<# } #>
@@ -52,8 +53,9 @@
 							<# if (OField.Transform != null) { #>
 							OViewItem.<#= OField.Name #> = new Func<<#= OField.CsTypeNonNullable #>, <#= OViewItem.FullName #>, <#= OField.CsTypeNonNullable #>>((<#= OField.Name #>, item) => <#= OField.Transform #>)((<#= OField.CsTypeNonNullable #>)OViewItem.<#= OField.Name #>, OViewItem);
 							<# } #>
-							<# } #>
-							<# if (OMethod.Result == ResultType.List) { #>
+						<# } #>
+						OViewItem.PostInitialize();
+						<# if (OMethod.Result == ResultType.List) { #>
 							<# if (OMethod.Filter != null) { #>
 							if (new Func<<#= OViewItem.FullName #>, bool>(item => <#= OMethod.Filter #>)(OViewItem)) {
 								OResult.Add(OViewItem);
@@ -61,10 +63,10 @@
 							<# } else { #>
 							OResult.Add(OViewItem);
 							<# } #>
-							<# } #>
-							<# if (OMethod.Result == ResultType.SingleItem) { #>
-							OResult = OViewItem;
-							<# } #>
+						<# } #>
+						<# if (OMethod.Result == ResultType.SingleItem) { #>
+						OResult = OViewItem;
+						<# } #>
 						}
 					}
 				}

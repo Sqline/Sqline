@@ -60,6 +60,9 @@ namespace Sqline.ClientFramework {
 						if (OParam.HasValue) { /* Is this check really necessary? */
 							OParam.AddParameter(OCommand);
 						}
+						else {
+							throw new Exception("Yes, I think it is necessary");
+						}
 					}
 				}
 				String OSql = IsAllInserts() ? PrepareAllInsertStatement() : PrepareAppendedStatement();

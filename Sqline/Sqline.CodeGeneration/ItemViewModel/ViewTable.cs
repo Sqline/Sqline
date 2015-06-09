@@ -1,5 +1,6 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using Schemalizer.Base;
 using Schemalizer.Model;
@@ -23,6 +24,10 @@ namespace Sqline.CodeGeneration.ViewModel {
 			foreach (Database ODatabase in table.DatabaseRelationships) {
 				FDatabaseRelationships.Add(ODatabase.Name, new ViewDatabase(ODatabase));
 			}
+		}
+
+		public ViewColumn GetFirstPrimaryKeyColumn() {
+			return FColumns.Values.FirstOrDefault(c => c.PrimaryKey);
 		}
 
 		public List<ViewDatabase> DatabaseRelationships {
