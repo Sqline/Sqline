@@ -48,13 +48,23 @@ namespace Sqline.CodeGeneration.ViewModel {
 
 		public String ParamType {
 			get {
-				return "ValueParam<" + CsType + ">";
+				if (FBase.Nullable) {
+					return "NullableValueParam<" + CsType + ">";
+				}
+				else {
+					return "ValueParam<" + CsType + ">";
+				}				
 			}
 		}
 
 		public String WhereType {
 			get {
-				return "WhereParam<" + CsType + ">";
+				if (FBase.Nullable) {
+					return "NullableWhereParam<" + CsType + ">";
+				}
+				else {
+					return "WhereParam<" + CsType + ">";
+				}				
 			}
 		}
 
