@@ -17,13 +17,13 @@ namespace Sqline.ClientFramework {
 		public NullableWhereParam(T value, WhereOperator whereOperator) {
 			if (typeof(T).IsClass && value == null) {
 				FOperator = WhereOperator.EqualsNull;
-				HasValue = false;
+				IsNull = false;
 				return;
 			}
 			FOperator = whereOperator;
 			FValue = value;
 			if (whereOperator == WhereOperator.EqualsNull || whereOperator == WhereOperator.NotEqualsNull) {
-				HasValue = false;
+				IsNull = false;
 			}
 		}
 

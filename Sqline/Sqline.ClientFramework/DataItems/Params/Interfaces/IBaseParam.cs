@@ -15,6 +15,6 @@ namespace Sqline.ClientFramework {
 		Type Type { get; }
 		string ColumnName { get; }
 		string ParameterName { get; set; }
-		bool HasValue { get; }
+		bool IsNull { get; }
 	}
 }

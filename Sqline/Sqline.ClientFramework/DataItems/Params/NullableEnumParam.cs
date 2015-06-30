@@ -17,13 +17,13 @@ namespace Sqline.ClientFramework {
 		public NullableEnumParam(TEnum value, EnumOperator enumOperator) {
 			if (typeof(TEnum).IsClass && value == null) {
 				FOperator = EnumOperator.EqualsNull;
-				HasValue = false;
+				IsNull = false;
 				return;
 			}
 			FOperator = enumOperator;
 			FValue = value;
 			if (enumOperator == EnumOperator.EqualsNull) {
-				HasValue = false;
+				IsNull = false;
 			}
 		}
 

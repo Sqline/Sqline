@@ -10,7 +10,7 @@ namespace Sqline.ClientFramework {
 	public abstract class BaseParam : IBaseParam {		
 		private string FColumnName;
 		private string FParameterName;
-		private bool FHasValue = true;
+		private bool FIsNull = true;
 
 		public void Initialize(string columnName) {
 			FColumnName = columnName;
@@ -24,7 +24,7 @@ namespace Sqline.ClientFramework {
 		public virtual void AddParameter(IDbCommand command) {
 			IDbDataParameter OParameter = command.CreateParameter();
 			OParameter.ParameterName = ParameterName;
-			if (!FHasValue) {
+			if (!FIsNull) {
 				OParameter.Value = DBNull.Value;
 			}
 			else {
@@ -48,12 +48,12 @@ namespace Sqline.ClientFramework {
 			}
 		}
 
-		public bool HasValue {
+		public bool IsNull {
 			get {
-				return FHasValue;
+				return FIsNull;
 			}
 			protected set {
-				FHasValue = value;
+				FIsNull = value;
 			}
 		}
 	}

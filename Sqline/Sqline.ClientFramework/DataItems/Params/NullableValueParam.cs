@@ -17,13 +17,13 @@ namespace Sqline.ClientFramework {
 		public NullableValueParam(T value, ValueOperator valueOperator) {
 			if (typeof(T).IsClass && value == null) {
 				FOperator = ValueOperator.EqualsNull;
-				HasValue = false;
+				IsNull = false;
 				return;
 			}
 			FOperator = valueOperator;
 			FValue = value;
 			if (valueOperator == ValueOperator.EqualsNull) {
-				HasValue = false;
+				IsNull = false;
 			}
 		}
 

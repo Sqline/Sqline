@@ -57,16 +57,10 @@ namespace Sqline.ClientFramework {
 					OOperation.PreExecute();
 					OParameterIndex = OOperation.GetParameterIndex();
 					foreach (IBaseParam OParam in OOperation.GetParameters()) {
-						if (OParam.HasValue) { /* Is this check really necessary? */
-							OParam.AddParameter(OCommand);
-						}
-						else {
-							throw new Exception("Yes, I think it is necessary");
-						}
+						OParam.AddParameter(OCommand);
 					}
 				}
-				String OSql = IsAllInserts() ? PrepareAllInsertStatement() : PrepareAppendedStatement();
-				Console.Write(OSql);
+				String OSql = IsAllInserts() ? PrepareAllInsertStatement() : PrepareAppendedStatement();				
 
 				OCommand.CommandText = OSql;
 				int OResult = OCommand.ExecuteNonQuery();

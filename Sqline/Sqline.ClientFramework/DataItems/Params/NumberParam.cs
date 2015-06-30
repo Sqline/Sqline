@@ -25,7 +25,7 @@ namespace Sqline.ClientFramework {
 			FOperator = numberOperator;
 			FValue = value;
 			if (numberOperator == NumberOperator.Increment || numberOperator == NumberOperator.Decrement || numberOperator == NumberOperator.Add || numberOperator == NumberOperator.Subtract) {
-				HasValue = false;
+				IsNull = false;
 			}
 		}
 
