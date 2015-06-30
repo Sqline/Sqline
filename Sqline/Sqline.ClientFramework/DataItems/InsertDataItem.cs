@@ -15,12 +15,12 @@ namespace Sqline.ClientFramework {
 		private string FValues;
 		private bool FFetchPrimaryKeyValueAfterInsert = true;
 		private string FPrimaryKeyColumn;
-		private DbType FPrimaryKeyType;
+		private ITypeMapping FPrimaryKeyType; //send to provider implementation of the primary key fetch logic, might be useful for some providers
 		protected object FInsertedPKValue;
 
-		protected internal void SetPrimaryKeyInfo(string columnName, DbType type) {
+		protected internal void SetPrimaryKeyInfo(string columnName, string dbType) {
 			FPrimaryKeyColumn = columnName;
-			FPrimaryKeyType = type;
+			FPrimaryKeyType = Provider.Current.GetTypeMapping(dbType);
 		}
 
 		protected internal override void PreExecute() {
@@ -52,7 +52,7 @@ namespace Sqline.ClientFramework {
 			OSql.Append(") ");
 			if (Provider.Current is SqlServerProvider && FFetchPrimaryKeyValueAfterInsert) {
 				/* TODO: The responsibility of returning the inserted PK value should be implemented in the provider instead */
-				OSql.Append("OUTPUT inserted.ID");
+				OSql.Append("OUTPUT inserted.");
 				OSql.Append(FPrimaryKeyColumn);
 				OSql.Append(", 1 ");
 			}

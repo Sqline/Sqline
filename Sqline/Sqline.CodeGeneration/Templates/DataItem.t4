@@ -44,6 +44,12 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 
 		public <#= OTable.TableName #>Insert(<#= OTable.RequiredColumns.BuildString((c) => c.ParamType + " " + c.Name.ToLower(), ", ") #>) {
 			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+			<# ViewColumn OPKColumn = OTable.GetFirstPrimaryKeyColumn(); #>
+			<# if (OPKColumn == null) { #>
+			SetFetchPrimaryKeyValueAfterInsert(false);
+			<# } else { #>
+			SetPrimaryKeyInfo("<#= OPKColumn.Name #>", "<#= OPKColumn.DataType #>");
+			<# } #>
 			<#= OTable.RequiredColumns.BuildString((c) => "F" + c.Name + " = " + c.Name.ToLower() + ";", "\r\n") #>
 		}
 
