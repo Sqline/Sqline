@@ -38,13 +38,8 @@ namespace Sqline.ClientFramework {
 			using (IDbCommand OCommand = connection.CreateCommand()) {
 				OCommand.Transaction = transaction;
 				OCommand.CommandText = FSqlStatement;
-				foreach (IBaseParam OParam in FParameters) {
-					if (OParam.HasValue) { /* Is this check really necessary? */
-						OParam.AddParameter(OCommand);						
-					}
-					else {
-						throw new Exception("Yes, I think it is necessary");
-					}
+				foreach (IBaseParam OParam in FParameters) {					
+					OParam.AddParameter(OCommand);
 				}
 				OResult = OCommand.ExecuteNonQuery();
 			}

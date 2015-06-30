@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sqline.ClientFramework {
-	public abstract class BaseParam : IBaseParam {
+	public abstract class BaseParam : IBaseParam {		
 		private string FColumnName;
 		private string FParameterName;
 		private bool FHasValue = true;
@@ -21,10 +21,15 @@ namespace Sqline.ClientFramework {
 		public abstract Type Type { get; }
 		public abstract string GetStatement(string columnName, string parameterName);
 
-		public void AddParameter(IDbCommand command) {
+		public virtual void AddParameter(IDbCommand command) {
 			IDbDataParameter OParameter = command.CreateParameter();
 			OParameter.ParameterName = ParameterName;
-			OParameter.Value = Value;
+			if (!FHasValue) {
+				OParameter.Value = DBNull.Value;
+			}
+			else {
+				OParameter.Value = Value;
+			}
 			command.Parameters.Add(OParameter);
 		}
 
