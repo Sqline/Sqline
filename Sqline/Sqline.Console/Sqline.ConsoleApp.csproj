@@ -48,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Sqlingo\Sqlingo.csproj">
+      <Project>{70bde99f-9d08-48e0-970d-6d9f0c2baaf5}</Project>
+      <Name>Sqlingo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
       <Name>Sqline.ClientFramework</Name>

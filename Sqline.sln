@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.CodeGeneration", "Sqline\Sqline.CodeGeneration\Sqline.CodeGeneration.csproj", "{CF164BBD-2F0D-4719-A8C1-FB25A5AC53A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.Console", "Sqline\Sqline.Console\Sqline.Console.csproj", "{DD3BD373-7212-4F55-AAE1-CB02E8ADBAC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ConsoleApp", "Sqline\Sqline.Console\Sqline.ConsoleApp.csproj", "{DD3BD373-7212-4F55-AAE1-CB02E8ADBAC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Compiler.Generator", "T4Compiler\T4Compiler.Generator\T4Compiler.Generator.csproj", "{FE5B2C8E-4868-4E13-AADC-3A284F49473C}"
 EndProject
@@ -38,6 +38,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.Base", "Sqline\Sqline.Base\Sqline.Base.csproj", "{C347571C-CBB9-41E4-883E-DF56868B6716}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.VSPackage", "Sqline\Sqline.VSPackage\Sqline.VSPackage.csproj", "{38EE5F34-5DC9-42AC-AA96-B1410770A39A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Sqlingo", "!Sqlingo", "{F48FE7F4-DBE4-4BD5-8D84-8F76FD25E228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqlingo", "Sqlingo\Sqlingo.csproj", "{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.UnitTests", "Sqline.UnitTests\Sqline.UnitTests.csproj", "{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +111,14 @@ Global
 		{38EE5F34-5DC9-42AC-AA96-B1410770A39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38EE5F34-5DC9-42AC-AA96-B1410770A39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38EE5F34-5DC9-42AC-AA96-B1410770A39A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +134,6 @@ Global
 		{D5B51461-9B78-4D50-A6A2-7D550E311A6E} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 		{97F2C6A7-5D46-46C8-8FD6-DBBDDC14D600} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 		{CB384083-8446-492B-8631-3419A404A98E} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
+		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5} = {F48FE7F4-DBE4-4BD5-8D84-8F76FD25E228}
 	EndGlobalSection
 EndGlobal
