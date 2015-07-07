@@ -8,7 +8,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 
 		public Sql(IOwner owner, XElement element) {
 			FOwner = owner;
-			FStatement = element.Value.Trim();
+			FStatement = element.Value.Replace("\"", "\"\"").Trim();
 		}
 
 		public string Statement {
