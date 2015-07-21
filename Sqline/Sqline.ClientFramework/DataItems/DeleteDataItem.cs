@@ -17,7 +17,7 @@ namespace Sqline.ClientFramework {
 			foreach (IBaseParam OParam in FParameters) {
 				if (OParam is IWhereParam) {
 					if (OWheres.Length > 0) {
-						OWheres.Append(",");
+						OWheres.Append(" AND ");
 					}
 					string OParameterName = Provider.Current.GetParameterName("p" + FParameterIndex++);
 					OWheres.Append(OParam.GetStatement(Provider.Current.GetSafeColumnName(OParam.ColumnName), OParameterName));
