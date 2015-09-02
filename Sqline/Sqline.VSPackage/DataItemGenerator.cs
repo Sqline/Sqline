@@ -35,8 +35,8 @@ namespace Sqline.VSPackage {
 			SchemaModel OModel = SchemaModel.Load(ODatabaseFilePath);
 			ISchemalizerProvider OProvider = new SqlProvider(OConfiguration.ConnectionString.Value);
 			if (OModel == null || OProvider.HasSchemaChanged(OModel)) {
-				OModel = new SchemaModel();
-				OProvider.ExtractMetadata(OModel, "Sqline");
+				OModel = new SchemaModel();				
+				OProvider.ExtractMetadata(OModel, "Sqline");				
 				XElement OElement = OModel.ToXElement();
 				OElement.Save(ODatabaseFilePath);
 				FOutputFiles.Add(ODatabaseFilePath);

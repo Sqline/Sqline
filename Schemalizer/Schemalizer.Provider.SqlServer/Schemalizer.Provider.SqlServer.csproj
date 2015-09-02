@@ -49,6 +49,10 @@
     <Compile Include="SqlProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Schemalizer.Base\Schemalizer.Base.csproj">
+      <Project>{150712dc-ed96-4a96-aa20-648de10533de}</Project>
+      <Name>Schemalizer.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Schemalizer.Model\Schemalizer.Model.csproj">
       <Project>{62d5d7a7-c95c-46b4-bb7d-e57361ab8f7d}</Project>
       <Name>Schemalizer.Model</Name>

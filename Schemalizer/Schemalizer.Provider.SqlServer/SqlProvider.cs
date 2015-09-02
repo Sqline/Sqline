@@ -2,7 +2,9 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using Schemalizer.Model;
+using Schemalizer.Base;
 
 namespace Schemalizer.Provider.SqlServer {
 	public class SqlProvider : ISchemalizerProvider {
@@ -21,13 +23,14 @@ namespace Schemalizer.Provider.SqlServer {
 			FDatabase = model.CreateDatabase(databaseName);
 			using (SqlConnection OConnection = new SqlConnection(FConnStr)) {
 				using (SqlCommand OCommand = new SqlCommand(ExtractSchemaSql, OConnection)) {
-					OConnection.Open();
+					Debug.WriteLine("Extracting database schema info");
+					OConnection.QuickOpen(OConnection.ConnectionTimeout);
 					using (IDataReader OReader = OCommand.ExecuteReader()) {
 						while (OReader.Read()) {
 							Table OTable = GetTableData(model, OReader);
-							AddColumnData(OTable, OReader);
+							AddColumnData(OTable, OReader);							
 						}
-					}
+					}					
 				}
 			}
 		}
