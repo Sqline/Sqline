@@ -18,13 +18,16 @@ https://github.com/Sqline/Sqline/wiki
 - Uses T4 templates for all code generation (custom templates will be supported later!) also allowing full transparency into the code generation process.
 - Pure ADO.NET also means no memory or performance hit of using Sqline
 - Transaction support
-- Can be used for any type of C#/.NET application, but is especially suitable for high performance and scalable webapplications handling hundreds of thousands of users (or more!) where you need to be in control of what exactly gets executed against your DB systems without any memory or performance overhead that most other dataccess frameworks adds.
+- Can be used for any type of C#/.NET application, but is especially suitable for high performance and scalable webapplications or server solutions where you need to be in control of what exactly gets executed against your DB systems without any memory or performance overhead that most other dataccess frameworks add.
 
 ### Why another framework?
 
-Most DataAccess Frameworks today have a "code-first" approach, treating databases as a persistence medium for code objects and trying to hide the use of SQL to the point where developers don't have to know SQL at all!
+Most DataAccess Frameworks today have a "code-first" approach, treating databases as a persistence medium for code objects and trying to hide the use of SQL. They usually make it very easy to perform CRUD actions on full table rows with 1 to 1 mappings to class objects, but lack good support for optimized SQL statements. Furthermore they add layers of overhead and abstractions to the process, making them both slow and less transparent.
 
-We believe this is totally backwards for any professional use - Sqline is therefore built to let you exploit the full power of SQL and will instead help you generate supportive code objects.
+For Enterprise solutions we believe this is backwards and Sqline is therefore build to exploit the full power of SQL statements and will help generate supportive code objects instead.
+
+Sqline is a code generator (taking a small hit at compile time instead of at run time!) that generates hand-written ADO.NET code, both ensuring optimal peformance and full transparency into how your statements are executed against the database.
+Using a templating system based on the T4-standard, Sqline is fully customizable and advanced users will be able to change the code generation to match the requirements of their specific projects.
 
 ### How does it work?
 
@@ -76,10 +79,10 @@ Schemalizer and T4Compiler can be used in any project that needs to extract data
 Sqline is still a work-in-progress, but feel free to play around with it.
 
 ### Current limitations
-* Sqline is not in a production ready state, **do only use it at an educational and experimental level**.
+* Sqline is not in a production ready state, **use at own risk**.
 * Sqline can currently only produce C# code
-* While some MySQL support is implemented, currently only MSSQL is supported.
+* While some MySQL support is implemented, Sqline only supports MSSQL at this stage.
 * A console version is planned, but currently Sqline is only working through the supplied Visual Studio Package.
-* T4Compiler is not fully compatible with the entire T4 standard, but most basic syntax is supported.
-* Schemalizer only works against MySQL and MSSQL servers.
-* No documentation or configuration guides are currently available.
+* T4Compiler is not fully compatible with the entire T4 standard, but have support for all of the most common features.
+* Schemalizer currently only supports MySQL and MSSQL.
+* Documentation is still lacking as it is not yet ready for professional use, however see our [Quick Start Guide](https://github.com/Sqline/Sqline/wiki)
