@@ -6,7 +6,7 @@ Sqline is a SQL-first DataAccess Framework for .NET
 
 ### Download
 
-[Milestone 1 Release v0.1.1](https://github.com/Sqline/Sqline/releases/download/m1-release-v0.1/Sqline-v0.1.1-m1.vsix) (not recommended for production use)
+[Milestone 1 Release v0.1.1](https://github.com/Sqline/Sqline/releases/download/v1.1-m1/Sqline-v0.1.1-m1.vsix) (not recommended for production use)
 
 ### Quick Start Guide
 https://github.com/Sqline/Sqline/wiki
