@@ -11,15 +11,6 @@ Sqline is a SQL-first DataAccess Framework for .NET
 ### Quick Start Guide
 https://github.com/Sqline/Sqline/wiki
 
-### Features
-- Generates classes to handle common Insert, Update and Delete scenarios
-- Write SQL statements and have all the boring work taken care of while still enjoying strongly-typed C# classes for your results.
-- Sqline generates pure "hand-written" ADO.NET - no complicated framework on top, full transparency.
-- Uses T4 templates for all code generation (custom templates will be supported later!) also allowing full transparency into the code generation process.
-- Pure ADO.NET also means no memory or performance hit of using Sqline
-- Transaction support
-- Can be used for any type of C#/.NET application, but is especially suitable for high performance and scalable webapplications or server solutions where you need to be in control of what exactly gets executed against your DB systems without any memory or performance overhead that most other dataccess frameworks add.
-
 ### Why another framework?
 
 Most DataAccess Frameworks today have a "code-first" approach, treating databases as a persistence medium for code objects and trying to hide the use of SQL. They usually make it very easy to perform CRUD actions on full table rows with 1 to 1 mappings to class objects, but lack good support for optimized SQL statements. Furthermore they add layers of overhead and abstractions to the process, making them both slow and less transparent.
@@ -28,6 +19,15 @@ For Enterprise solutions we believe this is backwards and Sqline is therefore bu
 
 Sqline is a code generator (taking a small hit at compile time instead of at run time!) that generates hand-written ADO.NET code, both ensuring optimal peformance and full transparency into how your statements are executed against the database.
 Using a templating system based on the T4-standard, Sqline is fully customizable and advanced users will be able to change the code generation to match the requirements of their specific projects.
+
+### Features
+- Generates classes to handle common Insert, Update and Delete scenarios
+- Write SQL statements and have all the boring work taken care of while still enjoying strongly-typed C# classes for your results.
+- Sqline generates pure "hand-written" ADO.NET - no complicated framework on top, full transparency.
+- Uses T4 templates for all code generation (custom templates will be supported later!) also allowing full transparency into the code generation process.
+- Pure ADO.NET also means no memory or performance hit of using Sqline
+- Transaction support
+- Can be used for any type of C#/.NET application, but is especially suitable for high performance and scalable webapplications or server solutions where you need to be in control of what exactly gets executed against your DB systems without any memory or performance overhead that most other dataccess frameworks add.
 
 ### How does it work?
 
