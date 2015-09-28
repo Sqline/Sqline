@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sqline.Base {
+namespace Sqline.ClientFramework.Types {
 	public interface ISpecializedString {
 		string Value { get; }
 	}

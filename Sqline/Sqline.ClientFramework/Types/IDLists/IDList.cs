@@ -70,7 +70,7 @@ namespace Sqline.ClientFramework.Types {
 					if (FResult.Length != 0) {
 						FResult.Append(",");
 					}
-					if (value is string) {
+					if (value is string || value is ISpecializedString) {
 						FResult.Append("'");
 						FResult.Append(((string)(object)value).Replace("'", "\\'"));
 						FResult.Append("'");

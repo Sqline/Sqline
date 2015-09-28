@@ -1,0 +1,14 @@
+﻿					<# foreach (Parameter OParameter in OMethod.Parameters) { #>
+						<# if (OParameter.Type.EndsWith("IDList")) { #>
+						
+						<# } else { #>
+					IDbDataParameter OParameter<#= OParameter.Name #> = OCommand.CreateParameter();
+					OParameter<#= OParameter.Name #>.ParameterName = "@<#= OParameter.Name #>";
+							<# if (OParameter.Nullable) { #>
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.ArgumentName #> ?? (object)DBNull.Value;
+							<# } else { #>
+					OParameter<#= OParameter.Name #>.Value = <#= OParameter.ArgumentName #>;
+							<# } #>
+					OCommand.Parameters.Add(OParameter<#= OParameter.Name #>);
+						<# } #>
+					<# } #>

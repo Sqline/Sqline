@@ -74,7 +74,12 @@
     <Compile Include="ProviderModel\SqlServer\TypeMapping.cs" />
     <Compile Include="ProviderModel\SqlServer\Types.cs" />
     <Compile Include="SqlineConfig.cs" />
-    <Compile Include="Types\IDList.cs" />
+    <Compile Include="Types\CastableString.cs" />
+    <Compile Include="Types\ISpecializedString.cs" />
+    <Compile Include="Types\IDLists\StringIDList.cs" />
+    <Compile Include="Types\IDLists\LongIDList.cs" />
+    <Compile Include="Types\IDLists\IntIDList.cs" />
+    <Compile Include="Types\IDLists\IDList.cs" />
     <Compile Include="ViewItems\IViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
