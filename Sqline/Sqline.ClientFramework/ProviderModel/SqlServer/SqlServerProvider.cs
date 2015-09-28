@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Sqline.ClientFramework.ProviderModel.SqlServer {
 	public class SqlServerProvider : IProvider {
@@ -55,6 +56,17 @@ namespace Sqline.ClientFramework.ProviderModel.SqlServer {
 
 		public IDbConnection GetConnection(string connstr) {
 			return new SqlConnection(connstr);
+		}
+
+		public string GenerateParameterQuery(string prefix, int count) {
+			StringBuilder OResult = new StringBuilder();
+			for (int i = 0; i < count; i++) {
+				if (i > 0) {
+					OResult.Append(",");
+				}
+				OResult.Append("@" + prefix + i);
+			}
+			return OResult.ToString();
 		}
 	}
 }

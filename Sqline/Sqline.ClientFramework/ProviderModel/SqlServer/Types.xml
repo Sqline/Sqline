@@ -12,13 +12,13 @@
 	<type providertype="money"            dbtype="Decimal"    cstype="decimal"  csnullable="decimal?"   csreader="GetDecimal"   isnumber="1" />
 	<type providertype="nchar"            dbtype="String"     cstype="string"   csnullable="string"     csreader="GetString"    isnumber="0" />
 	<type providertype="ntext"            dbtype="String"     cstype="string"   csnullable="string"     csreader="GetString"    isnumber="0" />
-	<type providertype="numeric"          dbtype=""           cstype="decimal"  csnullable="decimal?"   csreader="GetDecimal"   isnumber="1" />
+	<type providertype="numeric"          dbtype="Decimal"    cstype="decimal"  csnullable="decimal?"   csreader="GetDecimal"   isnumber="1" />
 	<type providertype="nvarchar"         dbtype="String"     cstype="string"   csnullable="string"     csreader="GetString"    isnumber="0" />
 	<type providertype="float"            dbtype="Decimal"    cstype="double"   csnullable="double?"    csreader="GetDouble"    isnumber="1" />
 	<type providertype="smalldatetime"    dbtype="DateTime"   cstype="DateTime" csnullable="DateTime?"  csreader="GetDateTime"  isnumber="0" />
 	<type providertype="smallint"         dbtype="Int16"      cstype="short"    csnullable="short?"     csreader="GetInt16"     isnumber="1" />
 	<type providertype="smallmoney"       dbtype="Decimal"    cstype="decimal"  csnullable="decimal?"   csreader="GetDecimal"   isnumber="1" />
-	<type providertype="sql_variant"      dbtype=""           cstype="object"   csnullable="object"     csreader="GetValue"     isnumber="0" />
+	<type providertype="sql_variant"      dbtype="Object"     cstype="object"   csnullable="object"     csreader="GetValue"     isnumber="0" />
 	<type providertype="real"             dbtype="Single"     cstype="float"    csnullable="float?"     csreader="GetFloat"     isnumber="1" />
 	<type providertype="text"             dbtype="String"     cstype="string"   csnullable="string"     csreader="GetString"    isnumber="0" />
 	<type providertype="timestamp"        dbtype="DateTime"   cstype="DateTime" csnullable="DateTime?"  csreader="GetDateTime"  isnumber="0" />

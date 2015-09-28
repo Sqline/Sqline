@@ -10,5 +10,6 @@ namespace Sqline.ClientFramework.ProviderModel {
 		string DelimitName(string name);
 		string UndelimitName(string name);
 		ITypeMapping GetTypeMapping(string providerType);
+		string GenerateParameterQuery(string prefix, int count);
 	}
 }
