@@ -12,6 +12,9 @@ namespace Sqline.ClientFramework {
 		public IntList() : base() {
 		}
 
+		public IntList(IEnumerable<int> values) : base(values) {
+		}
+
 		public IntList(params int[] values) : base(values) {
 		}
 	}

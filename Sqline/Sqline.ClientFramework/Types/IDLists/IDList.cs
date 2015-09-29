@@ -27,6 +27,13 @@ namespace Sqline.ClientFramework {
 			}
 		}
 
+		public IDList(IEnumerable<T> values) {
+			Init();
+			foreach (T OValue in values) {
+				Append(OValue);
+			}
+		}
+
 		private void Init() {
 			FInstanceCount++;
 			GenerateUniqueID();

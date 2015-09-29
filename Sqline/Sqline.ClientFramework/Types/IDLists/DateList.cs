@@ -12,6 +12,9 @@ namespace Sqline.ClientFramework {
 		public DateList() : base() {
 		}
 
+		public DateList(IEnumerable<DateTime> values) : base(values) {
+		}
+
 		public DateList(params DateTime[] values) : base(values) {
 		}
 	}

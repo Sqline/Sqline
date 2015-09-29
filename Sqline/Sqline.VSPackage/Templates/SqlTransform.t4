@@ -3,6 +3,5 @@
 					if (OParameter.Type.EndsWith("List")) {
 		#>
 			OSql = OSql.Replace(Provider.Current.GetParameterName("<#= OParameter.Name #>"), "(" + Provider.Current.GenerateParameterQuery("p<#= i #>_", <#= OParameter.ArgumentName #>.Count) + ")");
-			System.Diagnostics.Debug.WriteLine(OSql);
 			<# } #>
 		<# } #>

@@ -12,6 +12,9 @@ namespace Sqline.ClientFramework {
 		public LongList() : base() {
 		}
 
+		public LongList(IEnumerable<long> values) : base(values) {
+		}
+
 		public LongList(params long[] values) : base(values) {
 		}
 	}
