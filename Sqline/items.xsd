@@ -791,7 +791,10 @@
 			<xs:enumeration value="varbinary" />
 			<xs:enumeration value="varchar" />
 			<xs:enumeration value="xml" />
-			<xs:enumeration value="IDString" />
+			<xs:enumeration value="IntList" />
+			<xs:enumeration value="LongList" />
+			<xs:enumeration value="StringList" />
+			<xs:enumeration value="DateList" />
 		</xs:restriction>
 	</xs:simpleType>
 	

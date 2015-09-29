@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sqline.ClientFramework.Types {
+namespace Sqline.ClientFramework {
 	public class CastableString : IConvertible, ISpecializedString {
 		private string FValue;
 

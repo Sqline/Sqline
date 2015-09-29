@@ -1,6 +1,19 @@
-﻿					<# foreach (Parameter OParameter in OMethod.Parameters) { #>
-						<# if (OParameter.Type.EndsWith("IDList")) { #>
-						
+﻿					<# for (int i = 0; i < OMethod.Parameters.Count; i++) { 
+						 Parameter OParameter = OMethod.Parameters[i]; #>
+						<# if (OParameter.Type.EndsWith("List")) { #>
+					for (int i = 0; i < <#= OParameter.ArgumentName #>.Count; i++) {
+						IDbDataParameter OParameter<#= OParameter.Name #>_<#= i #> = OCommand.CreateParameter();
+						OParameter<#= OParameter.Name #>_<#= i #>.ParameterName = "@p<#= i #>_" + i;
+								<# if (OParameter.Type == "DateList") { #>
+						OParameter<#= OParameter.Name #>_<#= i #>.DbType = DbType.Date;
+								<# } #>
+								<# if (OParameter.Nullable) { #>
+						OParameter<#= OParameter.Name #>_<#= i #>.Value = <#= OParameter.ArgumentName #>[i] ?? (object)DBNull.Value;
+								<# } else { #>
+						OParameter<#= OParameter.Name #>_<#= i #>.Value = <#= OParameter.ArgumentName #>[i];
+								<# } #>
+						OCommand.Parameters.Add(OParameter<#= OParameter.Name #>_<#= i #>);
+					}
 						<# } else { #>
 					IDbDataParameter OParameter<#= OParameter.Name #> = OCommand.CreateParameter();
 					OParameter<#= OParameter.Name #>.ParameterName = "@<#= OParameter.Name #>";

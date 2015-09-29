@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sqline.ClientFramework.ProviderModel;
 
-namespace Sqline.ClientFramework.Types {
+namespace Sqline.ClientFramework {
 	public class IDList<T> {
 		[ThreadStatic]
 		private static int FInstanceCount = 0;
@@ -81,8 +81,11 @@ namespace Sqline.ClientFramework.Types {
 				}
 			}
 		}
-		public String GetQuery() {
-			return Provider.Current.GenerateParameterQuery("p" + FUniqueID, FValues.Count);
+
+		public T this[int index] {
+			get {
+				return FValues[index];
+			}
 		}
 
 		public List<T> Values {

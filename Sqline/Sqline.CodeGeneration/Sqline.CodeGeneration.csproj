@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
+    <None Include="Templates\SqlTransform.t4" />
     <None Include="Templates\Parameters.t4" />
     <None Include="Templates\VoidMethod.t4" />
     <None Include="Templates\ScalarMethod.t4" />

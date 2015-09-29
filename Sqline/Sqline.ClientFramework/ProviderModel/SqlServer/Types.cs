@@ -23,27 +23,35 @@ namespace Sqline.ClientFramework.ProviderModel.SqlServer {
 				CSReader = "Unknown",
 				IsNumber = false
 			};
-			FTypes.Add("IntIDList", new TypeMapping() {
-				ProviderType = "IntIDList",
+			FTypes.Add("IntList", new TypeMapping() {
+				ProviderType = "IntList",
 				DBType = "Unknown",
-				CSType = "IntIDList",
-				CSNullable = "IntIDList",
+				CSType = "IntList",
+				CSNullable = "IntList",
 				CSReader = "Unknown",
 				IsNumber = false
 			});
-			FTypes.Add("LongIDList", new TypeMapping() {
-				ProviderType = "LongIDList",
+			FTypes.Add("LongList", new TypeMapping() {
+				ProviderType = "LongList",
 				DBType = "Unknown",
-				CSType = "LongIDList",
-				CSNullable = "LongIDList",
+				CSType = "LongList",
+				CSNullable = "LongList",
 				CSReader = "Unknown",
 				IsNumber = false
 			});
-			FTypes.Add("StringIDList", new TypeMapping() {
-				ProviderType = "StringIDList",
+			FTypes.Add("StringList", new TypeMapping() {
+				ProviderType = "StringList",
 				DBType = "Unknown",
-				CSType = "StringIDList",
-				CSNullable = "StringIDList",
+				CSType = "StringList",
+				CSNullable = "StringList",
+				CSReader = "Unknown",
+				IsNumber = false
+			});
+			FTypes.Add("DateList", new TypeMapping() {
+				ProviderType = "DateList",
+				DBType = "Unknown",
+				CSType = "DateList",
+				CSNullable = "DateList",
 				CSReader = "Unknown",
 				IsNumber = false
 			});

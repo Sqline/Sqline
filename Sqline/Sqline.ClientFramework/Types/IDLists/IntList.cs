@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Sqline.ClientFramework.ProviderModel;
 
-namespace Sqline.ClientFramework.Types {
-	public class StringIDList: IDList<string> {
+namespace Sqline.ClientFramework {
+	public class IntList: IDList<int> {
 
-		public StringIDList() : base() {
+		public IntList() : base() {
 		}
 
-		public StringIDList(params string[] values) : base(values) {
+		public IntList(params int[] values) : base(values) {
 		}
 	}
 }

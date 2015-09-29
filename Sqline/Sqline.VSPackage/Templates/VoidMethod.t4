@@ -1,6 +1,7 @@
 ﻿		<#= OMethod.VisibilityString #> int <#= OMethod.Name #>(<#= GetArguments(OMethod, OTransactionSupport) #>) {
 			int OResult = 0;
-			string sql = @"<#= OMethod.Sql.Statement #>";
+			string OSql = @"<#= OMethod.Sql.Statement #>";
+			<#@ include file="SqlTransform.t4" #>
 			<# if (!OTransactionSupport) { #>
 			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
 			<# } #>
@@ -9,7 +10,7 @@
 					OCommand.Connection = connection;
 					OCommand.Transaction = transaction;
 					<# } #>
-					OCommand.CommandText = sql;
+					OCommand.CommandText = OSql;
 					OCommand.CommandType = CommandType.Text;
 					<# if (OMethod.Timeout > 0) { #>
 					OCommand.CommandTimeout = <#= OMethod.Timeout #>;
