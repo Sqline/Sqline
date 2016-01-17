@@ -15,7 +15,7 @@
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="ProjectName.DataAccess.csproj" File="ProjectName.DataAccess.csproj" ReplaceParameters="true">
-      <ProjectItem ReplaceParameters="true" TargetFileName="DA.cs">DA.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DA.cs">DA.cs</ProjectItem>      
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       </Folder>
@@ -28,4 +28,13 @@
       </Folder>
     </Project>
   </TemplateContent>
+  <WizardExtension>
+      <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+      <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+      <packages repository="extension" repositoryId="Sqline.Framework">
+          <package id="Sqline.ClientFramework" version="0.1.2" />      
+      </packages>
+  </WizardData>  
 </VSTemplate>

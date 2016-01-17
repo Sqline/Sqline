@@ -98,10 +98,6 @@
       <Project>{cf164bbd-2f0d-4719-a8c1-fb25a5ac53a5}</Project>
       <Name>Sqline.CodeGeneration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sqline\Sqline.Console\Sqline.ConsoleApp.csproj">
-      <Project>{dd3bd373-7212-4f55-aae1-cb02e8adbac5}</Project>
-      <Name>Sqline.ConsoleApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sqline\Sqline.VSPackage\Sqline.VSPackage.csproj">
       <Project>{38ee5f34-5dc9-42ac-aa96-b1410770a39a}</Project>
       <Name>Sqline.VSPackage</Name>

@@ -17,7 +17,7 @@ namespace Sqline.VSPackage {
 	[Guid(GuidList.guidSqlinePkgString)]
 	[ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}")]
 	[ProvideAutoLoad("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}")]
-	public sealed class SqlinePackage : Package {
+	public sealed class SqlinePackage : Package, IDisposable {
 		private AddinContext FContext;
 		private DocumentEvents FDocumentEvents;
 		private LogWindow FLog;
@@ -114,6 +114,12 @@ namespace Sqline.VSPackage {
 				FLog.Add(ex);
 			}
 			FLog.UpdateView();
+		}
+
+		public void Dispose() {
+			if (FLog != null) {
+				FLog.Dispose();
+			}
 		}
 
 		internal AddinContext Context {

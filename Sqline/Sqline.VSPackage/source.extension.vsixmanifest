@@ -1,25 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-	<Metadata>
-		<Identity Id="0c69ad0f-767e-4797-81f8-dc9948461076" Version="1.0" Language="en-US" Publisher="Sqline" />
-		<DisplayName>Sqline DataAccess Framework</DisplayName>
-		<Description xml:space="preserve">Sqline DataAccess Framework Package - www.sqline.net</Description>
-		<MoreInfo>http://www.sqline.net</MoreInfo>
-		<License>LICENSE</License>
-		<GettingStartedGuide>http://www.sqline.net</GettingStartedGuide>
-		<Icon>sqline.ico</Icon>
-	</Metadata>
-	<Installation InstalledByMsi="false">
-		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0]" />
-	</Installation>
-	<Dependencies>
-		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-		<Dependency Id="Microsoft.VisualStudio.MPF.12.0" DisplayName="Visual Studio MPF 12.0" d:Source="Installed" Version="[12.0]" />
-	</Dependencies>
-	<Assets>
-		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-		<Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Sqline\Sqline.ConfigFile.zip" />
-		<Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Sqline\Sqline.ItemFile.zip" />
-		<Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Sqline.Project.zip" />
-	</Assets>
+  <Metadata>
+    <Identity Id="Sqline.Framework" Version="1.0" Language="en-US" Publisher="Sqline" />
+    <DisplayName>Sqline DataAccess Framework</DisplayName>
+    <Description xml:space="preserve">Sqline DataAccess Framework Package - www.sqline.net</Description>
+    <MoreInfo>http://www.sqline.net</MoreInfo>
+    <License>LICENSE</License>
+    <GettingStartedGuide>http://www.sqline.net</GettingStartedGuide>
+    <Icon>sqline.ico</Icon>
+  </Metadata>
+  <Installation InstalledByMsi="false">
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0, 15.0)" />
+    <InstallationTarget Version="[12.0, 15.0)" Id="Microsoft.VisualStudio.Enterprise" />
+    <InstallationTarget Version="[12.0, 15.0)" Id="Microsoft.VisualStudio.Community" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.12.0" DisplayName="Visual Studio MPF 12.0" d:Source="Installed" Version="[12.0]" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Sqline.ClientFramework.0.1.2.nupkg" d:Source="File" Path="Packages\Sqline.ClientFramework.0.1.2.nupkg" d:VsixSubPath="Packages" />  
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Sqline\Sqline.ConfigFile.zip" />
+    <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Sqline\Sqline.ItemFile.zip" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Sqline.Project.zip" />
+  </Assets>
 </PackageManifest>

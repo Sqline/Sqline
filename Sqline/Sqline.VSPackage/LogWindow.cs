@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Sqline.Sqline_VSPackage;
 
 namespace Sqline.VSPackage {
-	public class LogWindow {
+	public class LogWindow : IDisposable {
 		private Package FPackage;
 		private AddinContext FContext;
 		private OutputWindowPane FWindow;
@@ -62,5 +62,11 @@ namespace Sqline.VSPackage {
 			FEntries.Clear();
 			FProvider.Tasks.Clear();
 		}
+
+		public void Dispose() {
+			if (FProvider != null) {
+				FProvider.Dispose();
+			}
+		}		
 	}
 }
