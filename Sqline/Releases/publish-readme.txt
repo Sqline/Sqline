@@ -3,6 +3,7 @@
    1.2 Update version number
    1.2 Update release notes
    1.3 Run Sqline.VSPackage\Packages\nuget-build.bat
+   1.4 Update package version number in Sqline.VSPackage\Assets\Sqline.Project\Sqline.vstemplate
 2. Edit Sqline.VSPackage\source.extension.vsixmanifest
    2.1 Update Identity.Version
    2.2 Update version number of Sqline.ClientFramework Asset to match 1.2
