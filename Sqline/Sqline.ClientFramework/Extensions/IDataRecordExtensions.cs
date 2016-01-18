@@ -21,14 +21,33 @@ namespace Sqline.ClientFramework {
 		}
 
 		/* Boolean */
+		public static bool GetBooleanExt(this IDataRecord record, int index) {
+			object OObject = record.GetValue(index);
+			if (OObject is bool) {
+				return (bool)OObject;
+			}
+			if (OObject is byte) {
+				return (byte)OObject == 1;
+			}
+			if (OObject is short) {
+				return (short)OObject == 1;
+			}
+			if (OObject is int) {
+				return (int)OObject == 1;
+			}
+			if (OObject is long) {
+				return (long)OObject == 1;
+			}
+			return (bool)Convert.ChangeType(OObject, typeof(bool));
+		}
 
 		public static bool GetBoolean(this IDataRecord record, string columnName) {
-			return record.GetBoolean(record.GetOrdinal(columnName));
+			return record.GetBooleanExt(record.GetOrdinal(columnName));
 		}
 
 		public static bool? GetBooleanOrNull(this IDataRecord record, int ordinal) {
 			if (!record.IsDBNull(ordinal)) {
-				return record.GetBoolean(ordinal);
+				return record.GetBooleanExt(ordinal);
 			}
 			return null;
 		}

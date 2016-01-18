@@ -143,6 +143,9 @@ namespace Sqline.CodeGeneration.ViewModel {
 				if (FNullable) {
 					return FTypeMapping.CSReader + "OrNull(" + IndexFieldName + ")";
 				}
+				if (FTypeMapping.CSReader == "GetBoolean") {
+					return FTypeMapping.CSReader + "Ext" + "(" + IndexFieldName + ")";
+				}
 				return FTypeMapping.CSReader + "(" + IndexFieldName + ")";
 			}
 		}
