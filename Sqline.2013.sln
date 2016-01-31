@@ -43,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Sqlingo", "!Sqlingo", "{F4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqlingo", "Sqlingo\Sqlingo.csproj", "{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.UnitTests", "Sqline.UnitTests\Sqline.UnitTests.csproj", "{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.UnitTests", "Sqline\Sqline.UnitTests\Sqline.UnitTests.csproj", "{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

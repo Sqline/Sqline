@@ -5,7 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
-!Private/
+\![Pp]rivate/
 
 # Build results
 [Dd]ebug/
