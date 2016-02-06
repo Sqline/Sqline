@@ -9,6 +9,8 @@ using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.ClientFramework {
 	public abstract class UpdateDataItem : BaseDataItem {
+		protected bool FAllowUnsafeQuery = false;
+		protected int FTopNumberOfRecords = 0;
 
 		protected internal override string PrepareStatement() {
 			String OTableName = Provider.Current.GetSafeTableName(GetSchemaName(), GetTableName());
@@ -34,13 +36,22 @@ namespace Sqline.ClientFramework {
 				}
 			}
 
+			if (OWheres.Length == 0 && !FAllowUnsafeQuery) {
+				throw new Exception("Unsafe UPDATE statement, no wheres specified!");
+			}
+
 			StringBuilder OSql = new StringBuilder();
 			OSql.Append("UPDATE ");
+			if (FTopNumberOfRecords > 0) {
+				OSql.Append("TOP(" + FTopNumberOfRecords + ") ");
+			}
 			OSql.Append(OTableName);
 			OSql.Append(" SET ");
 			OSql.Append(OValues);
-			OSql.Append(" WHERE ");
-			OSql.Append(OWheres);
+			if (OWheres.Length > 0) {
+				OSql.Append(" WHERE ");
+				OSql.Append(OWheres);
+			}
 			return OSql.ToString();
 		}
 
@@ -48,6 +59,13 @@ namespace Sqline.ClientFramework {
 		}
 
 		protected internal override void PostExecute(int modifiedCount) {
+		}
+
+		public void AllowUnsafeQuery() {
+			FAllowUnsafeQuery = true;
+		}
+		public void SetTop(int topNumberOfRecords) {
+			FTopNumberOfRecords = topNumberOfRecords;
 		}
 	}
 }

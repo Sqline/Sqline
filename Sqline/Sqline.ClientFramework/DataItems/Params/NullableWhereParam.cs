@@ -1,6 +1,7 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Sqline.ClientFramework {
 
 		public NullableWhereParam(T value, WhereOperator whereOperator) {
 			if (typeof(T).IsClass && value == null) {
-				FOperator = WhereOperator.EqualsNull;
+				FOperator = whereOperator;
 				IsNull = false;
 				return;
 			}

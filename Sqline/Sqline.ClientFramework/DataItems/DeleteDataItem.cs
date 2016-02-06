@@ -9,6 +9,8 @@ using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.ClientFramework {
 	public abstract class DeleteDataItem : BaseDataItem {
+        protected bool FAllowUnsafeQuery = false;
+		protected int FTopNumberOfRecords = 0;
 
 		protected internal override string PrepareStatement() {
 			String OTableName = Provider.Current.GetSafeTableName(GetSchemaName(), GetTableName());
@@ -25,15 +27,21 @@ namespace Sqline.ClientFramework {
 				}
 			}
 
-			if (OWheres.Length == 0) {
+			if (OWheres.Length == 0 && !FAllowUnsafeQuery) {
 				throw new Exception("Unsafe DELETE statement, no wheres specified!");
 			}
 
 			StringBuilder OSql = new StringBuilder();
-			OSql.Append("DELETE FROM ");
+			OSql.Append("DELETE ");
+			if (FTopNumberOfRecords > 0) {
+				OSql.Append("TOP(" + FTopNumberOfRecords + ") ");
+			}
+			OSql.Append("FROM ");
 			OSql.Append(OTableName);
-			OSql.Append(" WHERE ");
-			OSql.Append(OWheres);
+            if (OWheres.Length > 0) {
+                OSql.Append(" WHERE ");
+                OSql.Append(OWheres);
+            }
 			return OSql.ToString();
 		}
 
@@ -41,6 +49,14 @@ namespace Sqline.ClientFramework {
 		}
 
 		protected internal override void PostExecute(int modifiedCount) {
+		}
+
+        public void AllowUnsafeQuery() {
+            FAllowUnsafeQuery = true;
+        }
+
+		public void SetTop(int topNumberOfRecords) {
+			FTopNumberOfRecords = topNumberOfRecords;
 		}
 	}
 }

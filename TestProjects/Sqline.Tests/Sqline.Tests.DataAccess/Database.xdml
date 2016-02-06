@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Model>
+  <Tables>
+    <Table Schema="dbo" Name="TypeTest" Replicated="false" CreatedDate="2016-02-06T15:09:06.63" LastModifiedDate="2016-02-06T15:09:06.693">
+      <DatabaseRelationships>
+        <DatabaseRelationship Name="Sqline" />
+      </DatabaseRelationships>
+      <Column Name="BigintColumn" DataType="bigint" MaxLength="8" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="BinaryColumn" DataType="binary" MaxLength="50" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="BitColumn" DataType="bit" MaxLength="1" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="CharColumn" DataType="char" MaxLength="10" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="DateColumn" DataType="date" MaxLength="3" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="DateTimeColumn" DataType="datetime" MaxLength="8" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="DateTime2Column" DataType="datetime2" MaxLength="8" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="DateTimeOffsetColumn" DataType="datetimeoffset" MaxLength="10" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="DecimalColumn" DataType="decimal" MaxLength="13" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="FileStreamColumn" DataType="varbinary" MaxLength="-1" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="FloatColumn" DataType="float" MaxLength="8" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="ImageColumn" DataType="image" MaxLength="16" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="IntColumn" DataType="int" MaxLength="4" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="MoneyColumn" DataType="money" MaxLength="8" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="NCharColumn" DataType="nchar" MaxLength="20" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="NTextColumn" DataType="ntext" MaxLength="16" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="NumericColumn" DataType="numeric" MaxLength="9" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="NVarCharColumn" DataType="nvarchar" MaxLength="100" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="RealColumn" DataType="real" MaxLength="4" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="SmallDateTimeColumn" DataType="smalldatetime" MaxLength="4" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="SmallIntColumn" DataType="smallint" MaxLength="2" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="SmallMoneyColumn" DataType="smallmoney" MaxLength="4" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="TextColumn" DataType="text" MaxLength="16" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="TimeColumn" DataType="time" MaxLength="5" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="TimestampColumn" DataType="timestamp" MaxLength="8" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="TinyIntColumn" DataType="tinyint" MaxLength="1" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="UniqueIdentifierColumn" DataType="uniqueidentifier" MaxLength="16" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="VarBinaryColumn" DataType="varbinary" MaxLength="50" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="VarCharColumn" DataType="varchar" MaxLength="50" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="XmlColumn" DataType="xml" MaxLength="-1" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+    </Table>
+    <Table Schema="dbo" Name="Test" Replicated="false" CreatedDate="2016-01-18T21:11:11.843" LastModifiedDate="2016-01-18T21:11:11.853">
+      <DatabaseRelationships>
+        <DatabaseRelationship Name="Sqline" />
+      </DatabaseRelationships>
+      <Column Name="ID" DataType="int" MaxLength="4" Nullable="false" DefaultValue="" PrimaryKey="true" Required="false" AutoIncrement="true">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+      <Column Name="Processed" DataType="bit" MaxLength="1" Nullable="false" DefaultValue="" PrimaryKey="false" Required="true" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+    </Table>
+  </Tables>
+  <Databases>
+    <Database Name="Sqline" LastModified="0001-01-01T00:00:00" />
+  </Databases>
+</Model>

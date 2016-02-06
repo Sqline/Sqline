@@ -54,6 +54,12 @@ namespace Sqline.ClientFramework {
 			}
 		}
 
+		public virtual string GetGeneratedStatement() {
+			FParameters.Clear();
+			PreExecute();
+			return PrepareStatement();
+		}
+
 		protected internal abstract void PreExecute();
 		protected internal abstract void PostExecute(int modifiedCount);
 		protected internal abstract string PrepareStatement();

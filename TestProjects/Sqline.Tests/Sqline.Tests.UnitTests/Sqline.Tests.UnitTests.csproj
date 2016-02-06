@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}</ProjectGuid>
+    <ProjectGuid>{1641947C-DE6D-4C7F-AFCF-020DAEA85737}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sqline.UnitTests</RootNamespace>
-    <AssemblyName>Sqline.UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Sqline.Tests.UnitTests</RootNamespace>
+    <AssemblyName>Sqline.Tests.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,70 +51,23 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ParamTests.cs" />
+    <Compile Include="Common\BaseTest.cs" />
+    <Compile Include="Initialize.cs" />
+    <Compile Include="TypeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Base\Schemalizer.Base.csproj">
-      <Project>{150712dc-ed96-4a96-aa20-648de10533de}</Project>
-      <Name>Schemalizer.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Model\Schemalizer.Model.csproj">
-      <Project>{62d5d7a7-c95c-46b4-bb7d-e57361ab8f7d}</Project>
-      <Name>Schemalizer.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.MySql\Schemalizer.Provider.MySql.csproj">
-      <Project>{86677a19-2dab-4fb7-a362-6e58931031af}</Project>
-      <Name>Schemalizer.Provider.MySql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.Provider.SqlServer.csproj">
-      <Project>{296790f2-e62e-4031-a397-d57fe0310bc4}</Project>
-      <Name>Schemalizer.Provider.SqlServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider\Schemalizer.Provider.csproj">
-      <Project>{d982843d-06fc-4ad4-8339-77703f08528a}</Project>
-      <Name>Schemalizer.Provider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.MySql\Sqline.ProviderModel.MySql.csproj">
-      <Project>{cb384083-8446-492b-8631-3419a404a98e}</Project>
-      <Name>Sqline.ProviderModel.MySql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.SqlServer\Sqline.ProviderModel.SqlServer.csproj">
-      <Project>{97f2c6a7-5d46-46c8-8fd6-dbbddc14d600}</Project>
-      <Name>Sqline.ProviderModel.SqlServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
-      <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
-      <Name>Sqline.ProviderModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sqline.Base\Sqline.Base.csproj">
-      <Project>{c347571c-cbb9-41e4-883e-df56868b6716}</Project>
-      <Name>Sqline.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
+    <ProjectReference Include="..\..\..\Sqline\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
       <Name>Sqline.ClientFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sqline.CodeGeneration\Sqline.CodeGeneration.csproj">
-      <Project>{cf164bbd-2f0d-4719-a8c1-fb25a5ac53a5}</Project>
-      <Name>Sqline.CodeGeneration</Name>
+    <ProjectReference Include="..\Sqline.Tests.DataAccess\Sqline.Tests.DataAccess.csproj">
+      <Project>{b2914921-362f-4f27-9b0c-07f3bddf83c7}</Project>
+      <Name>Sqline.Tests.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sqline.VSPackage\Sqline.VSPackage.csproj">
-      <Project>{38ee5f34-5dc9-42ac-aa96-b1410770a39a}</Project>
-      <Name>Sqline.VSPackage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Sqlingo\Sqlingo.csproj">
-      <Project>{70bde99f-9d08-48e0-970d-6d9f0c2baaf5}</Project>
-      <Name>Sqlingo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\T4Compiler\T4Compiler.Console\T4Compiler.ConsoleApp.csproj">
-      <Project>{e19bf692-711a-4976-aaf6-4e92822956d8}</Project>
-      <Name>T4Compiler.ConsoleApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\T4Compiler\T4Compiler.Generator\T4Compiler.Generator.csproj">
-      <Project>{fe5b2c8e-4868-4e13-aadc-3a284f49473c}</Project>
-      <Name>T4Compiler.Generator</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
