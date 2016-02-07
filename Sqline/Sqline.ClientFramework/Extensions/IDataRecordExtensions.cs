@@ -457,5 +457,26 @@ namespace Sqline.ClientFramework {
 		public static string GetStringOrDefault(this IDataRecord record, string columnName, string defaultValue) {
 			return GetStringOrDefault(record, record.GetOrdinal(columnName), defaultValue);
 		}
+
+		/* DateTimeOffset */
+
+		public static DateTimeOffset GetDateTimeOffset(this IDataRecord record, int ordinal) {
+			return (DateTimeOffset)record.GetValue(ordinal);
+		}
+
+		public static DateTimeOffset GetDateTimeOffset(this IDataRecord record, string columnName) {
+			return record.GetDateTimeOffset(record.GetOrdinal(columnName));
+		}
+
+
+		/* Time */
+
+		public static TimeSpan GetTime(this IDataRecord record, int ordinal) {
+			return (TimeSpan)record.GetValue(ordinal);
+		}
+
+		public static TimeSpan GetTime(this IDataRecord record, string columnName) {
+			return record.GetTime(record.GetOrdinal(columnName));
+		}
 	}
 }

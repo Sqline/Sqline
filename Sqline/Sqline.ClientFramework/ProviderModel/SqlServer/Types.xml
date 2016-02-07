@@ -23,8 +23,8 @@
 	<type providertype="smallmoney"       dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
 	<type providertype="sql_variant"      dbtype="Object"          cstype="object"           csnullable="object"            csreader="GetValue"            isnumber="0" />	
 	<type providertype="text"             dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
-  <type providertype="time"             dbtype="Time"            cstype="TimeSpan"         csnullable="TimeSpan?"         csreader="GetDateTime"         isnumber="0" />
-	<type providertype="timestamp"        dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="time"             dbtype="Time"            cstype="TimeSpan"         csnullable="TimeSpan?"         csreader="GetTime"             isnumber="0" />
+	<type providertype="timestamp"        dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
 	<type providertype="tinyint"          dbtype="Byte"            cstype="byte"             csnullable="byte?"             csreader="GetByte"             isnumber="1" />
 	<type providertype="uniqueidentifier" dbtype="Guid"            cstype="Guid"             csnullable="Guid?"             csreader="GetGuid"             isnumber="0" />
 	<type providertype="varbinary"        dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />

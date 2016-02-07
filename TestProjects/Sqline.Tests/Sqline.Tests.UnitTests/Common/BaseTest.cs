@@ -34,5 +34,27 @@ namespace Sqline.Tests.UnitTests {
 			int OAffected = delete.Execute();			
 			Assert.IsTrue(OAffected >= 0);
 		}
+
+		public static bool CompareBytes(byte[] bytes1, byte[] bytes2) {
+			bytes1 = TrimEnd(bytes1);
+			bytes2 = TrimEnd(bytes2);
+			//Debug.WriteLine("bytes1: " + DebugByteArrayToString(bytes1));
+			//Debug.WriteLine("bytes2: " + DebugByteArrayToString(bytes2));
+			return bytes1.SequenceEqual(bytes2);
+		}
+
+		public static string DebugByteArrayToString(byte[] bytes) {
+			StringBuilder OResult = new StringBuilder(bytes.Length * 2);
+			foreach (byte OByte in bytes) {
+				OResult.AppendFormat("{0:x2}", OByte);
+			}
+			return OResult.ToString();
+		}
+
+		public static byte[] TrimEnd(byte[] array) {
+			int OLastIndex = Array.FindLastIndex(array, b => b != 0);
+			Array.Resize(ref array, OLastIndex + 1);
+			return array;
+		}
 	}
 }

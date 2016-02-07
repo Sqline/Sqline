@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sqline.Tests.DataAccess.DataItems;
+using Sqline.Tests.DataAccess;
+using System.Diagnostics;
 
 namespace Sqline.Tests.UnitTests {
 	[TestClass]
@@ -8,176 +11,228 @@ namespace Sqline.Tests.UnitTests {
 
 		[TestMethod]
 		public void TypeTest_Bigint() {
+			long value = 15444444444545554;
 			DeleteTypeTest(x => x.WhereBigintColumn = x.WhereBigintColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { BigintColumn = 15444444444545554 });
-			UpdateTypeTest(new TypeTestUpdate { BigintColumn = 15444444444545554 }, x => x.WhereBigintColumn = x.WhereBigintColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { BigintColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { BigintColumn = value }, x => x.WhereBigintColumn = x.WhereBigintColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetBigInt(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Binary() {
+			byte[] value = new byte[] { 0x16 };
 			DeleteTypeTest(x => x.WhereBinaryColumn = x.WhereBinaryColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { BinaryColumn = new byte[] { 0x16 } });
-			UpdateTypeTest(new TypeTestUpdate { BinaryColumn = new byte[] { 0x16 } }, x => x.WhereBinaryColumn = x.WhereBinaryColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { BinaryColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { BinaryColumn = value }, x => x.WhereBinaryColumn = x.WhereBinaryColumn != DBNull.Value);			
+			Assert.IsTrue(CompareBytes(DA.Types.GetBinary(), value));
 		}
 
 		[TestMethod]
 		public void TypeTest_Bit() {
+			bool value = true;
 			DeleteTypeTest(x => x.WhereBitColumn = x.WhereBitColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { BitColumn = true });
-			UpdateTypeTest(new TypeTestUpdate { BitColumn = true }, x => x.WhereBitColumn = x.WhereBitColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { BitColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { BitColumn = value }, x => x.WhereBitColumn = x.WhereBitColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetBit(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Char() {
+			string value = "abcdefghij";
 			DeleteTypeTest(x => x.WhereCharColumn = x.WhereCharColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { CharColumn = "abc" });
-			UpdateTypeTest(new TypeTestUpdate { CharColumn = "abc" }, x => x.WhereCharColumn = x.WhereCharColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { CharColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { CharColumn = value }, x => x.WhereCharColumn = x.WhereCharColumn != DBNull.Value);			
+			Assert.AreEqual(DA.Types.GetChar(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Date() {
+			DateTime value = DateTime.UtcNow.Date;
 			DeleteTypeTest(x => x.WhereDateColumn = x.WhereDateColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { DateColumn = DateTime.UtcNow });
-			UpdateTypeTest(new TypeTestUpdate { DateColumn = DateTime.UtcNow }, x => x.WhereDateColumn = x.WhereDateColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { DateColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { DateColumn = value }, x => x.WhereDateColumn = x.WhereDateColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetDate(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_DateTime() {
+			DateTime value = DateTime.UtcNow;
+			value = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second);
 			DeleteTypeTest(x => x.WhereDateTimeColumn = x.WhereDateTimeColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { DateTimeColumn = DateTime.UtcNow });
-			UpdateTypeTest(new TypeTestUpdate { DateTimeColumn = DateTime.UtcNow }, x => x.WhereDateTimeColumn = x.WhereDateTimeColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { DateTimeColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { DateTimeColumn = value }, x => x.WhereDateTimeColumn = x.WhereDateTimeColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetDateTime(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_DateTime2() {
+			DateTime value = DateTime.UtcNow;
+			value = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second);
 			DeleteTypeTest(x => x.WhereDateTime2Column = x.WhereDateTime2Column != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { DateTime2Column = DateTime.UtcNow });
-			UpdateTypeTest(new TypeTestUpdate { DateTime2Column = DateTime.UtcNow }, x => x.WhereDateTime2Column = x.WhereDateTime2Column != DBNull.Value);			
+			InsertTypeTest(new TypeTestInsert { DateTime2Column = value });
+			UpdateTypeTest(new TypeTestUpdate { DateTime2Column = value }, x => x.WhereDateTime2Column = x.WhereDateTime2Column != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetDateTime2(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_DateTimeOffset() {
+			DateTimeOffset value = DateTimeOffset.UtcNow;
 			DeleteTypeTest(x => x.WhereDateTimeOffsetColumn = x.WhereDateTimeOffsetColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { DateTimeOffsetColumn = DateTimeOffset.Now });
-			UpdateTypeTest(new TypeTestUpdate { DateTimeOffsetColumn = DateTimeOffset.Now }, x => x.WhereDateTimeOffsetColumn = x.WhereDateTimeOffsetColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { DateTimeOffsetColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { DateTimeOffsetColumn = value }, x => x.WhereDateTimeOffsetColumn = x.WhereDateTimeOffsetColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetDateTimeOffset(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Decimal() {
+			decimal value = 3.1415926536m;
 			DeleteTypeTest(x => x.WhereDecimalColumn = x.WhereDecimalColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { DecimalColumn = 3.1415926536m });
-			UpdateTypeTest(new TypeTestUpdate { DecimalColumn = 3.1415926536m }, x => x.WhereDecimalColumn = x.WhereDecimalColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { DecimalColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { DecimalColumn = value }, x => x.WhereDecimalColumn = x.WhereDecimalColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetDecimal(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_FileStream() {
+			byte[] value = new byte[] { 0x16 };
 			DeleteTypeTest(x => x.WhereFileStreamColumn = x.WhereFileStreamColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { FileStreamColumn = new byte[] { 0x16 } });
-			UpdateTypeTest(new TypeTestUpdate { FileStreamColumn = new byte[] { 0x16 } }, x => x.WhereFileStreamColumn = x.WhereFileStreamColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { FileStreamColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { FileStreamColumn = value }, x => x.WhereFileStreamColumn = x.WhereFileStreamColumn != DBNull.Value);
+			Assert.IsTrue(CompareBytes(DA.Types.GetFileStream(), value));
 		}
 
 		[TestMethod]
 		public void TypeTest_Float() {
+			double value = 3.1415926536;
 			DeleteTypeTest(x => x.WhereFloatColumn = x.WhereFloatColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { FloatColumn = 3.1415926536 });
-			UpdateTypeTest(new TypeTestUpdate { FloatColumn = 3.1415926536 }, x => x.WhereFloatColumn = x.WhereFloatColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { FloatColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { FloatColumn = value }, x => x.WhereFloatColumn = x.WhereFloatColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetFloat(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Image() {
+			byte[] value = new byte[] { 0x16 };
 			DeleteTypeTest(x => x.WhereImageColumn = x.WhereImageColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { ImageColumn = new byte[] { 0x16 } });
-			UpdateTypeTest(new TypeTestUpdate { ImageColumn = new byte[] { 0x16 } }, x => x.WhereImageColumn = x.WhereImageColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { ImageColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { ImageColumn = value }, x => x.WhereImageColumn = x.WhereImageColumn != DBNull.Value);
+			Assert.IsTrue(CompareBytes(DA.Types.GetImage(), value));
 		}
 
 		[TestMethod]
 		public void TypeTest_Int() {
+			int value = 2104589548;
 			DeleteTypeTest(x => x.WhereIntColumn = x.WhereIntColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { IntColumn = 2104589548 });
-			UpdateTypeTest(new TypeTestUpdate { IntColumn = 2104589548 }, x => x.WhereIntColumn = x.WhereIntColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { IntColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { IntColumn = value }, x => x.WhereIntColumn = x.WhereIntColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetInt(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Money() {
+			decimal value = 3.1416m;
 			DeleteTypeTest(x => x.WhereMoneyColumn = x.WhereMoneyColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { MoneyColumn = 3.1415926536m });
-			UpdateTypeTest(new TypeTestUpdate { MoneyColumn = 3.1415926536m }, x => x.WhereMoneyColumn = x.WhereMoneyColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { MoneyColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { MoneyColumn = value }, x => x.WhereMoneyColumn = x.WhereMoneyColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetMoney(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_NChar() {
+			string value = "abcdefgæøå";
 			DeleteTypeTest(x => x.WhereNCharColumn = x.WhereNCharColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { NCharColumn = "abcæøå" });
-			UpdateTypeTest(new TypeTestUpdate { NCharColumn = "abcæøå" }, x => x.WhereNCharColumn = x.WhereNCharColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { NCharColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { NCharColumn = value }, x => x.WhereNCharColumn = x.WhereNCharColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetNChar(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_NText() {
+			string value = "abcæøå";
 			DeleteTypeTest(x => x.WhereNTextColumn = x.WhereNTextColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { NTextColumn = "abcæøå" });
-			UpdateTypeTest(new TypeTestUpdate { NTextColumn = "abcæøå" }, x => x.WhereNTextColumn = x.WhereNTextColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { NTextColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { NTextColumn = value }, x => x.WhereNTextColumn = x.WhereNTextColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetNText(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Numeric() {
+			decimal value = 3.1416m;
 			DeleteTypeTest(x => x.WhereNumericColumn = x.WhereNumericColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { NumericColumn = 3.1415926536m });
-			UpdateTypeTest(new TypeTestUpdate { NumericColumn = 3.1415926536m }, x => x.WhereNumericColumn = x.WhereNumericColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { NumericColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { NumericColumn = value }, x => x.WhereNumericColumn = x.WhereNumericColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetNumeric(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_NVarChar() {
+			string value = "abcæøå";
 			DeleteTypeTest(x => x.WhereNVarCharColumn = x.WhereNVarCharColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { NVarCharColumn = "abcæøå" });
-			UpdateTypeTest(new TypeTestUpdate { NVarCharColumn = "abcæøå" }, x => x.WhereNVarCharColumn = x.WhereNVarCharColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { NVarCharColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { NVarCharColumn = value }, x => x.WhereNVarCharColumn = x.WhereNVarCharColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetNVarChar(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Real() {
+			float value = 3.14f;
 			DeleteTypeTest(x => x.WhereRealColumn = x.WhereRealColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { RealColumn = 3.1415926536f });
-			UpdateTypeTest(new TypeTestUpdate { RealColumn = 3.1415926536f }, x => x.WhereRealColumn = x.WhereRealColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { RealColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { RealColumn = value }, x => x.WhereRealColumn = x.WhereRealColumn != DBNull.Value);
+			Assert.IsTrue(Math.Abs(DA.Types.GetFloat() - value) < 1);
 		}
 
 		[TestMethod]
 		public void TypeTest_SmallDateTime() {
+			DateTime value = DateTime.UtcNow;
+			value = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0);
 			DeleteTypeTest(x => x.WhereSmallDateTimeColumn = x.WhereSmallDateTimeColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { SmallDateTimeColumn = DateTime.UtcNow });
-			UpdateTypeTest(new TypeTestUpdate { SmallDateTimeColumn = DateTime.UtcNow }, x => x.WhereSmallDateTimeColumn = x.WhereSmallDateTimeColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { SmallDateTimeColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { SmallDateTimeColumn = value }, x => x.WhereSmallDateTimeColumn = x.WhereSmallDateTimeColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetSmallDateTime(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_SmallInt() {
+			short value = 16588;
 			DeleteTypeTest(x => x.WhereSmallIntColumn = x.WhereSmallIntColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { SmallIntColumn = 16588 });
-			UpdateTypeTest(new TypeTestUpdate { SmallIntColumn = 16588 }, x => x.WhereSmallIntColumn = x.WhereSmallIntColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { SmallIntColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { SmallIntColumn = value }, x => x.WhereSmallIntColumn = x.WhereSmallIntColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetSmallInt(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_SmallMoney() {
+			decimal value = 16588;
 			DeleteTypeTest(x => x.WhereSmallMoneyColumn = x.WhereSmallMoneyColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { SmallMoneyColumn = 16588 });
-			UpdateTypeTest(new TypeTestUpdate { SmallMoneyColumn = 16588 }, x => x.WhereSmallMoneyColumn = x.WhereSmallMoneyColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { SmallMoneyColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { SmallMoneyColumn = value }, x => x.WhereSmallMoneyColumn = x.WhereSmallMoneyColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetSmallMoney(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Text() {
+			string value = "abc";
 			DeleteTypeTest(x => x.WhereTextColumn = x.WhereTextColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { TextColumn = "abc" });
-			UpdateTypeTest(new TypeTestUpdate { TextColumn = "abc" }, x => x.WhereTextColumn = x.WhereTextColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { TextColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { TextColumn = value }, x => x.WhereTextColumn = x.WhereTextColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetText(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Time() {
+			TimeSpan value = DateTime.UtcNow - DateTime.Now.AddHours(-2);
 			DeleteTypeTest(x => x.WhereTimeColumn = x.WhereTimeColumn != DBNull.Value);
-			InsertTypeTest(new TypeTestInsert { TimeColumn = DateTime.UtcNow - DateTime.Now.AddHours(-2) });
-			UpdateTypeTest(new TypeTestUpdate { TimeColumn = DateTime.UtcNow - DateTime.Now.AddHours(-2) }, x => x.WhereTimeColumn = x.WhereTimeColumn != DBNull.Value);
+			InsertTypeTest(new TypeTestInsert { TimeColumn = value });
+			UpdateTypeTest(new TypeTestUpdate { TimeColumn = value }, x => x.WhereTimeColumn = x.WhereTimeColumn != DBNull.Value);
+			Assert.AreEqual(DA.Types.GetTime(), value);
 		}
 
 		[TestMethod]
 		public void TypeTest_Timestamp() {
 			//TODO: Consider removing this type from the Value Property mappings and only supply a Where Property
 			//      as this type cannot be explicitly inserted or updated			
+			Assert.IsTrue(DA.Types.GetTimestamp().Length > 0);
 		}
 
 		[TestMethod]

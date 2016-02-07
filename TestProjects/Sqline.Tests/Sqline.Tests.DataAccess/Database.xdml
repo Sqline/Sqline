@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Model>
   <Tables>
-    <Table Schema="dbo" Name="TypeTest" Replicated="false" CreatedDate="2016-02-06T15:09:06.63" LastModifiedDate="2016-02-06T15:09:06.693">
+    <Table Schema="dbo" Name="TypeTest" Replicated="false" CreatedDate="2016-02-07T11:54:29.033" LastModifiedDate="2016-02-07T11:54:29.103">
       <DatabaseRelationships>
         <DatabaseRelationship Name="Sqline" />
       </DatabaseRelationships>

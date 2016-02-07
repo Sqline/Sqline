@@ -1,5 +1,183 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <items xmlns="http://sqline.net/schemas/items.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://sqline.net/schemas/items.xsd http://sqline.net/schemas/items.xsd">
-	
-	
+
+  <scalar type="bigint">
+    <method name="GetBigInt" result="singleitem">
+      <sql>SELECT BigIntColumn FROM TypeTest WHERE BigIntColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="binary">
+    <method name="GetBinary" result="singleitem">
+      <sql>SELECT BinaryColumn FROM TypeTest WHERE BinaryColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="bit">
+    <method name="GetBit" result="singleitem">
+      <sql>SELECT BitColumn FROM TypeTest WHERE BitColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="char">
+    <method name="GetChar" result="singleitem">
+      <sql>SELECT CharColumn FROM TypeTest WHERE CharColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="date">
+    <method name="GetDate" result="singleitem">
+      <sql>SELECT DateColumn FROM TypeTest WHERE DateColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="datetime">
+    <method name="GetDateTime" result="singleitem">
+      <sql>SELECT DateTimeColumn FROM TypeTest WHERE DateTimeColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="datetime2">
+    <method name="GetDateTime2" result="singleitem">
+      <sql>SELECT DateTime2Column FROM TypeTest WHERE DateTime2Column IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="datetimeoffset">
+    <method name="GetDateTimeOffset" result="singleitem">
+      <sql>SELECT DateTimeOffsetColumn FROM TypeTest WHERE DateTimeOffsetColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="decimal">
+    <method name="GetDecimal" result="singleitem">
+      <sql>SELECT DecimalColumn FROM TypeTest WHERE DecimalColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="binary">
+    <method name="GetFileStream" result="singleitem">
+      <sql>SELECT FileStreamColumn FROM TypeTest WHERE FileStreamColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="float">
+    <method name="GetFloat" result="singleitem">
+      <sql>SELECT FloatColumn FROM TypeTest WHERE FloatColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="image">
+    <method name="GetImage" result="singleitem">
+      <sql>SELECT ImageColumn FROM TypeTest WHERE ImageColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="int">
+    <method name="GetInt" result="singleitem">
+      <sql>SELECT IntColumn FROM TypeTest WHERE IntColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="money">
+    <method name="GetMoney" result="singleitem">
+      <sql>SELECT MoneyColumn FROM TypeTest WHERE MoneyColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="nchar">
+    <method name="GetNChar" result="singleitem">
+      <sql>SELECT NCharColumn FROM TypeTest WHERE NCharColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="ntext">
+    <method name="GetNText" result="singleitem">
+      <sql>SELECT NTextColumn FROM TypeTest WHERE NTextColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="numeric">
+    <method name="GetNumeric" result="singleitem">
+      <sql>SELECT NumericColumn FROM TypeTest WHERE NumericColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="nvarchar">
+    <method name="GetNVarChar" result="singleitem">
+      <sql>SELECT NVarCharColumn FROM TypeTest WHERE NVarCharColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="real">
+    <method name="GetReal" result="singleitem">
+      <sql>SELECT RealColumn FROM TypeTest WHERE RealColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="smalldatetime">
+    <method name="GetSmallDateTime" result="singleitem">
+      <sql>SELECT SmallDateTimeColumn FROM TypeTest WHERE SmallDateTimeColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="smallint">
+    <method name="GetSmallInt" result="singleitem">
+      <sql>SELECT SmallIntColumn FROM TypeTest WHERE SmallIntColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="smallmoney">
+    <method name="GetSmallMoney" result="singleitem">
+      <sql>SELECT SmallMoneyColumn FROM TypeTest WHERE SmallMoneyColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="text">
+    <method name="GetText" result="singleitem">
+      <sql>SELECT TextColumn FROM TypeTest WHERE TextColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="time">
+    <method name="GetTime" result="singleitem">
+      <sql>SELECT TimeColumn FROM TypeTest WHERE TimeColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="timestamp">
+    <method name="GetTimestamp" result="singleitem">
+      <sql>SELECT TimestampColumn FROM TypeTest WHERE TimestampColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="tinyint">
+    <method name="GetTinyInt" result="singleitem">
+      <sql>SELECT TinyIntColumn FROM TypeTest WHERE TinyIntColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="uniqueidentifier">
+    <method name="GetUniqueIdentifier" result="singleitem">
+      <sql>SELECT UniqueIdentifierColumn FROM TypeTest WHERE UniqueIdentifierColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="varbinary">
+    <method name="GetVarBinary" result="singleitem">
+      <sql>SELECT VarBinaryColumn FROM TypeTest WHERE VarBinaryColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="varchar">
+    <method name="GetVarChar" result="singleitem">
+      <sql>SELECT VarCharColumn FROM TypeTest WHERE VarCharColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
+
+  <scalar type="xml">
+    <method name="GetXml" result="singleitem">
+      <sql>SELECT XmlColumn FROM TypeTest WHERE XmlColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
 </items>

@@ -38,7 +38,7 @@ namespace Sqline.Tests.DataAccess.DataItems {
 		private NullableValueParam<decimal?> FSmallMoneyColumn;
 		private NullableValueParam<string> FTextColumn;
 		private NullableValueParam<TimeSpan?> FTimeColumn;
-		private NullableValueParam<DateTime?> FTimestampColumn;
+		private NullableValueParam<byte[]> FTimestampColumn;
 		private NullableValueParam<byte?> FTinyIntColumn;
 		private NullableValueParam<Guid?> FUniqueIdentifierColumn;
 		private NullableValueParam<byte[]> FVarBinaryColumn;
@@ -108,7 +108,7 @@ AddParameter(FXmlColumn, "XmlColumn");
 			public NullableValueParam<decimal?> SmallMoneyColumn { get { return FSmallMoneyColumn; } set { FSmallMoneyColumn = value; } }
 			public NullableValueParam<string> TextColumn { get { return FTextColumn; } set { FTextColumn = value; } }
 			public NullableValueParam<TimeSpan?> TimeColumn { get { return FTimeColumn; } set { FTimeColumn = value; } }
-			public NullableValueParam<DateTime?> TimestampColumn { get { return FTimestampColumn; } set { FTimestampColumn = value; } }
+			public NullableValueParam<byte[]> TimestampColumn { get { return FTimestampColumn; } set { FTimestampColumn = value; } }
 			public NullableValueParam<byte?> TinyIntColumn { get { return FTinyIntColumn; } set { FTinyIntColumn = value; } }
 			public NullableValueParam<Guid?> UniqueIdentifierColumn { get { return FUniqueIdentifierColumn; } set { FUniqueIdentifierColumn = value; } }
 			public NullableValueParam<byte[]> VarBinaryColumn { get { return FVarBinaryColumn; } set { FVarBinaryColumn = value; } }
@@ -164,8 +164,8 @@ AddParameter(FXmlColumn, "XmlColumn");
 		private NullableWhereParam<string> FWhereTextColumn;
 		private NullableValueParam<TimeSpan?> FTimeColumn;
 		private NullableWhereParam<TimeSpan?> FWhereTimeColumn;
-		private NullableValueParam<DateTime?> FTimestampColumn;
-		private NullableWhereParam<DateTime?> FWhereTimestampColumn;
+		private NullableValueParam<byte[]> FTimestampColumn;
+		private NullableWhereParam<byte[]> FWhereTimestampColumn;
 		private NullableValueParam<byte?> FTinyIntColumn;
 		private NullableWhereParam<byte?> FWhereTinyIntColumn;
 		private NullableValueParam<Guid?> FUniqueIdentifierColumn;
@@ -292,8 +292,8 @@ AddParameter(FWhereXmlColumn, "XmlColumn");
 		public NullableWhereParam<string> WhereTextColumn { get { return FWhereTextColumn; } set { FWhereTextColumn = value; } }
 		public NullableValueParam<TimeSpan?> TimeColumn { get { return FTimeColumn; } set { FTimeColumn = value; } }
 		public NullableWhereParam<TimeSpan?> WhereTimeColumn { get { return FWhereTimeColumn; } set { FWhereTimeColumn = value; } }
-		public NullableValueParam<DateTime?> TimestampColumn { get { return FTimestampColumn; } set { FTimestampColumn = value; } }
-		public NullableWhereParam<DateTime?> WhereTimestampColumn { get { return FWhereTimestampColumn; } set { FWhereTimestampColumn = value; } }
+		public NullableValueParam<byte[]> TimestampColumn { get { return FTimestampColumn; } set { FTimestampColumn = value; } }
+		public NullableWhereParam<byte[]> WhereTimestampColumn { get { return FWhereTimestampColumn; } set { FWhereTimestampColumn = value; } }
 		public NullableValueParam<byte?> TinyIntColumn { get { return FTinyIntColumn; } set { FTinyIntColumn = value; } }
 		public NullableWhereParam<byte?> WhereTinyIntColumn { get { return FWhereTinyIntColumn; } set { FWhereTinyIntColumn = value; } }
 		public NullableValueParam<Guid?> UniqueIdentifierColumn { get { return FUniqueIdentifierColumn; } set { FUniqueIdentifierColumn = value; } }
@@ -330,7 +330,7 @@ AddParameter(FWhereXmlColumn, "XmlColumn");
 		private NullableWhereParam<decimal?> FWhereSmallMoneyColumn;
 		private NullableWhereParam<string> FWhereTextColumn;
 		private NullableWhereParam<TimeSpan?> FWhereTimeColumn;
-		private NullableWhereParam<DateTime?> FWhereTimestampColumn;
+		private NullableWhereParam<byte[]> FWhereTimestampColumn;
 		private NullableWhereParam<byte?> FWhereTinyIntColumn;
 		private NullableWhereParam<Guid?> FWhereUniqueIdentifierColumn;
 		private NullableWhereParam<byte[]> FWhereVarBinaryColumn;
@@ -398,7 +398,7 @@ AddParameter(FWhereXmlColumn, "XmlColumn");
 		public NullableWhereParam<decimal?> WhereSmallMoneyColumn { get { return FWhereSmallMoneyColumn; } set { FWhereSmallMoneyColumn = value; } }
 		public NullableWhereParam<string> WhereTextColumn { get { return FWhereTextColumn; } set { FWhereTextColumn = value; } }
 		public NullableWhereParam<TimeSpan?> WhereTimeColumn { get { return FWhereTimeColumn; } set { FWhereTimeColumn = value; } }
-		public NullableWhereParam<DateTime?> WhereTimestampColumn { get { return FWhereTimestampColumn; } set { FWhereTimestampColumn = value; } }
+		public NullableWhereParam<byte[]> WhereTimestampColumn { get { return FWhereTimestampColumn; } set { FWhereTimestampColumn = value; } }
 		public NullableWhereParam<byte?> WhereTinyIntColumn { get { return FWhereTinyIntColumn; } set { FWhereTinyIntColumn = value; } }
 		public NullableWhereParam<Guid?> WhereUniqueIdentifierColumn { get { return FWhereUniqueIdentifierColumn; } set { FWhereUniqueIdentifierColumn = value; } }
 		public NullableWhereParam<byte[]> WhereVarBinaryColumn { get { return FWhereVarBinaryColumn; } set { FWhereVarBinaryColumn = value; } }
