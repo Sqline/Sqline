@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Sqline.ClientFramework</id>
+    <version>0.1.3</version>
+    <authors>Scandinavian Apps ApS</authors>
+    <owners>Daniel Moeller, Anders Eggers-Krag</owners>
+    <licenseUrl>https://github.com/Sqline/Sqline/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://www.sqline.net</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/Sqline/Sqline/master/Wiki/Sqline.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Client Library for Sqline Framework</description>
+    <language>en-US</language>
+    <releaseNotes>
+      - Added missing Sql Server data types
+      - Added unit test project to verify operations on all Sql Server data types
+      - Several bug fixes for data type support
+      - Bug fix in WHERE parameters when doing a NOT NULL comparison for certain types
+      - Added support for TOP in Update and Delete data items
+      - Added support for overriding unsafe queries in Update and Delete data items
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Sqline DataAccess Database Framework</tags>    
+  </metadata>
+  <files>
+    <file src="..\..\Sqline.ClientFramework\bin\Release\Sqline.ClientFramework.dll" target="lib" />
+  </files>
+</package>

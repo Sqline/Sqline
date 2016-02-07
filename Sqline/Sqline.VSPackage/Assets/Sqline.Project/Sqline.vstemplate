@@ -34,7 +34,7 @@
   </WizardExtension>
   <WizardData>
       <packages repository="extension" repositoryId="Sqline.Framework">
-          <package id="Sqline.ClientFramework" version="0.1.2" />      
+          <package id="Sqline.ClientFramework" version="0.1.3" />      
       </packages>
   </WizardData>  
 </VSTemplate>

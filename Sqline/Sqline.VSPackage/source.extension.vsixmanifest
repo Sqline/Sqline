@@ -19,7 +19,7 @@
     <Dependency Id="Microsoft.VisualStudio.MPF.12.0" DisplayName="Visual Studio MPF 12.0" d:Source="Installed" Version="[12.0]" />
   </Dependencies>
   <Assets>
-    <Asset Type="Sqline.ClientFramework.0.1.2.nupkg" d:Source="File" Path="Packages\Sqline.ClientFramework.0.1.2.nupkg" d:VsixSubPath="Packages" />
+    <Asset Type="Sqline.ClientFramework.0.1.3.nupkg" d:Source="File" Path="Packages\Sqline.ClientFramework.0.1.3.nupkg" d:VsixSubPath="Packages" />
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
     <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Sqline\Sqline.ConfigFile.zip" />
     <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Sqline\Sqline.ItemFile.zip" />
