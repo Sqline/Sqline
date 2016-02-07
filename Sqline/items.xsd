@@ -769,7 +769,10 @@
 			<xs:enumeration value="binary" />
 			<xs:enumeration value="bit" />
 			<xs:enumeration value="char" />
+			<xs:enumeration value="date" />
 			<xs:enumeration value="datetime" />
+			<xs:enumeration value="datetime2" />
+			<xs:enumeration value="datetimeoffset" />
 			<xs:enumeration value="decimal" />
 			<xs:enumeration value="float" />
 			<xs:enumeration value="image" />
@@ -785,6 +788,7 @@
 			<xs:enumeration value="smallmoney" />
 			<xs:enumeration value="sql_variant" />
 			<xs:enumeration value="text" />
+			<xs:enumeration value="time" />
 			<xs:enumeration value="timestamp" />
 			<xs:enumeration value="tinyint" />
 			<xs:enumeration value="uniqueidentifier" />

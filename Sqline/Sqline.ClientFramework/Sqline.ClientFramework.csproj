@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataItems\BaseDataItem.cs" />
+    <Compile Include="DataItems\QueryableDataItem.cs" />
     <Compile Include="DataItems\Params\BaseParam.cs" />
     <Compile Include="DataItems\Params\Interfaces\IBaseParam.cs" />
     <Compile Include="DataItems\Params\Interfaces\IEnumParam.cs" />

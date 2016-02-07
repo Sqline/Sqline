@@ -1,33 +1,17 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Sqline.ClientFramework.ProviderModel;
 
 namespace Sqline.ClientFramework {
-	public abstract class DeleteDataItem : BaseDataItem {
-        protected bool FAllowUnsafeQuery = false;
-		protected int FTopNumberOfRecords = 0;
+    public abstract class DeleteDataItem : QueryableDataItem {
 
-		protected internal override string PrepareStatement() {
-			String OTableName = Provider.Current.GetSafeTableName(GetSchemaName(), GetTableName());
-			StringBuilder OWheres = new StringBuilder();
+		public DeleteDataItem() : base(false) {
 
-			foreach (IBaseParam OParam in FParameters) {
-				if (OParam is IWhereParam) {
-					if (OWheres.Length > 0) {
-						OWheres.Append(" AND ");
-					}
-					string OParameterName = Provider.Current.GetParameterName("p" + FParameterIndex++);
-					OWheres.Append(OParam.GetStatement(Provider.Current.GetSafeColumnName(OParam.ColumnName), OParameterName));
-					OParam.ParameterName = OParameterName;
-				}
-			}
+		}
 
-			if (OWheres.Length == 0 && !FAllowUnsafeQuery) {
+		protected override string GetQueryableStatement(string tableName, string valueParameters, string whereParameters) {
+			if (whereParameters.Length == 0 && !FAllowUnsafeQuery) {
 				throw new Exception("Unsafe DELETE statement, no wheres specified!");
 			}
 
@@ -37,26 +21,12 @@ namespace Sqline.ClientFramework {
 				OSql.Append("TOP(" + FTopNumberOfRecords + ") ");
 			}
 			OSql.Append("FROM ");
-			OSql.Append(OTableName);
-            if (OWheres.Length > 0) {
-                OSql.Append(" WHERE ");
-                OSql.Append(OWheres);
-            }
+			OSql.Append(tableName);
+			if (whereParameters.Length > 0) {
+				OSql.Append(" WHERE ");
+				OSql.Append(whereParameters);
+			}
 			return OSql.ToString();
-		}
-
-		protected internal override void PreExecute() {
-		}
-
-		protected internal override void PostExecute(int modifiedCount) {
-		}
-
-        public void AllowUnsafeQuery() {
-            FAllowUnsafeQuery = true;
-        }
-
-		public void SetTop(int topNumberOfRecords) {
-			FTopNumberOfRecords = topNumberOfRecords;
 		}
 	}
 }
