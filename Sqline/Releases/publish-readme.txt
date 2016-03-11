@@ -14,5 +14,7 @@
 4. Create Release build
 5. Copy Sqline.VSPackage\bin\Release\Sqline.VSPackage.vsix to Releases\Sqline-v{version}.vsix
 6. Test vsix package in VM
-7. Update Nuget Package https://www.nuget.org/packages/Sqline.ClientFramework
-8. Update Sqline Visual Studio Gallery package: https://visualstudiogallery.msdn.microsoft.com/b1cd40cf-fe23-4017-a552-c5502d876905
+7. Create new release on GitHub https://github.com/Sqline/Sqline/releases
+   7.1 Update download link in README.md on GitHub
+8. Update Nuget Package https://www.nuget.org/packages/Sqline.ClientFramework
+9. Update Sqline Visual Studio Gallery package: https://visualstudiogallery.msdn.microsoft.com/b1cd40cf-fe23-4017-a552-c5502d876905
