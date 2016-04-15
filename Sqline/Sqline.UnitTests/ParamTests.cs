@@ -15,8 +15,7 @@ namespace Sqline.UnitTests {
 		
 		[TestMethod]
 		public void NullableValueParamTest() {
-			NullableValueParam<string> OParam = new NullableValueParam<string>("Hello World!");
-			OParam = DBNull.Value;
+			NullableValueParam<string> OParam = DBNull.Value;			
 			Assert.IsTrue(OParam == DBNull.Value);
 		}
 	}

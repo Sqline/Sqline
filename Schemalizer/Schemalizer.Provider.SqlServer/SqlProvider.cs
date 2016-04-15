@@ -67,29 +67,29 @@ namespace Schemalizer.Provider.SqlServer {
 		public string ExtractSchemaSql {
 			get {
 				return @"SELECT 
-									C.Name AS ColumnName,
-									C.Is_Identity AS IsAutoIncrement,
-									DT.Name AS DataType,
-									C.Max_Length AS MaxLength,
-									C.Is_Nullable AS Nullable,
-									DC.Definition AS DefaultValue,
-									COALESCE((
-										SELECT TOP 1 I.is_primary_key FROM sys.index_columns AS IC 
-										INNER JOIN sys.indexes AS I ON C.object_id = I.object_id AND IC.Index_ID = I.Index_ID
-										WHERE C.object_id = IC.object_id AND IC.Column_ID = C.Column_ID AND I.is_primary_key = 1
-									), CAST(0 AS BIT)) AS IsPrimaryKey,
-									SCHEMA_NAME(T.schema_id) AS SchemaName,
-									T.name AS TableName,
-									T.Is_Replicated AS TableIsReplicated,
-									T.create_date AS TableCreatedDate,
-									T.modify_date AS TableLastModifiedDate
-								FROM sys.columns AS C
-								INNER JOIN sys.Tables AS T ON C.object_id = T.object_id
-								INNER JOIN sys.types AS DT ON C.user_type_id = DT.user_type_id
-								LEFT OUTER JOIN sys.default_constraints DC on DC.parent_object_id = C.object_id AND DC.parent_column_id = C.column_id
-								LEFT OUTER JOIN sys.extended_properties EP ON T.[object_id] = EP.major_id AND EP.class_desc = 'OBJECT_OR_COLUMN' AND EP.[name] = 'microsoft_database_tools_support'
-								WHERE EP.major_id IS NULL
-								ORDER BY C.column_id ASC";
+							C.Name AS ColumnName,
+							C.Is_Identity AS IsAutoIncrement,
+							DT.Name AS DataType,
+							C.Max_Length AS MaxLength,
+							C.Is_Nullable AS Nullable,
+							DC.Definition AS DefaultValue,
+							COALESCE((
+								SELECT TOP 1 I.is_primary_key FROM sys.index_columns AS IC 
+								INNER JOIN sys.indexes AS I ON C.object_id = I.object_id AND IC.Index_ID = I.Index_ID
+								WHERE C.object_id = IC.object_id AND IC.Column_ID = C.Column_ID AND I.is_primary_key = 1
+							), CAST(0 AS BIT)) AS IsPrimaryKey,
+							SCHEMA_NAME(T.schema_id) AS SchemaName,
+							T.name AS TableName,
+							T.Is_Replicated AS TableIsReplicated,
+							T.create_date AS TableCreatedDate,
+							T.modify_date AS TableLastModifiedDate
+						FROM sys.columns AS C
+						INNER JOIN sys.Tables AS T ON C.object_id = T.object_id
+						INNER JOIN sys.types AS DT ON C.user_type_id = DT.user_type_id
+						LEFT OUTER JOIN sys.default_constraints DC on DC.parent_object_id = C.object_id AND DC.parent_column_id = C.column_id
+						LEFT OUTER JOIN sys.extended_properties EP ON T.[object_id] = EP.major_id AND EP.class_desc = 'OBJECT_OR_COLUMN' AND EP.[name] = 'microsoft_database_tools_support'
+						WHERE EP.major_id IS NULL
+						ORDER BY C.column_id ASC";
 			}
 		}
 	}

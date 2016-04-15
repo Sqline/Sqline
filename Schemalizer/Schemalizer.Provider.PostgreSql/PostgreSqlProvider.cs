@@ -1,10 +1,10 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
 using System.Data;
-using MySql.Data.MySqlClient;
+using Npgsql;
 using Schemalizer.Model;
 
-namespace Schemalizer.Provider.MySql {
+namespace Schemalizer.Provider.PostgreSql {
 	public class MySqlProvider : ISchemalizerProvider {
 		private string FConnStr;
 		private Database FDatabase;
@@ -19,8 +19,8 @@ namespace Schemalizer.Provider.MySql {
 
 		public void ExtractMetadata(SchemaModel model, string databaseName) {
 			FDatabase = model.CreateDatabase(databaseName);
-			using (MySqlConnection OConnection = new MySqlConnection(FConnStr)) {
-				using (MySqlCommand OCommand = new MySqlCommand(ExtractSchemaSql, OConnection)) {
+			using (NpgsqlConnection OConnection = new NpgsqlConnection(FConnStr)) {
+				using (NpgsqlCommand OCommand = new NpgsqlCommand(ExtractSchemaSql, OConnection)) {
 					OConnection.Open();
 					using (IDataReader OReader = OCommand.ExecuteReader()) {
 						while (OReader.Read()) {
@@ -61,21 +61,27 @@ namespace Schemalizer.Provider.MySql {
 		public string ExtractSchemaSql {
 			get {
 				return @"SELECT 
-							C.COLUMN_NAME AS ColumnName,
-							IF(C.EXTRA = 'auto_increment', 1, 0) AS IsAutoIncrement,
-							C.DATA_TYPE AS DataType,
-							IFNULL(C.CHARACTER_MAXIMUM_LENGTH, 0) AS MaxLength,
-							IF(C.IS_NULLABLE='YES', 1, 0) AS Nullable,
-							C.COLUMN_DEFAULT AS DefaultValue,
-							IF(C.COLUMN_KEY = 'PRI', 1, 0) AS IsPrimaryKey,
-							T.TABLE_SCHEMA AS SchemaName,
-							T.TABLE_NAME AS TableName,
-							0 AS TableIsReplicated, /* Not supported in this release - please let us know if you find a reliable way to determine if a table takes part (either as Master or Slave) in Replication */
-							LEAST(COALESCE(T.CREATE_TIME, T.UPDATE_TIME), COALESCE(T.CREATE_TIME, T.UPDATE_TIME)) AS TableCreatedDate, /* Unfortunately does not represent the true creation date in MySQL */
-							GREATEST(COALESCE(T.UPDATE_TIME, T.CREATE_TIME), COALESCE(T.UPDATE_TIME, T.CREATE_TIME)) AS TableLastModifiedDate /* For innodb Update_Time is represented by the Create_Time column (!) */
-						FROM INFORMATION_SCHEMA.COLUMNS AS C
-						INNER JOIN INFORMATION_SCHEMA.TABLES AS T ON T.TABLE_NAME = C.TABLE_NAME AND T.TABLE_SCHEMA = C.TABLE_SCHEMA
-						WHERE T.TABLE_SCHEMA = Database()";
+							C.column_name AS ColumnName,
+							C.is_identity AS IsAutoIncrement,
+							C.data_type AS DataType,
+							C.character_maximum_length AS MaxLength,
+							C.is_nullable AS IsNullable,
+							C.column_default AS DefaultValue,
+							(CASE TC.constraint_type 
+								   WHEN 'PRIMARY KEY' THEN 1
+								   ELSE 0 
+								  END) AS IsPrimaryKey,
+							T.table_schema AS SchemaName,
+							T.table_name AS TableName,
+							0 AS TableIsReplicated /* Not supported in this release - please let us know if you find a reliable way to determine if a table takes part (either as Master or Slave) in Replication */
+							NULL AS TableCreatedDate, /* Not properly supported by PostgreSql (!) */
+							NULL AS TableLastModifiedDate /* Not properly supported by PostgreSql (!) */
+						FROM information_schema.tables T
+						INNER JOIN information_schema.columns C ON C.table_schema = T.table_schema AND C.table_name = T.table_name
+						INNER JOIN information_schema.table_constraints TC ON TC.constraint_schema = C.table_schema AND TC.table_name = C.table_name
+						WHERE 
+							T.table_schema NOT IN ('information_schema', 'pg_catalog') AND
+							T.table_type = 'BASE TABLE'";
 			}
 		}
 	}

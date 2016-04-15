@@ -1,0 +1,1 @@
+Assemblies are automatically updated on build - see Project Properties - Build Events - Pre-build events
