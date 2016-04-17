@@ -43,7 +43,7 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 	<# } #>
 
 		public <#= OTable.TableName #>Insert(<#= OTable.RequiredColumns.BuildString((c) => c.ParamType + " " + c.Name.ToLower(), ", ") #>) {
-			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineApplication #>);
 			<# ViewColumn OPKColumn = OTable.GetFirstPrimaryKeyColumn(); #>
 			<# if (OPKColumn == null) { #>
 			SetFetchPrimaryKeyValueAfterInsert(false);
@@ -81,7 +81,7 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 	<# } #>
 
 		public <#= OTable.TableName #>Update() {
-			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineApplication #>);
 		}
 
 		protected override void PreExecute() {
@@ -103,7 +103,7 @@ namespace <#= ODataItemFile.Configuration.DataItems.Namespace #> {
 	<# } #>
 
 		public <#= OTable.TableName #>Delete() {
-			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineConfig #>);
+			Initialize("<#=  OTable.SchemaName #>", "<#=  OTable.TableName #>", <#= ODataItemFile.Configuration.ProjectHandler.SqlineApplication #>);
 		}
 
 		protected override void PreExecute() {

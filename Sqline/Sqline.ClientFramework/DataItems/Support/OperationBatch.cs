@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sqline.ClientFramework.ProviderModel;
+using Sqline.ProviderModel;
 
 namespace Sqline.ClientFramework {
 	public class OperationBatch<T> where T : BaseDataItem {
@@ -41,7 +41,7 @@ namespace Sqline.ClientFramework {
 		}
 
 		public int Execute() {
-			using (IDbConnection OConnection = Provider.Current.GetConnection(FOperations[0].GetSqlineConfig().ConnectionString)) {
+			using (IDbConnection OConnection = Provider.Current.GetConnection(FOperations[0].GetSqlineApplication().ConnectionString)) {
 				OConnection.Open();
 				return Execute(OConnection, null);
 			}

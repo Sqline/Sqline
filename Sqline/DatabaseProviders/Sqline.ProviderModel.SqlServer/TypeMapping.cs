@@ -1,6 +1,5 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
-using Sqline.ProviderModel;
 
 namespace Sqline.ProviderModel.SqlServer {
 	public class TypeMapping : ITypeMapping {

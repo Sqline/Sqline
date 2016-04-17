@@ -6,8 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sqline.ClientFramework.ProviderModel;
-using Sqline.ClientFramework.ProviderModel.SqlServer;
+using Sqline.ProviderModel;
+using Sqline.ProviderModel.SqlServer;
 
 namespace Sqline.ClientFramework {
 	public abstract class InsertDataItem : BaseDataItem {

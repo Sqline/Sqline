@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Schemalizer.Base;
 using Schemalizer.Model;
-using Sqline.ClientFramework.ProviderModel;
+using Sqline.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class ViewColumn {

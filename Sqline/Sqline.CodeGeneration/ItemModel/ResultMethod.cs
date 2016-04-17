@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using Sqline.ClientFramework.ProviderModel;
 using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {

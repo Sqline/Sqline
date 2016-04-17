@@ -261,13 +261,25 @@
       <Project>{fe5b2c8e-4868-4e13-aadc-3a284f49473c}</Project>
       <Name>T4Compiler.Generator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.MySql\Sqline.ProviderModel.MySql.csproj">
+      <Project>{cb384083-8446-492b-8631-3419a404a98e}</Project>
+      <Name>Sqline.ProviderModel.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.PostgreSql\Sqline.ProviderModel.PostgreSql.csproj">
+      <Project>{aec8d5c3-ca86-466f-9ff3-e5a8ce457e60}</Project>
+      <Name>Sqline.ProviderModel.PostgreSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.SqlServer\Sqline.ProviderModel.SqlServer.csproj">
+      <Project>{97f2c6a7-5d46-46c8-8fd6-dbbddc14d600}</Project>
+      <Name>Sqline.ProviderModel.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
+      <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
+      <Name>Sqline.ProviderModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sqline.Base\Sqline.Base.csproj">
       <Project>{c347571c-cbb9-41e4-883e-df56868b6716}</Project>
       <Name>Sqline.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
-      <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
-      <Name>Sqline.ClientFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sqline.CodeGeneration\Sqline.CodeGeneration.csproj">
       <Project>{cf164bbd-2f0d-4719-a8c1-fb25a5ac53a5}</Project>

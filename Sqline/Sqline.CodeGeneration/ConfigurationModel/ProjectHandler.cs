@@ -36,9 +36,9 @@ namespace Sqline.CodeGeneration.ConfigurationModel {
 			}
 		}
 
-		public string SqlineConfig {
+		public string SqlineApplication {
 			get {
-				return FNamespace + "." + FName + ".SqlineConfig";
+				return FNamespace + "." + FName + ".SqlineApplication";
 			}
 		}
 	}

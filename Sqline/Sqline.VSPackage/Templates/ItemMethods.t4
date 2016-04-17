@@ -21,7 +21,6 @@ using System.Data;
 using System.Text;
 using System.Collections.Generic;
 using Sqline.ClientFramework;
-using Sqline.ClientFramework.ProviderModel;
 <# foreach (Using OUsing in OItemFile.Configuration.Methods.Usings) { #>
 using <#= OUsing.Namespace #>;
 <# } #>

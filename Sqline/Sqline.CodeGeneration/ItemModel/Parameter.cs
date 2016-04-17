@@ -2,7 +2,7 @@
 using System;
 using System.Xml.Linq;
 using Sqline.Base;
-using Sqline.ClientFramework.ProviderModel;
+using Sqline.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class Parameter {

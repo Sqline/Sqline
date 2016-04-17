@@ -86,7 +86,27 @@ namespace Sqline.ProviderModel.PostgreSql {
 			OColumn.PrimaryKey = reader.GetBoolean(reader.GetOrdinal("IsPrimaryKey"));
 		}
 
-		public string ExtractSchemaSql {
+        public string GenerateParameterQuery(string prefix, int count) {
+            throw new NotImplementedException();
+        }
+
+        public string GetSafeTableName(string schema, string name) {
+            throw new NotImplementedException();
+        }
+
+        public string GetSafeColumnName(string name) {
+            throw new NotImplementedException();
+        }
+
+        public string GetParameterName(string name) {
+            throw new NotImplementedException();
+        }
+
+        public IDbConnection GetConnection(string connstr) {
+            throw new NotImplementedException();
+        }
+
+        public string ExtractSchemaSql {
 			get {
 				return @"SELECT 
 										C.COLUMN_NAME AS ColumnName,

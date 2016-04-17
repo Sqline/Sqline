@@ -5,7 +5,7 @@ using System.Linq;
 using Sqline.CodeGeneration.ConfigurationModel;
 using System;
 using Sqline.Base;
-using Sqline.ClientFramework.ProviderModel;
+using Sqline.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class ScalarItem : IOwner {

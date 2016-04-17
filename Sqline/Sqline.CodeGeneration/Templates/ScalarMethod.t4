@@ -7,7 +7,7 @@
 			string OSql = @"<#= OMethod.Sql.Statement #>";
 			<#@ include file="SqlTransform.t4" #>
 			<# if (!OTransactionSupport) { #>
-			using (IDbConnection OConnection = Provider.Current.GetConnection(<#= OItemFile.Configuration.ProjectHandler.SqlineConfig #>.ConnectionString)) {
+			using (IDbConnection OConnection = <#= OItemFile.Configuration.ProjectHandler.SqlineApplication #>.GetConnection()) {
 			<# } #>
 				using (IDbCommand OCommand = <#= OTransactionSupport ? "connection" : "OConnection" #>.CreateCommand()) {
 					<# if (OTransactionSupport) { #>

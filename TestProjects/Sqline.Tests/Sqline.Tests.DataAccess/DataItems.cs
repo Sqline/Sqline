@@ -45,7 +45,7 @@ namespace Sqline.Tests.DataAccess.DataItems {
 		private NullableValueParam<string> FVarCharColumn;
 		private NullableValueParam<string> FXmlColumn;
 		public TypeTestInsert() {
-			Initialize("dbo", "TypeTest", Sqline.Tests.DataAccess.DAHandler.SqlineConfig);
+			Initialize("dbo", "TypeTest", Sqline.Tests.DataAccess.DAHandler.SqlineApplication);
 			SetFetchPrimaryKeyValueAfterInsert(false);
 			
 		}
@@ -177,7 +177,7 @@ AddParameter(FXmlColumn, "XmlColumn");
 		private NullableValueParam<string> FXmlColumn;
 		private NullableWhereParam<string> FWhereXmlColumn;
 		public TypeTestUpdate() {
-			Initialize("dbo", "TypeTest", Sqline.Tests.DataAccess.DAHandler.SqlineConfig);
+			Initialize("dbo", "TypeTest", Sqline.Tests.DataAccess.DAHandler.SqlineApplication);
 		}
 
 		protected override void PreExecute() {
@@ -337,7 +337,7 @@ AddParameter(FWhereXmlColumn, "XmlColumn");
 		private NullableWhereParam<string> FWhereVarCharColumn;
 		private NullableWhereParam<string> FWhereXmlColumn;
 		public TypeTestDelete() {
-			Initialize("dbo", "TypeTest", Sqline.Tests.DataAccess.DAHandler.SqlineConfig);
+			Initialize("dbo", "TypeTest", Sqline.Tests.DataAccess.DAHandler.SqlineApplication);
 		}
 
 		protected override void PreExecute() {
@@ -411,7 +411,7 @@ AddParameter(FWhereXmlColumn, "XmlColumn");
 		private ValueParam<int> FID;
 		private ValueParam<bool> FProcessed;
 		public TestInsert(ValueParam<bool> processed) {
-			Initialize("dbo", "Test", Sqline.Tests.DataAccess.DAHandler.SqlineConfig);
+			Initialize("dbo", "Test", Sqline.Tests.DataAccess.DAHandler.SqlineApplication);
 			SetPrimaryKeyInfo("ID", "int");
 			FProcessed = processed;
 		}
@@ -434,7 +434,7 @@ AddParameter(FProcessed, "Processed");
 		private ValueParam<bool> FProcessed;
 		private WhereParam<bool> FWhereProcessed;
 		public TestUpdate() {
-			Initialize("dbo", "Test", Sqline.Tests.DataAccess.DAHandler.SqlineConfig);
+			Initialize("dbo", "Test", Sqline.Tests.DataAccess.DAHandler.SqlineApplication);
 		}
 
 		protected override void PreExecute() {
@@ -454,7 +454,7 @@ AddParameter(FWhereProcessed, "Processed");
 		private WhereParam<int> FWhereID;
 		private WhereParam<bool> FWhereProcessed;
 		public TestDelete() {
-			Initialize("dbo", "Test", Sqline.Tests.DataAccess.DAHandler.SqlineConfig);
+			Initialize("dbo", "Test", Sqline.Tests.DataAccess.DAHandler.SqlineApplication);
 		}
 
 		protected override void PreExecute() {

@@ -16,18 +16,18 @@ using Sqline.ClientFramework;
 
 namespace <#= OFile.Configuration.ProjectHandler.Namespace #> {
 	public static class <#= OFile.Configuration.ProjectHandler.Name #> {
-		private static SqlineConfig FSqlineConfig;
+		private static SqlineApplication FSqlineApplication;
 
-		public static void Initialize(SqlineConfig config) {
-			FSqlineConfig = config;
+		public static void Initialize(SqlineApplication application) {
+			FSqlineApplication = application;
 		}
 
-		public static SqlineConfig SqlineConfig {
+		public static SqlineApplication SqlineApplication {
 			get {
-				return FSqlineConfig;
+				return FSqlineApplication;
 			}
 			private set {
-				FSqlineConfig = value;
+				FSqlineApplication = value;
 			}
 		}
 	}

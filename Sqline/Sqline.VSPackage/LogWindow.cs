@@ -64,9 +64,13 @@ namespace Sqline.VSPackage {
 		}
 
 		public void Dispose() {
-			if (FProvider != null) {
-				FProvider.Dispose();
-			}
-		}		
-	}
+            Dispose(true);
+		}
+
+        protected virtual void Dispose(bool disposing) {
+            if (FProvider != null) {
+                FProvider.Dispose();
+            }
+        }
+    }
 }

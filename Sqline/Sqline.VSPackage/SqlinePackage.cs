@@ -7,6 +7,8 @@ using EnvDTE80;
 using EnvDTE;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Sqline.ProviderModel;
+using Sqline.ProviderModel.SqlServer;
 
 namespace Sqline.VSPackage {
 	// This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is a package.
@@ -27,7 +29,8 @@ namespace Sqline.VSPackage {
 
 		protected override void Initialize() {
 			base.Initialize();
-			FContext = new AddinContext((DTE2)GetService(typeof(SDTE)), this);
+            Provider.Initialize(new SqlServerProvider()); //TODO: Should not be tied to SqlServer
+            FContext = new AddinContext((DTE2)GetService(typeof(SDTE)), this);
 			FLog = new LogWindow(this, FContext);
 			FDocumentEvents = Context.Application.Events.get_DocumentEvents(null);
 			FDocumentEvents.DocumentSaved += OnDocumentSaved;

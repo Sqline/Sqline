@@ -6,25 +6,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sqline.ClientFramework.ProviderModel;
+using Sqline.ProviderModel;
 
 namespace Sqline.ClientFramework {
 	public abstract class BaseDataItem {
-		protected SqlineConfig FConfig;
+		protected SqlineApplication FApplication;
 		protected List<IBaseParam> FParameters = new List<IBaseParam>();
 		protected string FTableName = "";
 		protected string FSchemaName = "";
 		protected string FSqlStatement = "";
 		protected int FParameterIndex = 0;
 
-		public virtual void Initialize(string schemaName, string tableName, SqlineConfig config) {
+		public virtual void Initialize(string schemaName, string tableName, SqlineApplication application) {
 			FSchemaName = schemaName;
 			FTableName = tableName;
-			FConfig = config;
+			FApplication = application;
 		}
 
 		public virtual int Execute() {
-			using (IDbConnection OConnection = Provider.Current.GetConnection(FConfig.ConnectionString)) {
+			using (IDbConnection OConnection = Provider.Current.GetConnection(FApplication.ConnectionString)) {
 				OConnection.Open();
 				return Execute(OConnection, null);
 			}
@@ -94,8 +94,8 @@ namespace Sqline.ClientFramework {
 			FParameterIndex = index;
 		}
 
-		protected internal SqlineConfig GetSqlineConfig() {
-			return FConfig;
+		protected internal SqlineApplication GetSqlineApplication() {
+			return FApplication;
 		}
 	}
 }

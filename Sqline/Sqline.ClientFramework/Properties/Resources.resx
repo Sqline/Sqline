@@ -117,23 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MySql_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MySql.Data.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Npgsql" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Npgsql.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Sqline_ProviderModel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sqline.ProviderModel.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Sqline_ProviderModel_MySql" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sqline.ProviderModel.MySql.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Sqline_ProviderModel_PostgreSql" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sqline.ProviderModel.PostgreSql.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Sqline_ProviderModel_SqlServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sqline.ProviderModel.SqlServer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

@@ -26,8 +26,6 @@ Write(@"using System.Collections.Generic;
 ");
 Write(@"using Sqline.ClientFramework;
 ");
-Write(@"using Sqline.ClientFramework.ProviderModel;
-");
 foreach (Using OUsing in OItemFile.Configuration.Methods.Usings) {
 Write(@"using ");
 Write(OUsing.Namespace);
@@ -100,9 +98,9 @@ Write(@".Count) + "")"");
 }
 }
 if (!OTransactionSupport) {
-Write(@"			using (IDbConnection OConnection = Provider.Current.GetConnection(");
-Write(OItemFile.Configuration.ProjectHandler.SqlineConfig);
-Write(@".ConnectionString)) {
+Write(@"			using (IDbConnection OConnection = ");
+Write(OItemFile.Configuration.ProjectHandler.SqlineApplication);
+Write(@".GetConnection()) {
 ");
 }
 Write(@"				using (IDbCommand OCommand = ");
@@ -381,9 +379,9 @@ Write(@".Count) + "")"");
 }
 }
 if (!OTransactionSupport) {
-Write(@"			using (IDbConnection OConnection = Provider.Current.GetConnection(");
-Write(OItemFile.Configuration.ProjectHandler.SqlineConfig);
-Write(@".ConnectionString)) {
+Write(@"			using (IDbConnection OConnection = ");
+Write(OItemFile.Configuration.ProjectHandler.SqlineApplication);
+Write(@".GetConnection()) {
 ");
 }
 Write(@"				using (IDbCommand OCommand = ");
@@ -667,9 +665,9 @@ Write(@".Count) + "")"");
 }
 }
 if (!OTransactionSupport) {
-Write(@"			using (IDbConnection OConnection = Provider.Current.GetConnection(");
-Write(OItemFile.Configuration.ProjectHandler.SqlineConfig);
-Write(@".ConnectionString)) {
+Write(@"			using (IDbConnection OConnection = ");
+Write(OItemFile.Configuration.ProjectHandler.SqlineApplication);
+Write(@".GetConnection()) {
 ");
 }
 Write(@"				using (IDbCommand OCommand = ");
@@ -910,9 +908,9 @@ Write(@".Count) + "")"");
 }
 }
 if (!OTransactionSupport) {
-Write(@"			using (IDbConnection OConnection = Provider.Current.GetConnection(");
-Write(OItemFile.Configuration.ProjectHandler.SqlineConfig);
-Write(@".ConnectionString)) {
+Write(@"			using (IDbConnection OConnection = ");
+Write(OItemFile.Configuration.ProjectHandler.SqlineApplication);
+Write(@".GetConnection()) {
 ");
 }
 Write(@"				using (IDbCommand OCommand = ");
@@ -1142,7 +1140,7 @@ Write(@".Count) + "")"");
 }
 if (!OTransactionSupport) {
 Write(@"			using (IDbConnection OConnection = Provider.Current.GetConnection(");
-Write(OItemFile.Configuration.ProjectHandler.SqlineConfig);
+Write(OItemFile.Configuration.ProjectHandler.SqlineApplication);
 Write(@".ConnectionString)) {
 ");
 }
@@ -1244,7 +1242,7 @@ Write(@".Count) + "")"");
 }
 if (!OTransactionSupport) {
 Write(@"			using (IDbConnection OConnection = Provider.Current.GetConnection(");
-Write(OItemFile.Configuration.ProjectHandler.SqlineConfig);
+Write(OItemFile.Configuration.ProjectHandler.SqlineApplication);
 Write(@".ConnectionString)) {
 ");
 }

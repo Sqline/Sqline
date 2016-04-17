@@ -59,7 +59,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ProviderModel\Provider.cs" />
     <Compile Include="DataItems\Params\NotNullableException.cs" />
     <Compile Include="DataItems\Params\NullableWhereParam.cs" />
     <Compile Include="DataItems\Params\WhereParam.cs" />
@@ -74,11 +73,7 @@
     <Compile Include="DataItems\InsertDataItem.cs" />
     <Compile Include="Extensions\IDataRecordExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProviderModel\IProvider.cs" />
-    <Compile Include="ProviderModel\ITypeMapping.cs" />
-    <Compile Include="ProviderModel\SqlServer\SqlServerProvider.cs" />
-    <Compile Include="ProviderModel\SqlServer\TypeMapping.cs" />
-    <Compile Include="ProviderModel\SqlServer\Types.cs" />
+    <Compile Include="AssemblyResolver.cs" />
     <Compile Include="SqlineConfig.cs" />
     <Compile Include="Types\CastableString.cs" />
     <Compile Include="Types\IDLists\DateList.cs" />
@@ -97,34 +92,55 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProviderModel\SqlServer\Types.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sqline.ProviderModel.dll" />
+    <EmbeddedResource Include="Resources\Sqline.ProviderModel.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sqline.ProviderModel.SqlServer.dll" />
+    <EmbeddedResource Include="Resources\Sqline.ProviderModel.SqlServer.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Npgsql.dll" />
+    <EmbeddedResource Include="Resources\Npgsql.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sqline.ProviderModel.PostgreSql.dll" />
+    <EmbeddedResource Include="Resources\Sqline.ProviderModel.PostgreSql.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MySql.Data.dll" />
+    <EmbeddedResource Include="Resources\MySql.Data.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sqline.ProviderModel.MySql.dll" />
+    <EmbeddedResource Include="Resources\Sqline.ProviderModel.MySql.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.MySql\Sqline.ProviderModel.MySql.csproj">
+      <Project>{cb384083-8446-492b-8631-3419a404a98e}</Project>
+      <Name>Sqline.ProviderModel.MySql</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.PostgreSql\Sqline.ProviderModel.PostgreSql.csproj">
+      <Project>{aec8d5c3-ca86-466f-9ff3-e5a8ce457e60}</Project>
+      <Name>Sqline.ProviderModel.PostgreSql</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.SqlServer\Sqline.ProviderModel.SqlServer.csproj">
+      <Project>{97f2c6a7-5d46-46c8-8fd6-dbbddc14d600}</Project>
+      <Name>Sqline.ProviderModel.SqlServer</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
+      <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
+      <Name>Sqline.ProviderModel</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy $(SolutionDir)\Sqline\DatabaseProviders\Sqline.ProviderModel\bin\$(ConfigurationName)\Sqline.ProviderModel.dll $(ProjectDir)\Resources\
-copy $(SolutionDir)\Sqline\DatabaseProviders\Sqline.ProviderModel.SqlServer\bin\$(ConfigurationName)\Sqline.ProviderModel.SqlServer.dll $(ProjectDir)\Resources\
-copy $(SolutionDir)\Sqline\DatabaseProviders\Sqline.ProviderModel.MySql\bin\$(ConfigurationName)\Sqline.ProviderModel.MySql.dll $(ProjectDir)\Resources\
-copy $(SolutionDir)\Sqline\DatabaseProviders\Sqline.ProviderModel.MySql\bin\$(ConfigurationName)\MySql.Data.dll $(ProjectDir)\Resources\
-copy $(SolutionDir)\Sqline\DatabaseProviders\Sqline.ProviderModel.PostgreSql\bin\$(ConfigurationName)\Sqline.ProviderModel.PostgreSql.dll $(ProjectDir)\Resources\
-copy $(SolutionDir)\Sqline\DatabaseProviders\Sqline.ProviderModel.PostgreSql\bin\$(ConfigurationName)\Npgsql.dll $(ProjectDir)\Resources\</PreBuildEvent>
+    <PreBuildEvent>copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel\bin\$(ConfigurationName)\Sqline.ProviderModel.dll $(ProjectDir)Resources\
+copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.SqlServer\bin\$(ConfigurationName)\Sqline.ProviderModel.SqlServer.dll $(ProjectDir)Resources\
+copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.MySql\bin\$(ConfigurationName)\Sqline.ProviderModel.MySql.dll $(ProjectDir)Resources\
+copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.MySql\bin\$(ConfigurationName)\MySql.Data.dll $(ProjectDir)Resources\
+copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.PostgreSql\bin\$(ConfigurationName)\Sqline.ProviderModel.PostgreSql.dll $(ProjectDir)Resources\
+copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.PostgreSql\bin\$(ConfigurationName)\Npgsql.dll $(ProjectDir)Resources\</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
