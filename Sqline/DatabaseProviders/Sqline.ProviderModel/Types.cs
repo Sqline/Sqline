@@ -4,12 +4,16 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
 
-namespace Sqline.ProviderModel.SqlServer {
+namespace Sqline.ProviderModel {
     public class Types {
-        private Dictionary<string, TypeMapping> FTypes = new Dictionary<string, TypeMapping>();
-        private TypeMapping FEmptyMapping;
+        protected Dictionary<string, TypeMapping> FTypes = new Dictionary<string, TypeMapping>();
+        protected TypeMapping FEmptyMapping;
+        protected Assembly FAssembly;
+        protected string FTypeResourceName;
 
-        public Types() {
+        public Types(Assembly assembly, string typeResourceName) {
+            FAssembly = assembly;
+            FTypeResourceName = typeResourceName;
             PopulateTypes();
             FEmptyMapping = new TypeMapping() {
                 ProviderType = "Unknown",
@@ -21,8 +25,8 @@ namespace Sqline.ProviderModel.SqlServer {
             };
         }
 
-        private void PopulateTypes() {
-            using (Stream OStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Sqline.ProviderModel.SqlServer.Types.xml")) {
+        protected virtual void PopulateTypes() {
+            using (Stream OStream = FAssembly.GetManifestResourceStream(FTypeResourceName)) {
                 XDocument ODoc = XDocument.Load(OStream);
                 foreach (XElement OElement in ODoc.Descendants("type")) {
                     TypeMapping OTypeMapping = new TypeMapping() {
@@ -38,7 +42,7 @@ namespace Sqline.ProviderModel.SqlServer {
             }
         }
 
-        public TypeMapping GetTypeMapping(string providerType) {
+        public virtual TypeMapping GetTypeMapping(string providerType) {
             if (FTypes.ContainsKey(providerType)) {
                 return FTypes[providerType];
             }

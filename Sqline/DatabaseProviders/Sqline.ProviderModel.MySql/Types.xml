@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<types>
+  <type providertype="decimal"          dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="float"            dbtype="Decimal"         cstype="double"           csnullable="double?"           csreader="GetDouble"           isnumber="1" />
+  <type providertype="integer"              dbtype="Int32"           cstype="int"              csnullable="int?"              csreader="GetInt32"            isnumber="1" />
+  <type providertype="int"              dbtype="Int32"           cstype="int"              csnullable="int?"              csreader="GetInt32"            isnumber="1" />
+  <type providertype="numeric"          dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="smallint"         dbtype="Int16"           cstype="short"            csnullable="short?"            csreader="GetInt16"            isnumber="1" />
+  <type providertype="real"             dbtype="Single"          cstype="float"            csnullable="float?"            csreader="GetFloat"            isnumber="1" />
+  <type providertype="float"            dbtype="Decimal"         cstype="double"           csnullable="double?"           csreader="GetDouble"           isnumber="1" />
+  
+  <type providertype="int"           dbtype="Int64"           cstype="long"             csnullable="long?"             csreader="GetInt64"            isnumber="1" />
+  <type providertype="integer"           dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="bit"              dbtype="Boolean"         cstype="bool"             csnullable="bool?"             csreader="GetBoolean"          isnumber="0" />
+  <type providertype="char"             dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="date"             dbtype="Date"            cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="datetime"         dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="datetime2"        dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="datetimeoffset"   dbtype="DateTimeOffset"  cstype="DateTimeOffset"   csnullable="DateTimeOffset?"   csreader="GetDateTimeOffset"   isnumber="0" />
+  <type providertype="decimal"          dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  
+  <type providertype="image"            dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="int"              dbtype="Int32"           cstype="int"              csnullable="int?"              csreader="GetInt32"            isnumber="1" />
+  <type providertype="money"            dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="nchar"            dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="ntext"            dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="numeric"          dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="nvarchar"         dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  
+  <type providertype="smalldatetime"    dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="smallint"         dbtype="Int16"           cstype="short"            csnullable="short?"            csreader="GetInt16"            isnumber="1" />
+  <type providertype="smallmoney"       dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="sql_variant"      dbtype="Object"          cstype="object"           csnullable="object"            csreader="GetValue"            isnumber="0" />
+  <type providertype="text"             dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="time"             dbtype="Time"            cstype="TimeSpan"         csnullable="TimeSpan?"         csreader="GetTime"             isnumber="0" />
+  <type providertype="timestamp"        dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="tinyint"          dbtype="Byte"            cstype="byte"             csnullable="byte?"             csreader="GetByte"             isnumber="1" />
+  <type providertype="uniqueidentifier" dbtype="Guid"            cstype="Guid"             csnullable="Guid?"             csreader="GetGuid"             isnumber="0" />
+  <type providertype="varbinary"        dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="varchar"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="xml"              dbtype="Xml"             cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+</types>

@@ -51,6 +51,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ITypeMapping.cs" />
     <Compile Include="Provider.cs" />
+    <Compile Include="TypeMapping.cs" />
+    <Compile Include="Types.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<types>
+  <type providertype="bigint"           dbtype="Int64"           cstype="long"             csnullable="long?"             csreader="GetInt64"            isnumber="1" />
+  <type providertype="bigserial"           dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="bit"              dbtype="Boolean"         cstype="bool"             csnullable="bool?"             csreader="GetBoolean"          isnumber="0" />
+  <type providertype="bit varying"              dbtype="Boolean"         cstype="bool"             csnullable="bool?"             csreader="GetBoolean"          isnumber="0" />
+  <type providertype="boolean"              dbtype="Boolean"         cstype="bool"             csnullable="bool?"             csreader="GetBoolean"          isnumber="0" />
+  <type providertype="box"              dbtype="Boolean"         cstype="bool"             csnullable="bool?"             csreader="GetBoolean"          isnumber="0" />
+  <type providertype="bytea"             dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="character"             dbtype="Date"            cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="character varying"         dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="cidr"        dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="circle"   dbtype="DateTimeOffset"  cstype="DateTimeOffset"   csnullable="DateTimeOffset?"   csreader="GetDateTimeOffset"   isnumber="0" />
+  <type providertype="date"          dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="double precision"            dbtype="Decimal"         cstype="double"           csnullable="double?"           csreader="GetDouble"           isnumber="1" />
+  <type providertype="inet"            dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="integer"              dbtype="Int32"           cstype="int"              csnullable="int?"              csreader="GetInt32"            isnumber="1" />
+  <type providertype="interval"            dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="json"            dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="jsonb"            dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="line"          dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="macaddr"         dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="money"             dbtype="Single"          cstype="float"            csnullable="float?"            csreader="GetFloat"            isnumber="1" />
+  <type providertype="numeric"    dbtype="DateTime"        cstype="DateTime"         csnullable="DateTime?"         csreader="GetDateTime"         isnumber="0" />
+  <type providertype="path"         dbtype="Int16"           cstype="short"            csnullable="short?"            csreader="GetInt16"            isnumber="1" />
+  <type providertype="pg_lsn"       dbtype="Decimal"         cstype="decimal"          csnullable="decimal?"          csreader="GetDecimal"          isnumber="1" />
+  <type providertype="point"      dbtype="Object"          cstype="object"           csnullable="object"            csreader="GetValue"            isnumber="0" />
+  <type providertype="polygon"             dbtype="String"          cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="real"             dbtype="Time"            cstype="TimeSpan"         csnullable="TimeSpan?"         csreader="GetTime"             isnumber="0" />
+  <type providertype="smallint"        dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="smallserial"          dbtype="Byte"            cstype="byte"             csnullable="byte?"             csreader="GetByte"             isnumber="1" />
+  <type providertype="serial" dbtype="Guid"            cstype="Guid"             csnullable="Guid?"             csreader="GetGuid"             isnumber="0" />
+  <type providertype="text"        dbtype="Binary"          cstype="byte[]"           csnullable="byte[]"            csreader="GetBytes"            isnumber="0" />
+  <type providertype="time"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="time without time zone"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="time with time zone"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="timestamp"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="timestamp without time zone"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="timestamp with time zone"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="tsquery"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="tsvector"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="txid_snapshot"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="uuid"          dbtype="AnsiString"      cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+  <type providertype="xml"              dbtype="Xml"             cstype="string"           csnullable="string"            csreader="GetString"           isnumber="0" />
+</types>
