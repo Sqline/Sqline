@@ -249,13 +249,13 @@
       <Project>{62d5d7a7-c95c-46b4-bb7d-e57361ab8f7d}</Project>
       <Name>Schemalizer.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.Provider.SqlServer.csproj">
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.ProviderModel.SqlServer.csproj">
       <Project>{296790f2-e62e-4031-a397-d57fe0310bc4}</Project>
-      <Name>Schemalizer.Provider.SqlServer</Name>
+      <Name>Schemalizer.ProviderModel.SqlServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider\Schemalizer.Provider.csproj">
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider\Schemalizer.ProviderModel.csproj">
       <Project>{d982843d-06fc-4ad4-8339-77703f08528a}</Project>
-      <Name>Schemalizer.Provider</Name>
+      <Name>Schemalizer.ProviderModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\T4Compiler\T4Compiler.Generator\T4Compiler.Generator.csproj">
       <Project>{fe5b2c8e-4868-4e13-aadc-3a284f49473c}</Project>

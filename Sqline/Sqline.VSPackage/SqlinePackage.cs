@@ -28,8 +28,7 @@ namespace Sqline.VSPackage {
 		}
 
 		protected override void Initialize() {
-			base.Initialize();
-            Provider.Initialize(new SqlServerProvider()); //TODO: Should not be tied to SqlServer
+			base.Initialize();            
             FContext = new AddinContext((DTE2)GetService(typeof(SDTE)), this);
 			FLog = new LogWindow(this, FContext);
 			FDocumentEvents = Context.Application.Events.get_DocumentEvents(null);

@@ -4,14 +4,10 @@ using System.Data;
 using Npgsql;
 using Schemalizer.Model;
 
-namespace Schemalizer.Provider.PostgreSql {
-	public class MySqlProvider : ISchemalizerProvider {
-		private string FConnStr;
+namespace Schemalizer.ProviderModel.PostgreSql {
+	public class PostgreSqlProvider : ISchemalizerProvider {
 		private Database FDatabase;
-
-		public MySqlProvider(string connstr) {
-			FConnStr = connstr;
-		}
+		public string ConnectionString { get; set; }
 
 		public bool HasSchemaChanged(SchemaModel model) {
 			return true; //TODO: Compare to DB change date
@@ -19,7 +15,7 @@ namespace Schemalizer.Provider.PostgreSql {
 
 		public void ExtractMetadata(SchemaModel model, string databaseName) {
 			FDatabase = model.CreateDatabase(databaseName);
-			using (NpgsqlConnection OConnection = new NpgsqlConnection(FConnStr)) {
+			using (NpgsqlConnection OConnection = new NpgsqlConnection(ConnectionString)) {
 				using (NpgsqlCommand OCommand = new NpgsqlCommand(ExtractSchemaSql, OConnection)) {
 					OConnection.Open();
 					using (IDataReader OReader = OCommand.ExecuteReader()) {

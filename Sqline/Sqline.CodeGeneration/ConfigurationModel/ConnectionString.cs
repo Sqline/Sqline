@@ -11,8 +11,8 @@ namespace Sqline.CodeGeneration.ConfigurationModel {
 
 		public ConnectionString(XElement element, XNamespace xmlNamespace) {
 			FValue = element.Attribute("value").Value;
-			if (element.Attribute("value") != null) {
-				FProvider = element.Attribute("value").Value;
+			if (element.Attribute("provider") != null) {
+				FProvider = element.Attribute("provider").Value;
 			}
 		}
 

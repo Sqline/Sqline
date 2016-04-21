@@ -5,7 +5,7 @@ using System.Data;
 namespace Sqline.ProviderModel {
     public interface IProvider {
         // Conver DB Types, Parameter Name, Table/Column Escape Name, DB Name, Version, Support
-
+		string ProviderName { get; }
         string IdentifierStartDelimiter { get; }
         string IdentifierEndDelimiter { get; }
         string DelimitName(string name);

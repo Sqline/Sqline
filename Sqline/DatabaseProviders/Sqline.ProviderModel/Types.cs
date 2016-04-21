@@ -25,7 +25,7 @@ namespace Sqline.ProviderModel {
             };
         }
 
-        protected virtual void PopulateTypes() {
+        protected void PopulateTypes() {
             using (Stream OStream = FAssembly.GetManifestResourceStream(FTypeResourceName)) {
                 XDocument ODoc = XDocument.Load(OStream);
                 foreach (XElement OElement in ODoc.Descendants("type")) {

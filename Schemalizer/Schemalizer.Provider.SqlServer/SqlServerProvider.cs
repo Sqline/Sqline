@@ -6,14 +6,10 @@ using System.Diagnostics;
 using Schemalizer.Model;
 using Schemalizer.Base;
 
-namespace Schemalizer.Provider.SqlServer {
-	public class SqlProvider : ISchemalizerProvider {
-		private string FConnStr;
+namespace Schemalizer.ProviderModel.SqlServer {
+	public class SqlServerProvider : ISchemalizerProvider {
 		private Database FDatabase;
-		
-		public SqlProvider(string connstr) {
-			FConnStr = connstr;
-		}
+		public string ConnectionString { get; set; }
 
 		public bool HasSchemaChanged(SchemaModel model) {
 			return true; //TODO: Compare to DB change date
@@ -21,7 +17,7 @@ namespace Schemalizer.Provider.SqlServer {
 
 		public void ExtractMetadata(SchemaModel model, string databaseName) {
 			FDatabase = model.CreateDatabase(databaseName);
-			using (SqlConnection OConnection = new SqlConnection(FConnStr)) {
+			using (SqlConnection OConnection = new SqlConnection(ConnectionString)) {
 				using (SqlCommand OCommand = new SqlCommand(ExtractSchemaSql, OConnection)) {
 					Debug.WriteLine("Extracting database schema info");
 					OConnection.QuickOpen(OConnection.ConnectionTimeout);

@@ -8,7 +8,9 @@ using System.Reflection;
 
 namespace Sqline.ProviderModel.MySql {
 	public class MySqlProvider : IProvider {
-        private Types FTypes = new Types(Assembly.GetExecutingAssembly(), "Sqline.ProviderModel.PostgreSql.Types.xml");
+        private Types FTypes = new Types(Assembly.GetExecutingAssembly(), "Sqline.ProviderModel.MySql.Types.xml");
+		public string ProviderName { get; } = "MySql";
+
 
         public string IdentifierStartDelimiter { 
 			get {

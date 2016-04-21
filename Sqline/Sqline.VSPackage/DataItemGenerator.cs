@@ -7,8 +7,8 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 using Schemalizer.Model;
-using Schemalizer.Provider.SqlServer;
-using Schemalizer.Provider;
+using Schemalizer.ProviderModel.SqlServer;
+using Schemalizer.ProviderModel;
 using System.Xml.Linq;
 using ConfigModel = Sqline.CodeGeneration.ConfigurationModel;
 
@@ -24,19 +24,20 @@ namespace Sqline.VSPackage {
 		}
 
 		public void Generate() {
-			String ODatabaseFilePath = ProcessShemaInfo();
+			string ODatabaseFilePath = ProcessShemaInfo();
 			GenerateDataItems(ODatabaseFilePath);
 		}
 
-		private String ProcessShemaInfo() {
+		private string ProcessShemaInfo() {
 			ConfigModel.ConfigurationSystem OConfigurationSystem = new ConfigModel.ConfigurationSystem(ProjectDir);
 			ConfigModel.Configuration OConfiguration = OConfigurationSystem.GetConfigurationFor(ProjectDir);
-			String ODatabaseFilePath = Path.Combine(ProjectDir, "Database.xdml");
+			string ODatabaseFilePath = Path.Combine(ProjectDir, "Database.xdml");
 			SchemaModel OModel = SchemaModel.Load(ODatabaseFilePath);
-			ISchemalizerProvider OProvider = new SqlProvider(OConfiguration.ConnectionString.Value);
+			ISchemalizerProvider OProvider = ProviderFactory.Create(OConfiguration.ConnectionString.Provider);
+			OProvider.ConnectionString = OConfiguration.ConnectionString.Value;
 			if (OModel == null || OProvider.HasSchemaChanged(OModel)) {
-				OModel = new SchemaModel();				
-				OProvider.ExtractMetadata(OModel, "Sqline");				
+				OModel = new SchemaModel();
+				OProvider.ExtractMetadata(OModel, "Sqline");
 				XElement OElement = OModel.ToXElement();
 				OElement.Save(ODatabaseFilePath);
 				FOutputFiles.Add(ODatabaseFilePath);
@@ -44,7 +45,7 @@ namespace Sqline.VSPackage {
 			return ODatabaseFilePath;
 		}
 
-		private void GenerateDataItems(String databaseFilePath) {
+		private void GenerateDataItems(string databaseFilePath) {
 			string OTemplatePath = FContext.ResolvePath("/Templates/DataItem.t4");
 			Debug.WriteLine("GenerateDataItems: " + OTemplatePath);
 			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };

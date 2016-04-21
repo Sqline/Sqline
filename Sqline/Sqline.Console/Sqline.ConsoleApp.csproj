@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParamTest.cs" />
+    <Compile Include="TokenizerTest.cs" />
+    <Compile Include="ProviderTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,9 +51,33 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Model\Schemalizer.Model.csproj">
+      <Project>{62d5d7a7-c95c-46b4-bb7d-e57361ab8f7d}</Project>
+      <Name>Schemalizer.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.MySql\Schemalizer.ProviderModel.MySql.csproj">
+      <Project>{86677a19-2dab-4fb7-a362-6e58931031af}</Project>
+      <Name>Schemalizer.ProviderModel.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.PostgreSql\Schemalizer.ProviderModel.PostgreSql.csproj">
+      <Project>{7dd04e09-3e4d-4c1b-a110-86458148646b}</Project>
+      <Name>Schemalizer.ProviderModel.PostgreSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.ProviderModel.SqlServer.csproj">
+      <Project>{296790f2-e62e-4031-a397-d57fe0310bc4}</Project>
+      <Name>Schemalizer.ProviderModel.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider\Schemalizer.ProviderModel.csproj">
+      <Project>{D982843D-06FC-4AD4-8339-77703F08528A}</Project>
+      <Name>Schemalizer.ProviderModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Sqlingo\Sqlingo.csproj">
       <Project>{70bde99f-9d08-48e0-970d-6d9f0c2baaf5}</Project>
       <Name>Sqlingo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
+      <Project>{D5B51461-9B78-4D50-A6A2-7D550E311A6E}</Project>
+      <Name>Sqline.ProviderModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>

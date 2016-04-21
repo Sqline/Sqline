@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{296790F2-E62E-4031-A397-D57FE0310BC4}</ProjectGuid>
+    <ProjectGuid>{86677A19-2DAB-4FB7-A362-6E58931031AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Schemalizer.Provider.SqlServer</RootNamespace>
-    <AssemblyName>Schemalizer.Provider.SqlServer</AssemblyName>
+    <RootNamespace>Schemalizer.ProviderModel.MySql</RootNamespace>
+    <AssemblyName>Schemalizer.ProviderModel.MySql</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,6 +36,10 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,24 +50,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlProvider.cs" />
+    <Compile Include="MySqlProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Schemalizer.Base\Schemalizer.Base.csproj">
-      <Project>{150712dc-ed96-4a96-aa20-648de10533de}</Project>
-      <Name>Schemalizer.Base</Name>
+    <ProjectReference Include="..\Schemalizer.Provider\Schemalizer.ProviderModel.csproj">
+      <Project>{d982843d-06fc-4ad4-8339-77703f08528a}</Project>
+      <Name>Schemalizer.ProviderModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Schemalizer.Model\Schemalizer.Model.csproj">
       <Project>{62d5d7a7-c95c-46b4-bb7d-e57361ab8f7d}</Project>
       <Name>Schemalizer.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Schemalizer.Provider\Schemalizer.Provider.csproj">
-      <Project>{d982843d-06fc-4ad4-8339-77703f08528a}</Project>
-      <Name>Schemalizer.Provider</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

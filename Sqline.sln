@@ -23,11 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Model", "Schema
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Base", "Schemalizer\Schemalizer.Base\Schemalizer.Base.csproj", "{150712DC-ED96-4A96-AA20-648DE10533DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider", "Schemalizer\Schemalizer.Provider\Schemalizer.Provider.csproj", "{D982843D-06FC-4AD4-8339-77703F08528A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel", "Schemalizer\Schemalizer.Provider\Schemalizer.ProviderModel.csproj", "{D982843D-06FC-4AD4-8339-77703F08528A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.MySql", "Schemalizer\Schemalizer.Provider.MySql\Schemalizer.Provider.MySql.csproj", "{86677A19-2DAB-4FB7-A362-6E58931031AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel.MySql", "Schemalizer\Schemalizer.Provider.MySql\Schemalizer.ProviderModel.MySql.csproj", "{86677A19-2DAB-4FB7-A362-6E58931031AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.SqlServer", "Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.Provider.SqlServer.csproj", "{296790F2-E62E-4031-A397-D57FE0310BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel.SqlServer", "Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.ProviderModel.SqlServer.csproj", "{296790F2-E62E-4031-A397-D57FE0310BC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ClientFramework", "Sqline\Sqline.ClientFramework\Sqline.ClientFramework.csproj", "{64BA3E92-7C0C-495A-AF06-1976AA2E7B1E}"
 EndProject
@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqlingo", "Sqlingo\Sqlingo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.UnitTests", "Sqline\Sqline.UnitTests\Sqline.UnitTests.csproj", "{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.PostgreSql", "Schemalizer\Schemalizer.Provider.PostgreSql\Schemalizer.Provider.PostgreSql.csproj", "{7DD04E09-3E4D-4C1B-A110-86458148646B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel.PostgreSql", "Schemalizer\Schemalizer.Provider.PostgreSql\Schemalizer.ProviderModel.PostgreSql.csproj", "{7DD04E09-3E4D-4C1B-A110-86458148646B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ProviderModel.PostgreSql", "Sqline\DatabaseProviders\Sqline.ProviderModel.PostgreSql\Sqline.ProviderModel.PostgreSql.csproj", "{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60}"
 EndProject

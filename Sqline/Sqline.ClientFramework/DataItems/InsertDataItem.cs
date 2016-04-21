@@ -1,13 +1,8 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Sqline.ProviderModel;
-using Sqline.ProviderModel.SqlServer;
 
 namespace Sqline.ClientFramework {
 	public abstract class InsertDataItem : BaseDataItem {
@@ -50,8 +45,8 @@ namespace Sqline.ClientFramework {
 			OSql.Append(" (");
 			OSql.Append(FColumns);
 			OSql.Append(") ");
-			if (Provider.Current is SqlServerProvider && FFetchPrimaryKeyValueAfterInsert) {
-				/* TODO: The responsibility of returning the inserted PK value should be implemented in the provider instead */
+			if (Provider.Current.ProviderName == "SqlServer" && FFetchPrimaryKeyValueAfterInsert) {
+				/* HACK, TODO: The responsibility of returning the inserted PK value should be implemented in the provider instead */
 				OSql.Append("OUTPUT inserted.");
 				OSql.Append(FPrimaryKeyColumn);
 				OSql.Append(", 1 ");
@@ -70,11 +65,11 @@ namespace Sqline.ClientFramework {
 			using (IDbCommand OCommand = connection.CreateCommand()) {
 				OCommand.Transaction = transaction;
 				OCommand.CommandText = FSqlStatement;
-				foreach (IBaseParam OParam in FParameters) {					
+				foreach (IBaseParam OParam in FParameters) {				
 					OParam.AddParameter(OCommand);
 				}
-				if (Provider.Current is SqlServerProvider && FFetchPrimaryKeyValueAfterInsert) {
-					/* TODO: The responsibility of returning the inserted PK value should be implemented in the provider instead */
+				if (Provider.Current.ProviderName == "SqlServer" && FFetchPrimaryKeyValueAfterInsert) {
+					/* HACK, TODO: The responsibility of returning the inserted PK value should be implemented in the provider instead */
 					using (IDataReader OReader = OCommand.ExecuteReader()) {
 						if (OReader.Read()) {
 							FInsertedPKValue = OReader.GetValue(0);

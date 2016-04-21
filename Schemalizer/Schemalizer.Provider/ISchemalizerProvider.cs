@@ -2,8 +2,9 @@
 using System;
 using Schemalizer.Model;
 
-namespace Schemalizer.Provider {
+namespace Schemalizer.ProviderModel {
 	public interface ISchemalizerProvider {
+		string ConnectionString { get; set; }
 		void ExtractMetadata(SchemaModel model, string databaseName);
 		bool HasSchemaChanged(SchemaModel model);
 	}

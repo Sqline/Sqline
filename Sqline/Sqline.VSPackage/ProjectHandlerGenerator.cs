@@ -7,8 +7,8 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 using Schemalizer.Model;
-using Schemalizer.Provider.SqlServer;
-using Schemalizer.Provider;
+using Schemalizer.ProviderModel.SqlServer;
+using Schemalizer.ProviderModel;
 using System.Xml.Linq;
 using ConfigModel = Sqline.CodeGeneration.ConfigurationModel;
 

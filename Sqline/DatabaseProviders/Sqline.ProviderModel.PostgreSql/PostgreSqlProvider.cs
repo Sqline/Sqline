@@ -9,8 +9,9 @@ using System.Text;
 namespace Sqline.ProviderModel.PostgreSql {
     public class PostgreSqlProvider : IProvider {
         private Types FTypes = new Types(Assembly.GetExecutingAssembly(), "Sqline.ProviderModel.PostgreSql.Types.xml");
+		public string ProviderName { get; } = "PostgreSql";
 
-        public string IdentifierStartDelimiter {
+		public string IdentifierStartDelimiter {
             get {
                 return "[";
             }

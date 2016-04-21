@@ -4,14 +4,10 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using Schemalizer.Model;
 
-namespace Schemalizer.Provider.MySql {
+namespace Schemalizer.ProviderModel.MySql {
 	public class MySqlProvider : ISchemalizerProvider {
-		private string FConnStr;
 		private Database FDatabase;
-
-		public MySqlProvider(string connstr) {
-			FConnStr = connstr;
-		}
+		public string ConnectionString { get; set; }
 
 		public bool HasSchemaChanged(SchemaModel model) {
 			return true; //TODO: Compare to DB change date
@@ -19,7 +15,7 @@ namespace Schemalizer.Provider.MySql {
 
 		public void ExtractMetadata(SchemaModel model, string databaseName) {
 			FDatabase = model.CreateDatabase(databaseName);
-			using (MySqlConnection OConnection = new MySqlConnection(FConnStr)) {
+			using (MySqlConnection OConnection = new MySqlConnection(ConnectionString)) {
 				using (MySqlCommand OCommand = new MySqlCommand(ExtractSchemaSql, OConnection)) {
 					OConnection.Open();
 					using (IDataReader OReader = OCommand.ExecuteReader()) {

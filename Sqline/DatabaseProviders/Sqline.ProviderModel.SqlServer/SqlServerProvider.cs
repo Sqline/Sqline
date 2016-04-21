@@ -1,4 +1,6 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
+
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
@@ -6,9 +8,10 @@ using System.Text;
 
 namespace Sqline.ProviderModel.SqlServer {
     public class SqlServerProvider : IProvider {
-        private Types FTypes = new Types(Assembly.GetEntryAssembly(), "Sqline.ProviderModel.SqlServer.Types.xml");
+        private Types FTypes = new Types(Assembly.GetExecutingAssembly(), "Sqline.ProviderModel.SqlServer.Types.xml");
+		public string ProviderName { get; } = "SqlServer";
 
-        public string IdentifierStartDelimiter {
+		public string IdentifierStartDelimiter {
             get {
                 return "[";
             }

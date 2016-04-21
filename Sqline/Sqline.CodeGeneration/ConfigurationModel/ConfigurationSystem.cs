@@ -9,7 +9,7 @@ namespace Sqline.CodeGeneration.ConfigurationModel {
 		private DirectoryInfo FProjectDirectory;
 		private Dictionary<string, ConfigurationFile> FConfigurationFiles = new Dictionary<string, ConfigurationFile>();
 
-		public ConfigurationSystem(String projectDirectory) {
+		public ConfigurationSystem(string projectDirectory) {
 			Debug.WriteLine("ConfigurationSystem::ProjectDir: " + projectDirectory);
 			FProjectDirectory = new DirectoryInfo(projectDirectory);
 			SearchConfigurationFiles(FProjectDirectory);
