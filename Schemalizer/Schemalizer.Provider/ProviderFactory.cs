@@ -12,14 +12,19 @@ namespace Schemalizer.ProviderModel {
 				Type OType = OAssembly.GetType("Schemalizer.ProviderModel.PostgreSql.PostgreSqlProvider");
 				return (ISchemalizerProvider)Activator.CreateInstance(OType);
 			}
-			if (name.Equals("MySql", StringComparison.OrdinalIgnoreCase)) {
+			else if (name.Equals("MySql", StringComparison.OrdinalIgnoreCase)) {
 				Assembly OAssembly = Assembly.Load("Schemalizer.ProviderModel.MySql");
 				Type OType = OAssembly.GetType("Schemalizer.ProviderModel.MySql.MySqlProvider");
 				return (ISchemalizerProvider)Activator.CreateInstance(OType);
 			}
-			else {				
-				Assembly OAssembly = Assembly.Load("Schemalizer.ProviderModel.SqlServer");
-				Type OType = OAssembly.GetType("Schemalizer.ProviderModel.SqlServer.SqlServerProvider");
+            else if (name.Equals("SqlServer", StringComparison.OrdinalIgnoreCase)) {
+                Assembly OAssembly = Assembly.Load("Schemalizer.ProviderModel.SqlServer");
+                Type OType = OAssembly.GetType("Schemalizer.ProviderModel.SqlServer.SqlServerProvider");
+                return (ISchemalizerProvider)Activator.CreateInstance(OType);
+            }
+            else {
+				Assembly OAssembly = Assembly.Load($"Schemalizer.ProviderModel.{name}");
+				Type OType = OAssembly.GetType($"Schemalizer.ProviderModel.{name}.{name}Provider");
 				return (ISchemalizerProvider)Activator.CreateInstance(OType);
 			}
 		}
