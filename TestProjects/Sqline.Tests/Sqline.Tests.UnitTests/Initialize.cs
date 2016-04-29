@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sqline.Tests.DataAccess.DataItems;
 using Sqline.Tests.DataAccess;
 using System.Configuration;
 

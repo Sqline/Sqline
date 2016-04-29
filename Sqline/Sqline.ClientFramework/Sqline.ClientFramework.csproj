@@ -113,18 +113,6 @@
     <EmbeddedResource Include="Resources\Sqline.ProviderModel.MySql.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.MySql\Sqline.ProviderModel.MySql.csproj">
-      <Project>{cb384083-8446-492b-8631-3419a404a98e}</Project>
-      <Name>Sqline.ProviderModel.MySql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.PostgreSql\Sqline.ProviderModel.PostgreSql.csproj">
-      <Project>{aec8d5c3-ca86-466f-9ff3-e5a8ce457e60}</Project>
-      <Name>Sqline.ProviderModel.PostgreSql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel.SqlServer\Sqline.ProviderModel.SqlServer.csproj">
-      <Project>{97f2c6a7-5d46-46c8-8fd6-dbbddc14d600}</Project>
-      <Name>Sqline.ProviderModel.SqlServer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
       <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
       <Name>Sqline.ProviderModel</Name>

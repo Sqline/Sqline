@@ -12,7 +12,7 @@ namespace Sqline.VSPackage {
 		private AddinContext FContext;
 		private OutputWindowPane FWindow;
 		private ErrorListProvider FProvider;
-		private Project FProject;
+		private SqlineProject FProject;
 		private IVsSolution FVsSolution;
 		private IVsHierarchy FvsHierarchy;
 		private List<LogEntry> FEntries = new List<LogEntry>();
@@ -27,9 +27,9 @@ namespace Sqline.VSPackage {
 			FVsSolution = (IVsSolution)Package.GetGlobalService(typeof(IVsSolution));
 		}
 
-		public void SetProject(Project project) {
+		public void SetProject(SqlineProject project) {
 			FProject = project;
-			FVsSolution.GetProjectOfUniqueName(FProject.FullName, out FvsHierarchy);
+			FVsSolution.GetProjectOfUniqueName(FProject.Project.FullName, out FvsHierarchy);
 		}
 
 		public void Add(LogEntry entry) {

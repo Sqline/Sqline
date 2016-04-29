@@ -69,7 +69,7 @@ namespace Schemalizer.ProviderModel.PostgreSql {
 								  END) AS IsPrimaryKey,
 							T.table_schema AS SchemaName,
 							T.table_name AS TableName,
-							0 AS TableIsReplicated /* Not supported in this release - please let us know if you find a reliable way to determine if a table takes part (either as Master or Slave) in Replication */
+							0 AS TableIsReplicated, /* Not supported in this release - please let us know if you find a reliable way to determine if a table takes part (either as Master or Slave) in Replication */
 							NULL AS TableCreatedDate, /* Not properly supported by PostgreSql (!) */
 							NULL AS TableLastModifiedDate /* Not properly supported by PostgreSql (!) */
 						FROM information_schema.tables T

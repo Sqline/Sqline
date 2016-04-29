@@ -7,8 +7,9 @@ using EnvDTE80;
 using EnvDTE;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Sqline.ProviderModel;
-using Sqline.ProviderModel.SqlServer;
+using System.IO;
+using Sqline.ClientFramework;
+using ConfigModel = Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.VSPackage {
 	// This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is a package.
@@ -20,9 +21,10 @@ namespace Sqline.VSPackage {
 	[ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}")]
 	[ProvideAutoLoad("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}")]
 	public sealed class SqlinePackage : Package, IDisposable {
+		private SqlineApplication FApplication = new SqlineApplication();
 		private AddinContext FContext;
 		private DocumentEvents FDocumentEvents;
-		private LogWindow FLog;
+		private LogWindow FLog;		
 
 		public SqlinePackage() {
 		}
@@ -42,29 +44,38 @@ namespace Sqline.VSPackage {
 				List<Project> OProjects = new List<Project>();
 				FindSqlineProjects(OProjects);
 				foreach (Project OProject in OProjects) {
-					FLog.SetProject(OProject);
-					GenerateDataItems(OProject);
-					GenerateProjectHandler(OProject);
+					try {						
+						Debug.WriteLine("");
+						Debug.WriteLine("---------------------------------------------");
+						Debug.WriteLine("Processing Sqline Project: " + OProject.Name);
+						Debug.WriteLine("---------------------------------------------");
+						SqlineProject OSqlineProject = new SqlineProject(FApplication, OProject);
+						FLog.SetProject(OSqlineProject);
+						GenerateProjectHandler(OSqlineProject);
+						GenerateDataItems(OSqlineProject);						
+					}
+					catch (Exception ex) {
+						FLog.Add(ex);
+					}
 				}
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				FLog.Add(ex);
 			}
 			FLog.UpdateView();
 		}
 
-		private void GenerateDataItems(Project project) {
+		private void GenerateDataItems(SqlineProject project) {
 			DataItemGenerator OGenerator = new DataItemGenerator(Context, project);
 			OGenerator.Generate();
 			foreach (string OFile in OGenerator.OutputFiles) {
-				ProjectItem OItem = project.ProjectItems.AddFromFile(OFile);
+				ProjectItem OItem = project.Project.ProjectItems.AddFromFile(OFile);
 			}
 		}
 
-		private void GenerateProjectHandler(Project project) {
+		private void GenerateProjectHandler(SqlineProject project) {
 			ProjectHandlerGenerator OProjectHandlerGenerator = new ProjectHandlerGenerator(Context, project);
 			OProjectHandlerGenerator.Generate();
-			foreach (ProjectItem OProjectItem in project.ProjectItems) {
+			foreach (ProjectItem OProjectItem in project.Project.ProjectItems) {
 				if (OProjectItem.Name.Equals("sqline.config", StringComparison.OrdinalIgnoreCase)) {
 					foreach (string OFile in OProjectHandlerGenerator.OutputFiles) {
 						ProjectItem OItem = OProjectItem.ProjectItems.AddFromFile(OFile);
@@ -103,16 +114,25 @@ namespace Sqline.VSPackage {
 		private void OnDocumentSaved(Document document) {
 			FLog.Clear();
 			try {
-				if (document.FullName.EndsWith(".items")) {
-					FLog.SetProject(document.ProjectItem.ContainingProject);
-					ItemFileGenerator OGenerator = new ItemFileGenerator(Context, document);
+				if (document.FullName.EndsWith(".items")) {					
+					SqlineProject OProject = new SqlineProject(FApplication, document.ProjectItem.ContainingProject);
+					FLog.SetProject(OProject);
+					Debug.WriteLine("");
+					Debug.WriteLine("---------------------------------------------");
+					Debug.WriteLine("Processing Sqline File: " + document.Name);
+					Debug.WriteLine("---------------------------------------------");
+					ItemFileGenerator OGenerator = new ItemFileGenerator(Context, OProject, document);
+					Debug.WriteLine("Item generator::Initialized");
 					OGenerator.Generate();
+					Debug.WriteLine("Item generator::Generated");
 					foreach (string OFile in OGenerator.OutputFiles) {
 						ProjectItem OItem = document.ProjectItem.ProjectItems.AddFromFile(OFile);
 					}
+					Debug.WriteLine("Item generator::Added files to project");
 				}
 			}
 			catch (Exception ex) {
+				Debug.WriteLine(ex);
 				FLog.Add(ex);
 			}
 			FLog.UpdateView();

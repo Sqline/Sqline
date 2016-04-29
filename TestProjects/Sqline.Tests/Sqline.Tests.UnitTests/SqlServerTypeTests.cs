@@ -7,10 +7,11 @@ using System.Diagnostics;
 
 namespace Sqline.Tests.UnitTests {
 	[TestClass]
-	public class TypeTests : BaseTest {
+	public class SqlServerSqlServerTypeTests : BaseTest {
+		/*
 
 		[TestMethod]
-		public void TypeTest_Bigint() {
+		public void SqlServerTypeTest_Bigint() {
 			long value = 15444444444545554;
 			DeleteTypeTest(x => x.WhereBigintColumn = x.WhereBigintColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { BigintColumn = value });
@@ -19,7 +20,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Binary() {
+		public void SqlServerTypeTest_Binary() {
 			byte[] value = new byte[] { 0x16 };
 			DeleteTypeTest(x => x.WhereBinaryColumn = x.WhereBinaryColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { BinaryColumn = value });
@@ -28,7 +29,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Bit() {
+		public void SqlServerTypeTest_Bit() {
 			bool value = true;
 			DeleteTypeTest(x => x.WhereBitColumn = x.WhereBitColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { BitColumn = value });
@@ -37,7 +38,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Char() {
+		public void SqlServerTypeTest_Char() {
 			string value = "abcdefghij";
 			DeleteTypeTest(x => x.WhereCharColumn = x.WhereCharColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { CharColumn = value });
@@ -46,7 +47,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Date() {
+		public void SqlServerTypeTest_Date() {
 			DateTime value = DateTime.UtcNow.Date;
 			DeleteTypeTest(x => x.WhereDateColumn = x.WhereDateColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { DateColumn = value });
@@ -55,7 +56,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_DateTime() {
+		public void SqlServerTypeTest_DateTime() {
 			DateTime value = DateTime.UtcNow;
 			value = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second);
 			DeleteTypeTest(x => x.WhereDateTimeColumn = x.WhereDateTimeColumn != DBNull.Value);
@@ -65,7 +66,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_DateTime2() {
+		public void SqlServerTypeTest_DateTime2() {
 			DateTime value = DateTime.UtcNow;
 			value = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second);
 			DeleteTypeTest(x => x.WhereDateTime2Column = x.WhereDateTime2Column != DBNull.Value);
@@ -75,7 +76,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_DateTimeOffset() {
+		public void SqlServerTypeTest_DateTimeOffset() {
 			DateTimeOffset value = DateTimeOffset.UtcNow;
 			DeleteTypeTest(x => x.WhereDateTimeOffsetColumn = x.WhereDateTimeOffsetColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { DateTimeOffsetColumn = value });
@@ -84,7 +85,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Decimal() {
+		public void SqlServerTypeTest_Decimal() {
 			decimal value = 3.1415926536m;
 			DeleteTypeTest(x => x.WhereDecimalColumn = x.WhereDecimalColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { DecimalColumn = value });
@@ -93,7 +94,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_FileStream() {
+		public void SqlServerTypeTest_FileStream() {
 			byte[] value = new byte[] { 0x16 };
 			DeleteTypeTest(x => x.WhereFileStreamColumn = x.WhereFileStreamColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { FileStreamColumn = value });
@@ -102,7 +103,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Float() {
+		public void SqlServerTypeTest_Float() {
 			double value = 3.1415926536;
 			DeleteTypeTest(x => x.WhereFloatColumn = x.WhereFloatColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { FloatColumn = value });
@@ -111,7 +112,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Image() {
+		public void SqlServerTypeTest_Image() {
 			byte[] value = new byte[] { 0x16 };
 			DeleteTypeTest(x => x.WhereImageColumn = x.WhereImageColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { ImageColumn = value });
@@ -120,7 +121,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Int() {
+		public void SqlServerTypeTest_Int() {
 			int value = 2104589548;
 			DeleteTypeTest(x => x.WhereIntColumn = x.WhereIntColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { IntColumn = value });
@@ -129,7 +130,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Money() {
+		public void SqlServerTypeTest_Money() {
 			decimal value = 3.1416m;
 			DeleteTypeTest(x => x.WhereMoneyColumn = x.WhereMoneyColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { MoneyColumn = value });
@@ -138,7 +139,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_NChar() {
+		public void SqlServerTypeTest_NChar() {
 			string value = "abcdefgæøå";
 			DeleteTypeTest(x => x.WhereNCharColumn = x.WhereNCharColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { NCharColumn = value });
@@ -147,7 +148,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_NText() {
+		public void SqlServerTypeTest_NText() {
 			string value = "abcæøå";
 			DeleteTypeTest(x => x.WhereNTextColumn = x.WhereNTextColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { NTextColumn = value });
@@ -156,7 +157,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Numeric() {
+		public void SqlServerTypeTest_Numeric() {
 			decimal value = 3.1416m;
 			DeleteTypeTest(x => x.WhereNumericColumn = x.WhereNumericColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { NumericColumn = value });
@@ -165,7 +166,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_NVarChar() {
+		public void SqlServerTypeTest_NVarChar() {
 			string value = "abcæøå";
 			DeleteTypeTest(x => x.WhereNVarCharColumn = x.WhereNVarCharColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { NVarCharColumn = value });
@@ -174,7 +175,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Real() {
+		public void SqlServerTypeTest_Real() {
 			float value = 3.14f;
 			DeleteTypeTest(x => x.WhereRealColumn = x.WhereRealColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { RealColumn = value });
@@ -183,7 +184,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_SmallDateTime() {
+		public void SqlServerTypeTest_SmallDateTime() {
 			DateTime value = DateTime.UtcNow;
 			value = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0);
 			DeleteTypeTest(x => x.WhereSmallDateTimeColumn = x.WhereSmallDateTimeColumn != DBNull.Value);
@@ -193,7 +194,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_SmallInt() {
+		public void SqlServerTypeTest_SmallInt() {
 			short value = 16588;
 			DeleteTypeTest(x => x.WhereSmallIntColumn = x.WhereSmallIntColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { SmallIntColumn = value });
@@ -202,7 +203,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_SmallMoney() {
+		public void SqlServerTypeTest_SmallMoney() {
 			decimal value = 16588;
 			DeleteTypeTest(x => x.WhereSmallMoneyColumn = x.WhereSmallMoneyColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { SmallMoneyColumn = value });
@@ -211,7 +212,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Text() {
+		public void SqlServerTypeTest_Text() {
 			string value = "abc";
 			DeleteTypeTest(x => x.WhereTextColumn = x.WhereTextColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { TextColumn = value });
@@ -220,7 +221,7 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Time() {
+		public void SqlServerTypeTest_Time() {
 			TimeSpan value = DateTime.UtcNow - DateTime.Now.AddHours(-2);
 			DeleteTypeTest(x => x.WhereTimeColumn = x.WhereTimeColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { TimeColumn = value });
@@ -229,45 +230,46 @@ namespace Sqline.Tests.UnitTests {
 		}
 
 		[TestMethod]
-		public void TypeTest_Timestamp() {
+		public void SqlServerTypeTest_Timestamp() {
 			//TODO: Consider removing this type from the Value Property mappings and only supply a Where Property
 			//      as this type cannot be explicitly inserted or updated			
 			Assert.IsTrue(DA.Types.GetTimestamp().Length > 0);
 		}
 
 		[TestMethod]
-		public void TypeTest_TinyInt() {
+		public void SqlServerTypeTest_TinyInt() {
 			DeleteTypeTest(x => x.WhereTinyIntColumn = x.WhereTinyIntColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { TinyIntColumn = 255 });
 			UpdateTypeTest(new TypeTestUpdate { TinyIntColumn = 255 }, x => x.WhereTinyIntColumn = x.WhereTinyIntColumn != DBNull.Value);
 		}
 
 		[TestMethod]
-		public void TypeTest_UniqueIdentifier() {
+		public void SqlServerTypeTest_UniqueIdentifier() {
 			DeleteTypeTest(x => x.WhereUniqueIdentifierColumn = x.WhereUniqueIdentifierColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { UniqueIdentifierColumn = Guid.NewGuid() });
 			UpdateTypeTest(new TypeTestUpdate { UniqueIdentifierColumn = Guid.NewGuid() }, x => x.WhereUniqueIdentifierColumn = x.WhereUniqueIdentifierColumn != DBNull.Value);
 		}
 
 		[TestMethod]
-		public void TypeTest_VarBinary() {
+		public void SqlServerTypeTest_VarBinary() {
 			DeleteTypeTest(x => x.WhereVarBinaryColumn = x.WhereVarBinaryColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { VarBinaryColumn = new byte[] { 0x16 } });
 			UpdateTypeTest(new TypeTestUpdate { VarBinaryColumn = new byte[] { 0x16 } }, x => x.WhereVarBinaryColumn = x.WhereVarBinaryColumn != DBNull.Value);
 		}
 
 		[TestMethod]
-		public void TypeTest_VarChar() {
+		public void SqlServerTypeTest_VarChar() {
 			DeleteTypeTest(x => x.WhereVarCharColumn = x.WhereVarCharColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { VarCharColumn = "abc" });
 			UpdateTypeTest(new TypeTestUpdate { VarCharColumn = "abc" }, x => x.WhereVarCharColumn = x.WhereVarCharColumn != DBNull.Value);
 		}
 
 		[TestMethod]
-		public void TypeTest_Xml() {
+		public void SqlServerTypeTest_Xml() {
 			DeleteTypeTest(x => x.WhereXmlColumn = x.WhereXmlColumn != DBNull.Value);
 			InsertTypeTest(new TypeTestInsert { XmlColumn = @"<root></root>" });
 			UpdateTypeTest(new TypeTestUpdate { XmlColumn = @"<root></root>" }, x => x.WhereXmlColumn = x.WhereXmlColumn != DBNull.Value);
 		}
+		*/
 	}
 }

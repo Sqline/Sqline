@@ -27,6 +27,7 @@ namespace T4Compiler.Generator {
 			FParams.GenerateExecutable = false;
 			FParams.GenerateInMemory = false;
 			FParams.TreatWarningsAsErrors = false;
+			FParams.IncludeDebugInformation = true;
 			FParams.WarningLevel = 4;
 			CSharpCodeProvider OProvider = new CSharpCodeProvider(new Dictionary<string, string> { { "CompilerVersion", "v4.0" } });
 			return OProvider.CompileAssemblyFromSource(FParams, FSourceCodes.ToArray());

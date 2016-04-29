@@ -9,9 +9,12 @@ namespace Sqline.ClientFramework {
 	public class SqlineApplication {
 		private string FConnectionString;
 
-		public void Initialize(string connectionString, string provider = "SqlServer") {
-			ConnectionString = connectionString;
+		public SqlineApplication() {
 			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+		}
+
+		public void Initialize(string connectionString, string provider = "SqlServer") {
+			ConnectionString = connectionString;			
 			Sqline.ProviderModel.Provider.Initialize(ProviderFactory.Create(provider));
 		}
 

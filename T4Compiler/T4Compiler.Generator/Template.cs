@@ -108,9 +108,11 @@ namespace T4Compiler.Generator {
 
 		public string InvokeTemplate() {
 			ICodeTemplate OCodeTemplate = (ICodeTemplate)Activator.CreateInstance(FType);
+			System.Diagnostics.Debug.WriteLine("Template::Instance Created");
 			foreach (KeyValuePair<string, object> pair in FParameters) {
 				OCodeTemplate.SetParameter(pair.Key, pair.Value);
 			}
+			System.Diagnostics.Debug.WriteLine("Template::Parameters Added");
 			return OCodeTemplate.Generate();
 		}
 

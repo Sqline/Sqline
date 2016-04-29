@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Sqline.Tests.UnitTests {
 	public abstract class BaseTest {
-
 		public void InsertTypeTest(TypeTestInsert insert) {
 			Debug.WriteLine(insert.GetGeneratedStatement());
 			int OAffected = insert.Execute();

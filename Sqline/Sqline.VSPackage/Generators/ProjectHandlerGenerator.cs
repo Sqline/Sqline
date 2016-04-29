@@ -13,56 +13,33 @@ using System.Xml.Linq;
 using ConfigModel = Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.VSPackage {
-	internal class DataItemGenerator {
+	internal class ProjectHandlerGenerator {
 		private AddinContext FContext;
-		private Project FProject;
+		private SqlineProject FProject;
 		private List<string> FOutputFiles = new List<string>();
 
-		public DataItemGenerator(AddinContext context, Project project) {
+		public ProjectHandlerGenerator(AddinContext context, SqlineProject project) {
 			FContext = context;
 			FProject = project;
 		}
 
 		public void Generate() {
-			string ODatabaseFilePath = ProcessShemaInfo();
-			GenerateDataItems(ODatabaseFilePath);
-		}
-
-		private string ProcessShemaInfo() {
-			ConfigModel.ConfigurationSystem OConfigurationSystem = new ConfigModel.ConfigurationSystem(ProjectDir);
-			ConfigModel.Configuration OConfiguration = OConfigurationSystem.GetConfigurationFor(ProjectDir);
-			string ODatabaseFilePath = Path.Combine(ProjectDir, "Database.xdml");
-			SchemaModel OModel = SchemaModel.Load(ODatabaseFilePath);
-			ISchemalizerProvider OProvider = ProviderFactory.Create(OConfiguration.ConnectionString.Provider);
-			OProvider.ConnectionString = OConfiguration.ConnectionString.Value;
-			if (OModel == null || OProvider.HasSchemaChanged(OModel)) {
-				OModel = new SchemaModel();
-				OProvider.ExtractMetadata(OModel, "Sqline");
-				XElement OElement = OModel.ToXElement();
-				OElement.Save(ODatabaseFilePath);
-				FOutputFiles.Add(ODatabaseFilePath);
-			}
-			return ODatabaseFilePath;
-		}
-
-		private void GenerateDataItems(string databaseFilePath) {
-			string OTemplatePath = FContext.ResolvePath("/Templates/DataItem.t4");
-			Debug.WriteLine("GenerateDataItems: " + OTemplatePath);
+			string OTemplatePath = FContext.ResolvePath("/Templates/ProjectHandler.t4");
+			Debug.WriteLine("GenerateProjectHandler: " + OTemplatePath);
 			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };
 			Template OTemplate = new Template(OTemplatePath, OOptions);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
-			OTemplate.Parameters.Add("DatabaseFilePath", databaseFilePath);
 			try {
 				OTemplate.Process();
 				string OContent = OTemplate.InvokeTemplate();
-				string OOutputFile = Path.GetFullPath(ProjectDir + "/" + "DataItems" + OTemplate.Extension);
+				string OOutputFile = Path.GetFullPath(ProjectDir + "/Sqline.Handler" + OTemplate.Extension);
 				WriteToFile(OOutputFile, OContent, OTemplate.Encoding);
 				FOutputFiles.Add(OOutputFile);
 			}
 			finally {
 				if (OTemplate.Debug) {
-					string OSourceFile = Path.GetFullPath(ProjectDir + "/" + "DataItems" + ".DataItemSource" + OTemplate.Extension);
+					string OSourceFile = Path.GetFullPath(ProjectDir + "/Sqline.Handler" + ".Source" + OTemplate.Extension);
 					WriteToFile(OSourceFile, OTemplate.GeneratedSourceCode, Encoding.UTF8);
 				}
 			}
@@ -70,7 +47,7 @@ namespace Sqline.VSPackage {
 
 		public string ProjectDir {
 			get {
-				return new FileInfo(FProject.FullName).DirectoryName;
+				return new FileInfo(FProject.Project.FullName).DirectoryName;
 			}
 		}
 

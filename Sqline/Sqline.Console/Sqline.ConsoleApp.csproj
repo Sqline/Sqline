@@ -76,7 +76,7 @@
       <Name>Sqlingo</Name>
     </ProjectReference>
     <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
-      <Project>{D5B51461-9B78-4D50-A6A2-7D550E311A6E}</Project>
+      <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
       <Name>Sqline.ProviderModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">

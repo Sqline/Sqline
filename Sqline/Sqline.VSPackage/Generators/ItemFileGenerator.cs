@@ -11,12 +11,14 @@ using Sqline.Base;
 namespace Sqline.VSPackage {
 	internal class ItemFileGenerator {
 		private AddinContext FContext;
+		private SqlineProject FProject;
 		private Document FDocument;
 		private FileInfo FFileInfo;
 		private List<string> FOutputFiles = new List<string>();
 
-		public ItemFileGenerator(AddinContext context, Document document) {
+		public ItemFileGenerator(AddinContext context, SqlineProject project, Document document) {
 			FContext = context;
+			FProject = project;
 			FDocument = document;
 			FFileInfo = new FileInfo(FDocument.FullName).GetCorrectlyCasedFileInfo();
 		}
@@ -26,12 +28,6 @@ namespace Sqline.VSPackage {
 			GenerateMethods();
 		}
 
-		public string ProjectDir {
-			get {
-				return new FileInfo(FDocument.ProjectItem.ContainingProject.FullName).DirectoryName;
-			}
-		}
-
 		private void GenerateViewItems() {
 			string OTemplatePath = FContext.ResolvePath("/Templates/ViewItem.t4");
 			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
@@ -39,11 +35,14 @@ namespace Sqline.VSPackage {
 			Template OTemplate = new Template(OTemplatePath, OOptions);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ItemFilename", FDocument.FullName);
-			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
+			OTemplate.Parameters.Add("ProjectDir", FProject.ProjectDir);
 			//TODO: Add API object to pass information back to VSPlugin (Info, Warnings, Errors)
 			try {
+				Debug.WriteLine("GenerateViewItems::Template.Process");
 				OTemplate.Process();
+				Debug.WriteLine("GenerateViewItems::Template.Processed Successfully");
 				string OContent = OTemplate.InvokeTemplate();
+				Debug.WriteLine("GenerateViewItems::Template Invoked Successfully");
 				string OOutputFile = Path.GetFullPath(Directory + "/" + FileNameWithoutExtension + OTemplate.Extension);
 				WriteToFile(OOutputFile, OContent, OTemplate.Encoding);
 				FOutputFiles.Add(OOutputFile);
@@ -59,12 +58,12 @@ namespace Sqline.VSPackage {
 
 		private void GenerateMethods() {
 			string OTemplatePath = FContext.ResolvePath("/Templates/ItemMethods.t4");
-			Debug.WriteLine("GenerateViewItems: " + OTemplatePath);
+			Debug.WriteLine("GenerateMethods: " + OTemplatePath);
 			TemplateOptions OOptions = new TemplateOptions { RemoveWhitespaceStatementLines = true, AssemblyResolveDirectory = FContext.PackageDirectory };
 			Template OTemplate = new Template(OTemplatePath, OOptions);
 			OTemplate.Parameters.Add("Filename", OTemplatePath);
 			OTemplate.Parameters.Add("ItemFilename", FDocument.FullName);
-			OTemplate.Parameters.Add("ProjectDir", ProjectDir);
+			OTemplate.Parameters.Add("ProjectDir", FProject.ProjectDir);
 			try {
 				OTemplate.Process();
 				string OContent = OTemplate.InvokeTemplate();

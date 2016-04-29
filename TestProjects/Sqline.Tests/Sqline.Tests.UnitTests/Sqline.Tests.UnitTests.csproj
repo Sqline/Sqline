@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Common\BaseTest.cs" />
     <Compile Include="Initialize.cs" />
-    <Compile Include="TypeTests.cs" />
+    <Compile Include="SqlServerTypeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

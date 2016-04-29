@@ -4,7 +4,7 @@ using System.Xml.Linq;
 namespace Sqline.CodeGeneration.ConfigurationModel {
 	public class ConnectionString {
 		private string FValue = "";
-		private string FProvider = "";
+		private string FProvider = "SqlServer";
 
 		public ConnectionString() {
 		}

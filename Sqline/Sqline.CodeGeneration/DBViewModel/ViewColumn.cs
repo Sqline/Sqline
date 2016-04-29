@@ -7,7 +7,7 @@ using Sqline.ProviderModel;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class ViewColumn {
-		private OrderedDictionary<String, ViewDatabase> FDatabaseRelationships = new OrderedDictionary<String, ViewDatabase>();
+		private OrderedDictionary<string, ViewDatabase> FDatabaseRelationships = new OrderedDictionary<string, ViewDatabase>();
 		private Column FBase;
 		private ITypeMapping FTypeMapping;
 		
@@ -25,19 +25,19 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
-		public String Name {
+		public string Name {
 			get {
 				return FBase.Name;
 			}
 		}
 
-		public String DataType {
+		public string DataType {
 			get {
 				return FBase.DataType;
 			}
 		}
 
-		public String CsType {
+		public string CsType {
 			get {
 				if (FBase.Nullable) {
 					return FTypeMapping.CSNullable;
@@ -46,7 +46,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
-		public String ParamType {
+		public string ParamType {
 			get {
 				if (FBase.Nullable) {
 					return "NullableValueParam<" + CsType + ">";
@@ -57,7 +57,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
-		public String WhereType {
+		public string WhereType {
 			get {
 				if (FBase.Nullable) {
 					return "NullableWhereParam<" + CsType + ">";
@@ -74,7 +74,7 @@ namespace Sqline.CodeGeneration.ViewModel {
 			}
 		}
 
-		public String DefaultValue {
+		public string DefaultValue {
 			get {
 				return FBase.DefaultValue;
 			}
