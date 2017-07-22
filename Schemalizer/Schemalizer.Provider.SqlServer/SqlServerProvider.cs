@@ -18,8 +18,7 @@ namespace Schemalizer.ProviderModel.SqlServer {
 		public void ExtractMetadata(SchemaModel model, string databaseName) {
 			FDatabase = model.CreateDatabase(databaseName);
 			using (SqlConnection OConnection = new SqlConnection(ConnectionString)) {
-				using (SqlCommand OCommand = new SqlCommand(ExtractSchemaSql, OConnection)) {
-					Debug.WriteLine("Extracting database schema info");
+				using (SqlCommand OCommand = new SqlCommand(ExtractSchemaSql, OConnection)) {					
 					OConnection.QuickOpen(OConnection.ConnectionTimeout);
 					using (IDataReader OReader = OCommand.ExecuteReader()) {
 						while (OReader.Read()) {

@@ -7,8 +7,7 @@ using System.Diagnostics;
 namespace Schemalizer.ProviderModel {
 	public class ProviderFactory {
 
-		public static ISchemalizerProvider Create(string name) {
-			Debug.WriteLine(Assembly.GetExecutingAssembly().CodeBase);
+		public static ISchemalizerProvider Create(string name) {			
 			Debug.WriteLine("Schemalizer::ProviderFactory::Create: " + name);
 			if (name.Equals("PostgreSql", StringComparison.OrdinalIgnoreCase)) {
 				Assembly OAssembly = Assembly.Load("Schemalizer.ProviderModel.PostgreSql");

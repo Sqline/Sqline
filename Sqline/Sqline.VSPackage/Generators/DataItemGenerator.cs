@@ -36,8 +36,7 @@ namespace Sqline.VSPackage {
 			Debug.WriteLine("DataItemGenerator::Created Provider Successfully");
 			OProvider.ConnectionString = FProject.Configuration.ConnectionString.Value;
 			if (OModel == null || OProvider.HasSchemaChanged(OModel)) {
-				OModel = new SchemaModel();
-				Debug.WriteLine("DataItemGenerator::Extracting Metadata");
+				OModel = new SchemaModel();				
 				OProvider.ExtractMetadata(OModel, "Sqline");
 				Debug.WriteLine("DataItemGenerator::Extracting Metadata Successfully");
 				XElement OElement = OModel.ToXElement();
