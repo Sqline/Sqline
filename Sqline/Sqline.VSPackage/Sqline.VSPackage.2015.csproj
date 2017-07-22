@@ -1,9 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -167,6 +187,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Packages\Sqline.ClientFramework.0.1.3.nupkg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -226,13 +249,13 @@
       <Project>{62d5d7a7-c95c-46b4-bb7d-e57361ab8f7d}</Project>
       <Name>Schemalizer.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.Provider.SqlServer.csproj">
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.ProviderModel.SqlServer.csproj">
       <Project>{296790f2-e62e-4031-a397-d57fe0310bc4}</Project>
-      <Name>Schemalizer.Provider.SqlServer</Name>
+      <Name>Schemalizer.ProviderModel.SqlServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider\Schemalizer.Provider.csproj">
+    <ProjectReference Include="..\..\Schemalizer\Schemalizer.Provider\Schemalizer.ProviderModel.csproj">
       <Project>{d982843d-06fc-4ad4-8339-77703f08528a}</Project>
-      <Name>Schemalizer.Provider</Name>
+      <Name>Schemalizer.ProviderModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\T4Compiler\T4Compiler.Generator\T4Compiler.Generator.csproj">
       <Project>{fe5b2c8e-4868-4e13-aadc-3a284f49473c}</Project>
@@ -251,7 +274,18 @@
       <Name>Sqline.CodeGeneration</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

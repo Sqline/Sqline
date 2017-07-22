@@ -1,17 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Schemalizer", "!Schemalizer", "{F6CF7038-73FC-4435-8D0F-CE0765615DA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!T4Compiler", "!T4Compiler", "{C03395F8-90B0-4613-A429-8510D1B20747}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseProviders", "DatabaseProviders", "{50ABFB38-1405-4995-82F6-76E7E1CEFD9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Sqlingo", "!Sqlingo", "{F48FE7F4-DBE4-4BD5-8D84-8F76FD25E228}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.CodeGeneration", "Sqline\Sqline.CodeGeneration\Sqline.CodeGeneration.csproj", "{CF164BBD-2F0D-4719-A8C1-FB25A5AC53A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ConsoleApp", "Sqline\Sqline.Console\Sqline.ConsoleApp.csproj", "{DD3BD373-7212-4F55-AAE1-CB02E8ADBAC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Compiler.Generator", "T4Compiler\T4Compiler.Generator\T4Compiler.Generator.csproj", "{FE5B2C8E-4868-4E13-AADC-3A284F49473C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Schemalizer", "!Schemalizer", "{F6CF7038-73FC-4435-8D0F-CE0765615DA4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!T4Compiler", "!T4Compiler", "{C03395F8-90B0-4613-A429-8510D1B20747}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Compiler.ConsoleApp", "T4Compiler\T4Compiler.Console\T4Compiler.ConsoleApp.csproj", "{E19BF692-711A-4976-AAF6-4E92822956D8}"
 EndProject
@@ -19,17 +23,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Model", "Schema
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Base", "Schemalizer\Schemalizer.Base\Schemalizer.Base.csproj", "{150712DC-ED96-4A96-AA20-648DE10533DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider", "Schemalizer\Schemalizer.Provider\Schemalizer.Provider.csproj", "{D982843D-06FC-4AD4-8339-77703F08528A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel", "Schemalizer\Schemalizer.Provider\Schemalizer.ProviderModel.csproj", "{D982843D-06FC-4AD4-8339-77703F08528A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.MySql", "Schemalizer\Schemalizer.Provider.MySql\Schemalizer.Provider.MySql.csproj", "{86677A19-2DAB-4FB7-A362-6E58931031AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel.MySql", "Schemalizer\Schemalizer.Provider.MySql\Schemalizer.ProviderModel.MySql.csproj", "{86677A19-2DAB-4FB7-A362-6E58931031AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.Provider.SqlServer", "Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.Provider.SqlServer.csproj", "{296790F2-E62E-4031-A397-D57FE0310BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel.SqlServer", "Schemalizer\Schemalizer.Provider.SqlServer\Schemalizer.ProviderModel.SqlServer.csproj", "{296790F2-E62E-4031-A397-D57FE0310BC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ClientFramework", "Sqline\Sqline.ClientFramework\Sqline.ClientFramework.csproj", "{64BA3E92-7C0C-495A-AF06-1976AA2E7B1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ProviderModel", "Sqline\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj", "{D5B51461-9B78-4D50-A6A2-7D550E311A6E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseProviders", "DatabaseProviders", "{50ABFB38-1405-4995-82F6-76E7E1CEFD9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ProviderModel.SqlServer", "Sqline\DatabaseProviders\Sqline.ProviderModel.SqlServer\Sqline.ProviderModel.SqlServer.csproj", "{97F2C6A7-5D46-46C8-8FD6-DBBDDC14D600}"
 EndProject
@@ -37,13 +39,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ProviderModel.MySql"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.Base", "Sqline\Sqline.Base\Sqline.Base.csproj", "{C347571C-CBB9-41E4-883E-DF56868B6716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.VSPackage", "Sqline\Sqline.VSPackage\Sqline.VSPackage.2013.csproj", "{38EE5F34-5DC9-42AC-AA96-B1410770A39A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Sqlingo", "!Sqlingo", "{F48FE7F4-DBE4-4BD5-8D84-8F76FD25E228}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.VSPackage.2015", "Sqline\Sqline.VSPackage\Sqline.VSPackage.2015.csproj", "{38EE5F34-5DC9-42AC-AA96-B1410770A39A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqlingo", "Sqlingo\Sqlingo.csproj", "{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.UnitTests", "Sqline\Sqline.UnitTests\Sqline.UnitTests.csproj", "{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schemalizer.ProviderModel.PostgreSql", "Schemalizer\Schemalizer.Provider.PostgreSql\Schemalizer.ProviderModel.PostgreSql.csproj", "{7DD04E09-3E4D-4C1B-A110-86458148646B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.ProviderModel.PostgreSql", "Sqline\DatabaseProviders\Sqline.ProviderModel.PostgreSql\Sqline.ProviderModel.PostgreSql.csproj", "{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +123,14 @@ Global
 		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08BF31F9-A7CC-4755-AFA2-C449F0AFC5A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD04E09-3E4D-4C1B-A110-86458148646B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD04E09-3E4D-4C1B-A110-86458148646B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD04E09-3E4D-4C1B-A110-86458148646B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD04E09-3E4D-4C1B-A110-86458148646B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,5 +147,7 @@ Global
 		{97F2C6A7-5D46-46C8-8FD6-DBBDDC14D600} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 		{CB384083-8446-492B-8631-3419A404A98E} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5} = {F48FE7F4-DBE4-4BD5-8D84-8F76FD25E228}
+		{7DD04E09-3E4D-4C1B-A110-86458148646B} = {F6CF7038-73FC-4435-8D0F-CE0765615DA4}
+		{AEC8D5C3-CA86-466F-9FF3-E5A8CE457E60} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 	EndGlobalSection
 EndGlobal

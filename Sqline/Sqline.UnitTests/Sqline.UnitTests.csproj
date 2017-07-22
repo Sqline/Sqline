@@ -86,9 +86,9 @@
       <Project>{cf164bbd-2f0d-4719-a8c1-fb25a5ac53a5}</Project>
       <Name>Sqline.CodeGeneration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sqline.VSPackage\Sqline.VSPackage.csproj">
+    <ProjectReference Include="..\Sqline.VSPackage\Sqline.VSPackage.2015.csproj">
       <Project>{38ee5f34-5dc9-42ac-aa96-b1410770a39a}</Project>
-      <Name>Sqline.VSPackage</Name>
+      <Name>Sqline.VSPackage.2015</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Sqlingo\Sqlingo.csproj">
       <Project>{70bde99f-9d08-48e0-970d-6d9f0c2baaf5}</Project>
