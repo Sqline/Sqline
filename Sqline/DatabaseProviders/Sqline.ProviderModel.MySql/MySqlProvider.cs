@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using Schemalizer.Model;
 using System.Text;
 using System.Reflection;
+using Sqline.ClientFramework;
 
 namespace Sqline.ProviderModel.MySql {
 	public class MySqlProvider : IProvider {

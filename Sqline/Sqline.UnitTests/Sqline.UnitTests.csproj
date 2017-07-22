@@ -74,10 +74,6 @@
       <Project>{d982843d-06fc-4ad4-8339-77703f08528a}</Project>
       <Name>Schemalizer.ProviderModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sqline.Base\Sqline.Base.csproj">
-      <Project>{c347571c-cbb9-41e4-883e-df56868b6716}</Project>
-      <Name>Sqline.Base</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
       <Name>Sqline.ClientFramework</Name>
@@ -85,10 +81,6 @@
     <ProjectReference Include="..\Sqline.CodeGeneration\Sqline.CodeGeneration.csproj">
       <Project>{cf164bbd-2f0d-4719-a8c1-fb25a5ac53a5}</Project>
       <Name>Sqline.CodeGeneration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sqline.VSPackage\Sqline.VSPackage.2015.csproj">
-      <Project>{38ee5f34-5dc9-42ac-aa96-b1410770a39a}</Project>
-      <Name>Sqline.VSPackage.2015</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Sqlingo\Sqlingo.csproj">
       <Project>{70bde99f-9d08-48e0-970d-6d9f0c2baaf5}</Project>

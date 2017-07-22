@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Sqline.ProviderModel;
 
 namespace Sqline.ClientFramework {
-	public class OperationBatch<T> where T : BaseDataItem {
+    public class OperationBatch<T> where T : BaseDataItem {
 		private List<T> FOperations = new List<T>();
 		private int FBatchSize = 100;
 

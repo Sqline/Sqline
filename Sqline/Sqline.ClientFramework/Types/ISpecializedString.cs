@@ -1,11 +1,7 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Sqline.ClientFramework {
-	public interface ISpecializedString {
+    public interface ISpecializedString {
 		string Value { get; }
 	}
 }

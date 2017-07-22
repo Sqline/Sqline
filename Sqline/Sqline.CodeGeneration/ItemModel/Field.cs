@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Xml.Linq;
-using Sqline.ProviderModel;
+using Sqline.ClientFramework;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class Field : ICloneable {

@@ -2,11 +2,10 @@
 
 using System;
 using System.Data;
-using System.Diagnostics;
 using System.Reflection;
 
 namespace Sqline.ClientFramework {
-	public class SqlineApplication {
+    public class SqlineApplication {
 		private string FConnectionString;
 
 		public SqlineApplication() {
@@ -15,7 +14,7 @@ namespace Sqline.ClientFramework {
 
 		public void Initialize(string connectionString, string provider = "SqlServer") {
 			ConnectionString = connectionString;			
-			Sqline.ProviderModel.Provider.Initialize(ProviderFactory.Create(provider));
+			Provider.Initialize(ProviderFactory.Create(provider));
 		}
 
 		private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
@@ -32,7 +31,7 @@ namespace Sqline.ClientFramework {
 		}
 
 		public IDbConnection GetConnection() {
-			return Sqline.ProviderModel.Provider.Current.GetConnection(ConnectionString);
+			return Provider.Current.GetConnection(ConnectionString);
 		}
 	}
 }

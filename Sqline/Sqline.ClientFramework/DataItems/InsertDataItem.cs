@@ -1,11 +1,9 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
-using System;
 using System.Data;
 using System.Text;
-using Sqline.ProviderModel;
 
 namespace Sqline.ClientFramework {
-	public abstract class InsertDataItem : BaseDataItem {
+    public abstract class InsertDataItem : BaseDataItem {
 		private string FColumns;
 		private string FValues;
 		private bool FFetchPrimaryKeyValueAfterInsert = true;

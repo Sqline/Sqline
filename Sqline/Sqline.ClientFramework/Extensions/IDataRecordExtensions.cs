@@ -3,7 +3,7 @@ using System;
 using System.Data;
 
 namespace Sqline.ClientFramework {
-	public static class IDataRecordExtensions {
+    public static class IDataRecordExtensions {
 
 		public static int GetIndex(this IDataRecord record, string columnName) {
 			// Matches behavior of GetOrdinal without throwing IndexOutofBoundsException

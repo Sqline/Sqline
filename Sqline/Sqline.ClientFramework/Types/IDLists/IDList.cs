@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Sqline.ClientFramework {
-	public class IDList<T> {
+    public class IDList<T> {
 		[ThreadStatic]
 		private static int FInstanceCount = 0;
 		private static char[] FAlphabet =  { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };

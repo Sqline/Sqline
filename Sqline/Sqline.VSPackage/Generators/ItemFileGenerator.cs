@@ -6,7 +6,7 @@ using T4Compiler.Generator;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
-using Sqline.Base;
+using Sqline.ClientFramework;
 
 namespace Sqline.VSPackage {
 	internal class ItemFileGenerator {

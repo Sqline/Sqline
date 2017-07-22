@@ -5,6 +5,7 @@ using Schemalizer.Model;
 using Npgsql;
 using System.Reflection;
 using System.Text;
+using Sqline.ClientFramework;
 
 namespace Sqline.ProviderModel.PostgreSql {
     public class PostgreSqlProvider : IProvider {

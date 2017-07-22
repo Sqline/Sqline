@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using Sqline.ClientFramework;
 
 namespace Sqline.ProviderModel.SqlServer {
     public class SqlServerProvider : IProvider {

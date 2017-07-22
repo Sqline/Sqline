@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 
 namespace Sqline.ClientFramework {
-	public static class AssemblyResolver {
+    public static class AssemblyResolver {
 		private static List<Assembly> FCachedAssemblies = new List<Assembly>();
 		private static object FCacheSync = new object();
 

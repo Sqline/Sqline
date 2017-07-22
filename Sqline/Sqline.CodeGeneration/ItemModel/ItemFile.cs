@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using Sqline.Base;
+using Sqline.ClientFramework;
 using Sqline.CodeGeneration.ConfigurationModel;
 
 namespace Sqline.CodeGeneration.ViewModel {

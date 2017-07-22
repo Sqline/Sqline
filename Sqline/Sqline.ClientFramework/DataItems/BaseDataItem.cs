@@ -1,15 +1,9 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sqline.ProviderModel;
 
 namespace Sqline.ClientFramework {
-	public abstract class BaseDataItem {
+    public abstract class BaseDataItem {
 		protected SqlineApplication FApplication;
 		protected List<IBaseParam> FParameters = new List<IBaseParam>();
 		protected string FTableName = "";

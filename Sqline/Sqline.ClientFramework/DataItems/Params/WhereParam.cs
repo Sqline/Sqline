@@ -1,12 +1,8 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sqline.ClientFramework {
-	public enum WhereOperator { Equals, NotEquals, EqualsNull, NotEqualsNull, LowerThan, LowerThanEquals, GreaterThan, GreaterThanEquals }
+    public enum WhereOperator { Equals, NotEquals, EqualsNull, NotEqualsNull, LowerThan, LowerThanEquals, GreaterThan, GreaterThanEquals }
 
 	public class WhereParam<T> : BaseParam, IWhereParam {
 		protected WhereOperator FOperator = WhereOperator.Equals;

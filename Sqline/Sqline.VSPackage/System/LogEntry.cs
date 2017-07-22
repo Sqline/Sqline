@@ -5,7 +5,7 @@ using System.Linq;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Sqline.Base;
+using Sqline.ClientFramework;
 
 namespace Sqline.VSPackage {
 	public enum LogLevel { Warning, Error };

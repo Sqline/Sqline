@@ -1,7 +1,6 @@
 ﻿// Authors="Daniel Jonas Møller, Anders Eggers-Krag" License="New BSD License http://sqline.codeplex.com/license"
 using System;
 using Sqline.ClientFramework;
-using Sqline.ProviderModel;
 using ISchemalizerProvider = Schemalizer.ProviderModel.ISchemalizerProvider;
 using ProviderFactory = Schemalizer.ProviderModel.ProviderFactory;
 

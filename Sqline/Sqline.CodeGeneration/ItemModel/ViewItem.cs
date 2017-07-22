@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using System.Linq;
 using Sqline.CodeGeneration.ConfigurationModel;
 using System;
-using Sqline.Base;
+using Sqline.ClientFramework;
 
 namespace Sqline.CodeGeneration.ViewModel {
 	public class ViewItem : IOwner {

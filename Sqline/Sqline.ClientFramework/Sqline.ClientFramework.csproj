@@ -54,6 +54,9 @@
     <Compile Include="DataItems\Params\Interfaces\INumberParam.cs" />
     <Compile Include="DataItems\Params\Interfaces\IWhereParam.cs" />
     <Compile Include="DataItems\Support\OperationBatch.cs" />
+    <Compile Include="Exceptions\SqlineException.cs" />
+    <Compile Include="Extensions\FileInfoExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,6 +76,13 @@
     <Compile Include="DataItems\InsertDataItem.cs" />
     <Compile Include="Extensions\IDataRecordExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderModel\IProvider.cs" />
+    <Compile Include="ProviderModel\ISchemalizerProvider.cs" />
+    <Compile Include="ProviderModel\ISqlingoProvider.cs" />
+    <Compile Include="ProviderModel\ITypeMapping.cs" />
+    <Compile Include="ProviderModel\Provider.cs" />
+    <Compile Include="ProviderModel\TypeMapping.cs" />
+    <Compile Include="ProviderModel\Types.cs" />
     <Compile Include="SqlineApplication.cs" />
     <Compile Include="System\AssemblyResolver.cs" />
     <Compile Include="System\ProviderFactory.cs" />
@@ -95,9 +105,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Sqline.ProviderModel.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Sqline.ProviderModel.SqlServer.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -112,21 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Sqline.ProviderModel.MySql.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
-      <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
-      <Name>Sqline.ProviderModel</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Sqline.Base\Sqline.Base.csproj">
-      <Project>{c347571c-cbb9-41e4-883e-df56868b6716}</Project>
-      <Name>Sqline.Base</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel\bin\$(ConfigurationName)\Sqline.ProviderModel.dll $(ProjectDir)Resources\
-copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.SqlServer\bin\$(ConfigurationName)\Sqline.ProviderModel.SqlServer.dll $(ProjectDir)Resources\
+    <PreBuildEvent>copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.SqlServer\bin\$(ConfigurationName)\Sqline.ProviderModel.SqlServer.dll $(ProjectDir)Resources\
 copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.MySql\bin\$(ConfigurationName)\Sqline.ProviderModel.MySql.dll $(ProjectDir)Resources\
 copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.MySql\bin\$(ConfigurationName)\MySql.Data.dll $(ProjectDir)Resources\
 copy /y $(ProjectDir)..\DatabaseProviders\Sqline.ProviderModel.PostgreSql\bin\$(ConfigurationName)\Sqline.ProviderModel.PostgreSql.dll $(ProjectDir)Resources\

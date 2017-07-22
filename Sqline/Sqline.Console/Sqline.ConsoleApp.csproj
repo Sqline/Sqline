@@ -75,10 +75,6 @@
       <Project>{70bde99f-9d08-48e0-970d-6d9f0c2baaf5}</Project>
       <Name>Sqlingo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DatabaseProviders\Sqline.ProviderModel\Sqline.ProviderModel.csproj">
-      <Project>{d5b51461-9b78-4d50-a6a2-7d550e311a6e}</Project>
-      <Name>Sqline.ProviderModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
       <Name>Sqline.ClientFramework</Name>

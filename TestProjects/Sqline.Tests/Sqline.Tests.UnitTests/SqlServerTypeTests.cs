@@ -8,7 +8,7 @@ using System.Diagnostics;
 namespace Sqline.Tests.UnitTests {
 	[TestClass]
 	public class SqlServerSqlServerTypeTests : BaseTest {
-		/*
+	
 
 		[TestMethod]
 		public void SqlServerTypeTest_Bigint() {
@@ -270,6 +270,5 @@ namespace Sqline.Tests.UnitTests {
 			InsertTypeTest(new TypeTestInsert { XmlColumn = @"<root></root>" });
 			UpdateTypeTest(new TypeTestUpdate { XmlColumn = @"<root></root>" }, x => x.WhereXmlColumn = x.WhereXmlColumn != DBNull.Value);
 		}
-		*/
 	}
 }
