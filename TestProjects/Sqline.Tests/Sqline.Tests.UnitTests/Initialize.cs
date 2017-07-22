@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sqline.Tests.DataAccess;
+using Sqline.Tests.DataAccess.SqlServer;
 using System.Configuration;
 
 namespace Sqline.Tests.UnitTests {

@@ -61,9 +61,9 @@
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
       <Name>Sqline.ClientFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sqline.Tests.DataAccess\Sqline.Tests.DataAccess.csproj">
+    <ProjectReference Include="..\Sqline.Tests.DataAccess\Sqline.Tests.DataAccess.SqlServer.csproj">
       <Project>{b2914921-362f-4f27-9b0c-07f3bddf83c7}</Project>
-      <Name>Sqline.Tests.DataAccess</Name>
+      <Name>Sqline.Tests.DataAccess.SqlServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

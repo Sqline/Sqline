@@ -169,7 +169,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Packages\Sqline.ClientFramework.0.1.3.nupkg">
+    <Content Include="Packages\Sqline.ClientFramework.0.1.4.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
@@ -284,7 +285,8 @@
     <PreBuildEvent>xcopy /Y "$(ProjectDir)..\Sqline.CodeGeneration\Templates\*.t4" "$(ProjectDir)Templates"
 xcopy /Y "$(ProjectDir)Assets\Sqline.ConfigFile.zip" "$(ProjectDir)ItemTemplates\Sqline"
 xcopy /Y "$(ProjectDir)Assets\Sqline.ItemFile.zip" "$(ProjectDir)ItemTemplates\Sqline"
-xcopy /Y "$(ProjectDir)Assets\Sqline.Project.zip" "$(ProjectDir)ProjectTemplates"</PreBuildEvent>
+xcopy /Y "$(ProjectDir)Assets\Sqline.Project.zip" "$(ProjectDir)ProjectTemplates"
+"$(ProjectDir)Packages\nuget-build.$(ConfigurationName).bat"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

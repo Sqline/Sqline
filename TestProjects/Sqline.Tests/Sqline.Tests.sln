@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26621.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.Tests.DataAccess", "Sqline.Tests.DataAccess\Sqline.Tests.DataAccess.csproj", "{B2914921-362F-4F27-9B0C-07F3BDDF83C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.Tests.DataAccess.SqlServer", "Sqline.Tests.DataAccess\Sqline.Tests.DataAccess.SqlServer.csproj", "{B2914921-362F-4F27-9B0C-07F3BDDF83C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqline.Tests.UnitTests", "Sqline.Tests.UnitTests\Sqline.Tests.UnitTests.csproj", "{1641947C-DE6D-4C7F-AFCF-020DAEA85737}"
 EndProject
@@ -36,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FF01B37-6B73-4650-8ECD-E8F036191A35}
 	EndGlobalSection
 EndGlobal

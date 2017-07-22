@@ -2,6 +2,7 @@
 
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace Sqline.ClientFramework {
@@ -17,8 +18,17 @@ namespace Sqline.ClientFramework {
 			Provider.Initialize(ProviderFactory.Create(provider));
 		}
 
-		private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
-			return AssemblyResolver.LoadRessourceAssembly(Assembly.GetExecutingAssembly(), args.Name);
+		private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
+			Assembly OResourceAssembly = typeof(SqlineApplication).Assembly;
+			if (args.Name.Contains("Sqline.ClientFramework"))
+			{
+				return OResourceAssembly;
+			}
+			if (args.Name.Contains("Sqline."))
+			{
+				return AssemblyResolver.LoadRessourceAssembly(OResourceAssembly, args.Name);
+			}
+			return null;
 		}
 
 		public string ConnectionString {

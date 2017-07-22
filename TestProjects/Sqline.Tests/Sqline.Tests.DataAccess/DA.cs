@@ -1,7 +1,7 @@
 ﻿using Sqline.ClientFramework;
 using System.Diagnostics;
 
-namespace Sqline.Tests.DataAccess {
+namespace Sqline.Tests.DataAccess.SqlServer {
 	public class DA {
 		private static TypesHandler FTypesHandler = new TypesHandler();
 

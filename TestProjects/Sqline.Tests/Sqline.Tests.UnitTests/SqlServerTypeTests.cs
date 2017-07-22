@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sqline.Tests.DataAccess.DataItems;
-using Sqline.Tests.DataAccess;
+using Sqline.Tests.DataAccess.SqlServer;
 using System.Diagnostics;
 
 namespace Sqline.Tests.UnitTests {

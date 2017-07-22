@@ -7,8 +7,8 @@
     <ProjectGuid>{B2914921-362F-4F27-9B0C-07F3BDDF83C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sqline.Tests.DataAccess</RootNamespace>
-    <AssemblyName>Sqline.Tests.DataAccess</AssemblyName>
+    <RootNamespace>Sqline.Tests.DataAccess.SqlServer</RootNamespace>
+    <AssemblyName>Sqline.Tests.DataAccess.SqlServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

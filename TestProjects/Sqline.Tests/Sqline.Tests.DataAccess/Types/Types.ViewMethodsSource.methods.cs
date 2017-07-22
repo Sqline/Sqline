@@ -7,7 +7,7 @@ using Sqline.CodeGeneration.ConfigurationModel;
 using Sqline.CodeGeneration.ViewModel;
 using Sqline.ClientFramework;
 using System.IO;
-namespace Sqline.CodeTemplate.Template1ccd4a8c9e67e1b1ddadd0db59765254 {
+namespace Sqline.CodeTemplate.Templatef4447af7c4c7f036593f8847d67fb791 {
 public class CodeTemplate : ICodeTemplate {
 private StringBuilder FStringOutput = new StringBuilder();
 public string Generate() {
