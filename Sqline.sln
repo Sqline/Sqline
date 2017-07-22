@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26621.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Schemalizer", "!Schemalizer", "{F6CF7038-73FC-4435-8D0F-CE0765615DA4}"
 EndProject
@@ -135,5 +135,8 @@ Global
 		{97F2C6A7-5D46-46C8-8FD6-DBBDDC14D600} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 		{CB384083-8446-492B-8631-3419A404A98E} = {50ABFB38-1405-4995-82F6-76E7E1CEFD9D}
 		{70BDE99F-9D08-48E0-970D-6D9F0C2BAAF5} = {F48FE7F4-DBE4-4BD5-8D84-8F76FD25E228}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39BF618F-688B-44B8-B789-2E5414A33EE7}
 	EndGlobalSection
 EndGlobal
