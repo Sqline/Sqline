@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using Npgsql;
 using Schemalizer.Model;
+using System.Diagnostics;
 
 namespace Schemalizer.ProviderModel.PostgreSql {
 	public class PostgreSqlProvider : ISchemalizerProvider {
@@ -32,26 +33,33 @@ namespace Schemalizer.ProviderModel.PostgreSql {
 			string OSchemaName = reader.GetString(reader.GetOrdinal("SchemaName"));
 			string OTableName = reader.GetString(reader.GetOrdinal("TableName"));
 			Table OTable = model.CreateTable(OSchemaName, OTableName, FDatabase);
-			OTable.CreatedDate = reader.GetDateTime(reader.GetOrdinal("TableCreatedDate"));
-			OTable.LastModifiedDate = reader.GetDateTime(reader.GetOrdinal("TableLastModifiedDate"));
-			OTable.IsReplicated = reader.GetBoolean(reader.GetOrdinal("TableIsReplicated"));
+			if (!reader.IsDBNull(reader.GetOrdinal("TableCreatedDate"))) {
+				OTable.CreatedDate = reader.GetDateTime(reader.GetOrdinal("TableCreatedDate"));
+			}
+			if (!reader.IsDBNull(reader.GetOrdinal("TableLastModifiedDate"))) {
+				OTable.LastModifiedDate = reader.GetDateTime(reader.GetOrdinal("TableLastModifiedDate"));
+			}
+			OTable.IsReplicated = reader.GetInt32(reader.GetOrdinal("TableIsReplicated")) > 0;
 			return OTable;
 		}
 
 		private void AddColumnData(Table table, IDataReader reader) {
 			string OColumnName = reader.GetString(reader.GetOrdinal("ColumnName"));
 			Column OColumn = table.CreateColumn(OColumnName, FDatabase);
-			OColumn.AutoIncrement = reader.GetBoolean(reader.GetOrdinal("IsAutoIncrement"));
+			OColumn.AutoIncrement = reader.GetString(reader.GetOrdinal("IsAutoIncrement")).Equals("YES", StringComparison.OrdinalIgnoreCase);
 			OColumn.DataType = reader.GetString(reader.GetOrdinal("DataType"));
-			OColumn.MaxLength = reader.GetInt32(reader.GetOrdinal("MaxLength"));
-			OColumn.Nullable = reader.GetBoolean(reader.GetOrdinal("Nullable"));
+			if (!reader.IsDBNull(reader.GetOrdinal("MaxLength")))
+			{
+				OColumn.MaxLength = reader.GetInt32(reader.GetOrdinal("MaxLength"));
+			}
+			OColumn.Nullable = reader.GetString(reader.GetOrdinal("IsNullable")).Equals("YES", StringComparison.OrdinalIgnoreCase);
 			if (!reader.IsDBNull(reader.GetOrdinal("DefaultValue"))) {
 				OColumn.DefaultValue = reader.GetString(reader.GetOrdinal("DefaultValue"));
 			}
 			else {
 				OColumn.DefaultValue = null;
 			}
-			OColumn.PrimaryKey = reader.GetBoolean(reader.GetOrdinal("IsPrimaryKey"));
+			OColumn.PrimaryKey = reader.GetInt32(reader.GetOrdinal("IsPrimaryKey")) > 0;
 		}
 
 		public string ExtractSchemaSql {
@@ -73,8 +81,8 @@ namespace Schemalizer.ProviderModel.PostgreSql {
 							NULL AS TableCreatedDate, /* Not properly supported by PostgreSql (!) */
 							NULL AS TableLastModifiedDate /* Not properly supported by PostgreSql (!) */
 						FROM information_schema.tables T
-						INNER JOIN information_schema.columns C ON C.table_schema = T.table_schema AND C.table_name = T.table_name
-						INNER JOIN information_schema.table_constraints TC ON TC.constraint_schema = C.table_schema AND TC.table_name = C.table_name
+						LEFT OUTER JOIN information_schema.columns C ON C.table_schema = T.table_schema AND C.table_name = T.table_name
+						LEFT OUTER JOIN information_schema.table_constraints TC ON TC.constraint_schema = C.table_schema AND TC.table_name = C.table_name
 						WHERE 
 							T.table_schema NOT IN ('information_schema', 'pg_catalog') AND
 							T.table_type = 'BASE TABLE'";

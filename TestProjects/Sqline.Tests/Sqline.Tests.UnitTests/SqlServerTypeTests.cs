@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sqline.Tests.DataAccess.DataItems;
+using Sqline.Tests.DataAccess.SqlServer.DataItems;
 using Sqline.Tests.DataAccess.SqlServer;
 using System.Diagnostics;
 

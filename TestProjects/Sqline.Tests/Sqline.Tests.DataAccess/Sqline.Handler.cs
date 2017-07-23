@@ -1,5 +1,5 @@
 ﻿using Sqline.ClientFramework;
-namespace Sqline.Tests.DataAccess {
+namespace Sqline.Tests.DataAccess.SqlServer {
 	public static class DAHandler {
 		private static SqlineApplication FSqlineApplication;
 

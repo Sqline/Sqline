@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Model>
-  <Tables />
+  <Tables>
+    <Table Schema="public" Name="TypeTest" Replicated="false" CreatedDate="9999-12-31T23:59:59.9999999" LastModifiedDate="0001-01-01T00:00:00">
+      <DatabaseRelationships>
+        <DatabaseRelationship Name="Sqline" />
+      </DatabaseRelationships>
+      <Column Name="IntegerColumn" DataType="integer" MaxLength="0" Nullable="true" DefaultValue="" PrimaryKey="false" Required="false" AutoIncrement="false">
+        <DatabaseRelationships>
+          <DatabaseRelationship Name="Sqline" />
+        </DatabaseRelationships>
+      </Column>
+    </Table>
+  </Tables>
   <Databases>
     <Database Name="Sqline" LastModified="0001-01-01T00:00:00" />
   </Databases>

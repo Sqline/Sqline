@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sqline.Tests.DataAccess;
-using Sqline.Tests.DataAccess.DataItems;
+using Sqline.Tests.DataAccess.SqlServer.DataItems;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
