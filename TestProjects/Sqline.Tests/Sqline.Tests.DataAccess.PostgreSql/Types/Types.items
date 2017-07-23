@@ -1,15 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <items xmlns="http://sqline.net/schemas/items.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://sqline.net/schemas/items.xsd http://sqline.net/schemas/items.xsd">
-	
-	<viewitem name="User">
-    <field name="Name" type="character varying" />
-		<field name="Email" type="integer" />
-		
-		<method name="GetUsers">
-			<sql>
-				SELECT Name, EMail FROM [User]
-			</sql>
-		</method>
-	</viewitem>
+
+  <scalar type="integer">
+    <method name="GetInt" result="singleitem">
+      <sql>SELECT IntColumn FROM TypeTest WHERE IntColumn IS NOT NULL</sql>
+    </method>
+  </scalar>
 	
 </items>

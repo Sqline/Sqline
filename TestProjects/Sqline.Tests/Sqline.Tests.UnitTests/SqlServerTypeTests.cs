@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sqline.Tests.DataAccess.SqlServer.DataItems;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sqline.Tests.DataAccess.SqlServer;
-using System.Diagnostics;
+using Sqline.Tests.DataAccess.SqlServer.DataItems;
+using System;
 
-namespace Sqline.Tests.UnitTests {
+namespace Sqline.Tests.UnitTests
+{
 	[TestClass]
-	public class SqlServerSqlServerTypeTests : BaseTest {
+	public class SqlServerSqlServerTypeTests : SqlServerBaseTest
+	{
 	
-
 		[TestMethod]
 		public void SqlServerTypeTest_Bigint() {
 			long value = 15444444444545554;

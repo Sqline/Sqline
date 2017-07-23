@@ -1,16 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sqline.Tests.DataAccess;
 using Sqline.Tests.DataAccess.SqlServer.DataItems;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Sqline.Tests.UnitTests {
-	public abstract class BaseTest {
+namespace Sqline.Tests.UnitTests
+{
+	public abstract class SqlServerBaseTest {
 		public void InsertTypeTest(TypeTestInsert insert) {
 			Debug.WriteLine(insert.GetGeneratedStatement());
 			int OAffected = insert.Execute();

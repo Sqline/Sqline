@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sqline.Tests.DataAccess.SqlServer;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
 
 namespace Sqline.Tests.UnitTests {
@@ -10,7 +8,8 @@ namespace Sqline.Tests.UnitTests {
 
 		[AssemblyInitialize]
 		public static void InitializeTests(TestContext context) {
-			DA.Initialize(ConfigurationManager.ConnectionStrings["TestDB"].ConnectionString);
+			DataAccess.SqlServer.DA.Initialize(ConfigurationManager.ConnectionStrings["TestDB_SqlServer"].ConnectionString, "SqlServer");
+			//DataAccess.PostgreSql.DA.Initialize(ConfigurationManager.ConnectionStrings["TestDB_PostgreSql"].ConnectionString, "PostgreSql");
 		}
 	}
 }

@@ -44,11 +44,11 @@
     <Compile Include="Sqline.Handler.cs">
       <DependentUpon>Sqline.config</DependentUpon>
     </Compile>
-    <Compile Include="User\User.methods.cs">
-      <DependentUpon>User.items</DependentUpon>
+    <Compile Include="Types\Types.methods.cs">
+      <DependentUpon>Types.items</DependentUpon>
     </Compile>
-    <Compile Include="User\User.viewitem.cs">
-      <DependentUpon>User.items</DependentUpon>
+    <Compile Include="Types\Types.viewitem.cs">
+      <DependentUpon>Types.items</DependentUpon>
     </Compile>
     <None Include="Database.xdml" />
     <None Include="packages.config" />
@@ -56,7 +56,7 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="User\User.items">
+    <None Include="Types\Types.items">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

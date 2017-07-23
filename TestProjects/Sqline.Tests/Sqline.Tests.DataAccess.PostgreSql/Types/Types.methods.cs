@@ -6,11 +6,11 @@ using Sqline.ClientFramework;
 using Sqline.Tests.DataAccess.PostgreSql.ViewItems;
 namespace Sqline.Tests.DataAccess.PostgreSql {
 
-	public partial class UserHandler {
+	public partial class TypesHandler {
 
-		public List<User> GetUsers() {
-			List<User> OResult = new List<User>();
-			string OSql = @"SELECT Name, EMail FROM [User]";
+		public int GetInt() {
+			int OResult = default(int);
+			string OSql = @"SELECT IntColumn FROM TypeTest WHERE IntColumn IS NOT NULL";
 			using (IDbConnection OConnection = Sqline.Tests.DataAccess.PostgreSql.DAHandler.SqlineApplication.GetConnection()) {
 				using (IDbCommand OCommand = OConnection.CreateCommand()) {
 					OCommand.CommandText = OSql;
@@ -18,15 +18,9 @@ namespace Sqline.Tests.DataAccess.PostgreSql {
 					OCommand.CommandTimeout = 30;
 					OConnection.Open();
 					using (IDataReader OReader = OCommand.ExecuteReader()) {
-						int ONameOrdinal = OReader.GetIndex("Name");
-						int OEmailOrdinal = OReader.GetIndex("Email");
-						while (OReader.Read()) {
-						User OViewItem = new User();
-						OViewItem.PreInitialize();
-							OViewItem.Name = OReader.GetDateTime(ONameOrdinal);
-							OViewItem.Email = OReader.GetInt32(OEmailOrdinal);
-						OViewItem.PostInitialize();
-							OResult.Add(OViewItem);
+						if (OReader.Read()) {
+							int OScalarItem = OReader.GetInt32(0);
+							OResult = OScalarItem;
 						}
 					}
 				}

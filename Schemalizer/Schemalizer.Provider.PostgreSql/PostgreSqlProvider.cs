@@ -11,7 +11,7 @@ namespace Schemalizer.ProviderModel.PostgreSql {
 		public string ConnectionString { get; set; }
 
 		public bool HasSchemaChanged(SchemaModel model) {
-			return true; //TODO: Compare to DB change date
+			return true; //TODO: Compare to DB change date (no such data seems to exists!)
 		}
 
 		public void ExtractMetadata(SchemaModel model, string databaseName) {

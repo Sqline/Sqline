@@ -51,8 +51,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Common\BaseTest.cs" />
+    <Compile Include="Common\PostgreSqlBaseTest.cs" />
+    <Compile Include="Common\SqlServerBaseTest.cs" />
     <Compile Include="Initialize.cs" />
+    <Compile Include="PostgreSqlTypeTests.cs" />
     <Compile Include="SqlServerTypeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +62,10 @@
     <ProjectReference Include="..\..\..\Sqline\Sqline.ClientFramework\Sqline.ClientFramework.csproj">
       <Project>{64ba3e92-7c0c-495a-af06-1976aa2e7b1e}</Project>
       <Name>Sqline.ClientFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sqline.Tests.DataAccess.PostgreSql\Sqline.Tests.DataAccess.PostgreSql.csproj">
+      <Project>{a47ec35d-b22f-4b66-9f74-f11607aac163}</Project>
+      <Name>Sqline.Tests.DataAccess.PostgreSql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sqline.Tests.DataAccess\Sqline.Tests.DataAccess.SqlServer.csproj">
       <Project>{b2914921-362f-4f27-9b0c-07f3bddf83c7}</Project>

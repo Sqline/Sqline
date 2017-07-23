@@ -4,7 +4,7 @@ namespace Sqline.Tests.DataAccess.PostgreSql
 {
 	public class DA
 	{
-		private static UserHandler FUserHandler = new UserHandler();
+		private static TypesHandler FTypesHandler = new TypesHandler();
 
 		public static void Initialize(string connstr, string provider = "SqlServer")
 		{
@@ -13,11 +13,11 @@ namespace Sqline.Tests.DataAccess.PostgreSql
 			DAHandler.Initialize(OApplication);
 		}
 
-		public static UserHandler User
+		public static TypesHandler Types
 		{
 			get
 			{
-				return FUserHandler;
+				return FTypesHandler;
 			}
 		}
 	}

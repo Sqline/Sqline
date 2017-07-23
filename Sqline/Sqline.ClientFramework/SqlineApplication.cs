@@ -19,12 +19,13 @@ namespace Sqline.ClientFramework {
 		}
 
 		private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
+			Debug.WriteLine("### Assembly Resolve: " + args.Name);
 			Assembly OResourceAssembly = typeof(SqlineApplication).Assembly;
 			if (args.Name.Contains("Sqline.ClientFramework"))
 			{
 				return OResourceAssembly;
 			}
-			if (args.Name.Contains("Sqline."))
+			if (args.Name.StartsWith("Sqline.") || args.Name.StartsWith("Npgsql") || args.Name.StartsWith("MySql."))
 			{
 				return AssemblyResolver.LoadRessourceAssembly(OResourceAssembly, args.Name);
 			}
