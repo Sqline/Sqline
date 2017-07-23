@@ -10,7 +10,7 @@ namespace Sqline.Tests.DataAccess.PostgreSql {
 
 		public int GetInt() {
 			int OResult = default(int);
-			string OSql = @"SELECT IntColumn FROM TypeTest WHERE IntColumn IS NOT NULL";
+			string OSql = @"SELECT ""IntegerColumn"" FROM ""public"".""TypeTest"" WHERE ""IntegerColumn"" IS NOT NULL";
 			using (IDbConnection OConnection = Sqline.Tests.DataAccess.PostgreSql.DAHandler.SqlineApplication.GetConnection()) {
 				using (IDbCommand OCommand = OConnection.CreateCommand()) {
 					OCommand.CommandText = OSql;

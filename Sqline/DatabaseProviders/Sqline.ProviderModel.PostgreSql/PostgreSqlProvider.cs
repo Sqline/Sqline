@@ -14,13 +14,13 @@ namespace Sqline.ProviderModel.PostgreSql {
 
 		public string IdentifierStartDelimiter {
             get {
-                return "[";
+                return "\"";
             }
         }
 
         public string IdentifierEndDelimiter {
             get {
-                return "]";
+                return "\"";
             }
         }
 

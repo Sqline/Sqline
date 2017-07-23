@@ -8,7 +8,7 @@ namespace Sqline.Tests.UnitTests
 	[TestClass]
 	public class SqlServerSqlServerTypeTests : SqlServerBaseTest
 	{
-	
+	/*
 		[TestMethod]
 		public void SqlServerTypeTest_Bigint() {
 			long value = 15444444444545554;
@@ -269,5 +269,7 @@ namespace Sqline.Tests.UnitTests
 			InsertTypeTest(new TypeTestInsert { XmlColumn = @"<root></root>" });
 			UpdateTypeTest(new TypeTestUpdate { XmlColumn = @"<root></root>" }, x => x.WhereXmlColumn = x.WhereXmlColumn != DBNull.Value);
 		}
+
+	*/
 	}
 }
